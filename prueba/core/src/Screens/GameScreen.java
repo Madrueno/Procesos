@@ -4,23 +4,42 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 
-public class GameScreen implements Screen {
+import GameWorld.GameRenderer;
+import GameWorld.GameWorld;
+import Helpers.InputHandler;
 
+public class GameScreen implements Screen {
+    private GameWorld world;
+    private GameRenderer renderer;
+    private float runTime;
+
+    // This is the constructor, not the class declaration
     public GameScreen() {
-        Gdx.app.log("GameScreen", "Attached");
+
+        float screenWidth = Gdx.graphics.getWidth();
+        float screenHeight = Gdx.graphics.getHeight();
+        float gameWidth = 136;
+        float gameHeight = screenHeight / (screenWidth / gameWidth);
+
+        int midPointY = (int) (gameHeight / 2);
+
+        world = new GameWorld(midPointY);
+        renderer = new GameRenderer(world, (int) gameHeight, midPointY);
+
+        Gdx.input.setInputProcessor(new InputHandler(world.getPlayerShip()));
+
     }
 
     @Override
     public void render(float delta) {
-        // Sets a Color to Fill the Screen with (RGB = 10, 15, 230), Opacity of 1 (100%)
-        Gdx.gl.glClearColor(10/255.0f, 15/255.0f, 230/255.0f, 1f);
-        // Fills the screen with the selected color
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        runTime += delta;
+        world.update(delta);
+        renderer.render(runTime);
     }
 
     @Override
     public void resize(int width, int height) {
-        Gdx.app.log("GameScreen", "resizing");
+
     }
 
     @Override
