@@ -12,7 +12,5 @@ public class DesktopLauncher {
 		config.width = 272;
 		config.height = 408;
 		new LwjglApplication(new SpaceInvaders(), config);
-		System.out.println("fdlksmfls");
-		System.out.println("helou");
 	}
 }

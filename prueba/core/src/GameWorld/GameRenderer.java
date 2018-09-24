@@ -46,7 +46,7 @@ public class GameRenderer {
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 
-        shapeRenderer.setColor(Color.BLACK);
+        shapeRenderer.setColor(Color.BLUE);
         shapeRenderer.rect(0, 0, 136, midPointY + 66);
 
         shapeRenderer.setColor(Color.GREEN);
