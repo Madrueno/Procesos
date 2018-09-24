@@ -12,6 +12,7 @@ public class SpaceInvaders extends Game{
 	public void create() {
 		Gdx.app.log("SpaceInvadersGame", "created");
 		setScreen(new GameScreen());
+		System.out.println("sdfjdlsf");
 	}
 
 	@Override
