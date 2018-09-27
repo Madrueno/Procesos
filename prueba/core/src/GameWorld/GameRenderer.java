@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 
 import GameObjects.PlayerShip;
 import Helpers.AssetLoader;
@@ -39,6 +41,24 @@ public class GameRenderer {
         shapeRenderer.setProjectionMatrix(cam.combined);
     }
 
+    public void buttons(){
+        Stage stage = new Stage();
+        Gdx.input.setInputProcessor(stage);
+
+
+        ImageButton buttonLeft = AssetLoader.buttonLeft(25, 100);
+        stage.addActor(buttonLeft);
+
+        ImageButton buttonRight = AssetLoader.buttonRight(125, 100);
+        stage.addActor(buttonRight);
+
+        ImageButton buttonShoot = AssetLoader.buttonShoot(200, 100);
+        stage.addActor(buttonShoot);
+
+        stage.act();
+        stage.draw();
+    }
+
     public void render(float runTime) {
 
         Gdx.gl.glClearColor(0, 0, 0, 1);
@@ -54,8 +74,9 @@ public class GameRenderer {
 
         shapeRenderer.end();
 
+        buttons(); // Pone los botones
+
         //Falta el sprite
-
-
     }
+
 }
