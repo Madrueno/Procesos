@@ -10,8 +10,8 @@ public class GameWorld {
 
     private PlayerShip playerShip;
 
-    public GameWorld(int midPointY) {
-        playerShip = new PlayerShip(33, midPointY - 5, 17, 12);
+    public GameWorld(float x, float y) {
+        playerShip = new PlayerShip(x, y, 17, 12);
     }
 
     public void update(float delta) {

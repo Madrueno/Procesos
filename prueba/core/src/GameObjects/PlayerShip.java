@@ -1,6 +1,10 @@
 package GameObjects;
 
+import com.badlogic.gdx.graphics.g2d.freetype.FreeType.Bitmap;
 import com.badlogic.gdx.math.Vector2;
+
+
+import java.awt.geom.Rectangle2D;
 
 public class PlayerShip {
     private Vector2 position;
@@ -10,13 +14,16 @@ public class PlayerShip {
     private float rotation; // For handling bird rotation
     private int width;
     private int height;
+    private Rectangle2D recPlayer;
+    private Bitmap bitmap;
 
     public PlayerShip(float x, float y, int width, int height) {
         this.width = width;
         this.height = height;
-        position = new Vector2(x, y);
+        position = new Vector2(x/2, 10);
         velocity = new Vector2(0, 0);
         acceleration = new Vector2(260, 0);
+
     }
     public void update(float delta) {
 
