@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 
@@ -45,7 +47,6 @@ public class GameRenderer {
         Stage stage = new Stage();
         Gdx.input.setInputProcessor(stage);
 
-
         ImageButton buttonLeft = AssetLoader.buttonLeft(25, 100);
         stage.addActor(buttonLeft);
 
@@ -54,6 +55,28 @@ public class GameRenderer {
 
         ImageButton buttonShoot = AssetLoader.buttonShoot(200, 100);
         stage.addActor(buttonShoot);
+
+        // aqui va la funcionalidad de los botones
+        buttonLeft.addListener(new InputListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                Gdx.app.log("buttonLeft", "Boton izquierdo pulsado");
+                return true;
+            }});
+
+        buttonRight.addListener(new InputListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                Gdx.app.log("buttonRight", "Boton derecho pulsado");
+                return true;
+            }});
+
+        buttonShoot.addListener(new InputListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                Gdx.app.log("buttonShoot", "Boton de disparo pulsado");
+                return true;
+            }});
 
         stage.act();
         stage.draw();
