@@ -13,6 +13,9 @@ public class AssetLoader {
     public static TextureRegion texturePlayer;
     public static Texture invader;
     public static TextureRegion textureInvader;
+    public static Texture gameOver;
+    public static TextureRegion textureGameOver;
+
 
 
     public static void loadBg() {
@@ -22,6 +25,9 @@ public class AssetLoader {
          texturePlayer =new TextureRegion(player);
          invader = new Texture (Gdx.files.internal("android/assets/data/unown.gif"));
          textureInvader =new TextureRegion(invader);
+         gameOver = new Texture (Gdx.files.internal("android/assets/data/gameOver.png"));
+         textureGameOver =new TextureRegion(gameOver);
+         textureGameOver.flip(false, true);
 
     }
 

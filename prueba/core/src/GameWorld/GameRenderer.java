@@ -55,13 +55,13 @@ public class GameRenderer {
         Stage stage = new Stage();
         Gdx.input.setInputProcessor(stage);
 
-        ImageButton buttonLeft = AssetLoader.buttonLeft(25, 100);
+        ImageButton buttonLeft = AssetLoader.buttonLeft(25, 10);
         stage.addActor(buttonLeft);
 
-        ImageButton buttonRight = AssetLoader.buttonRight(125, 100);
+        ImageButton buttonRight = AssetLoader.buttonRight(125, 10);
         stage.addActor(buttonRight);
 
-        ImageButton buttonShoot = AssetLoader.buttonShoot(200, 100);
+        ImageButton buttonShoot = AssetLoader.buttonShoot(200, 10);
         stage.addActor(buttonShoot);
 
         // aqui va la funcionalidad de los botones
@@ -98,7 +98,12 @@ public class GameRenderer {
 
         for (Invaders invader : invadersAlive.getArmy()) {
             if (invader.isAlive()) {
-                batcher.draw(AssetLoader.textureInvader, invader.getX(), invader.getY(), invader.getWidth(), invader.getHeight());
+                if (invader.getY()>170){
+                    batcher.draw(AssetLoader.textureGameOver, 3, 20, 128, 128);
+                }
+                else {
+                    batcher.draw(AssetLoader.textureInvader, invader.getX(), invader.getY(), invader.getWidth(), invader.getHeight());
+                }
             }
         }
 

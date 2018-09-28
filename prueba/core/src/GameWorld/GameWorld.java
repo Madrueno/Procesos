@@ -11,7 +11,7 @@ public class GameWorld {
     private PlayerShip playerShip;
 
     public GameWorld(float x, float y) {
-        playerShip = new PlayerShip(50, 150, 20, 24);
+        playerShip = new PlayerShip(50, 150, 25, 25);
     }
 
     public void update(float delta) {

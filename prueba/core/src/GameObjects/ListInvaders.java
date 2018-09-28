@@ -28,7 +28,7 @@ public class ListInvaders {
         int seconds = (int) time;
         int nuevos=invadersAlive.size() - 3;
         int x, y;
-        
+
         if (seconds%3==0 && seconds!=0 && nuevos<time/3){
             Invaders lastInvader = invadersAlive.get(invadersAlive.size() - 1);
             if (lastInvader.getX()==90){
