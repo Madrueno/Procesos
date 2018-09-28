@@ -14,10 +14,11 @@ public class ListInvaders {
     public ListInvaders(){
         this.invadersAlive = new ArrayList<Invaders>();
 
-        this.invadersAlive.add(new Invaders(15,10,25,25, true));
-        this.invadersAlive.add(new Invaders(40,10,25,25, true));
-        this.invadersAlive.add(new Invaders(65,10,25,25, true));
-        this.invadersAlive.add(new Invaders(90,10,25,25, true));
+        this.invadersAlive.add(new Invaders(30,10,15,15, true));
+        this.invadersAlive.add(new Invaders(45,10,15,15, true));
+        this.invadersAlive.add(new Invaders(60,10,15,15, true));
+        this.invadersAlive.add(new Invaders(75,10,15,15, true));
+        this.invadersAlive.add(new Invaders(90,10,15,15, true));
     }
 
     public ArrayList<Invaders> getArmy(){
@@ -30,17 +31,15 @@ public class ListInvaders {
         int x, y;
 
         if (seconds%3==0 && seconds!=0 && nuevos<time/3){
-            Invaders lastInvader = invadersAlive.get(invadersAlive.size() - 1);
-            if (lastInvader.getX()==90){
-                x=15;
-                y=lastInvader.getY()+30;
+            int size = invadersAlive.size() - 1;
+            Invaders lastInvader = invadersAlive.get(size);
+            if ((size+1)%5==0) {
+                invadersAlive.add(new Invaders(invadersAlive.get(size-4).getPosition().x, invadersAlive.get(size).getPosition().y + 15, 15, 15, true));
             }
             else{
-                x=lastInvader.getX()+25;
-                y=lastInvader.getY();
+                invadersAlive.add(new Invaders(invadersAlive.get(size).getPosition().x+15, invadersAlive.get(size).getPosition().y, 15, 15, true));
             }
 
-            invadersAlive.add(new Invaders(x, y, 25, 25, true));
             nuevos++;
         }
     }

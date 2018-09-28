@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -28,7 +27,8 @@ public class GameRenderer {
     private int midPointY;
     private int gameHeight;
 
-    public static ListInvaders invadersAlive = new ListInvaders();
+
+    public static ListInvaders invadersAlive;
 
     public GameRenderer(GameWorld world, int gameHeight, int midPointY) {
         myWorld = world;
@@ -98,11 +98,12 @@ public class GameRenderer {
 
         for (Invaders invader : invadersAlive.getArmy()) {
             if (invader.isAlive()) {
-                if (invader.getY()>170){
+                if (invader.getPosition().y>170){
                     batcher.draw(AssetLoader.textureGameOver, 3, 20, 128, 128);
+
                 }
                 else {
-                    batcher.draw(AssetLoader.textureInvader, invader.getX(), invader.getY(), invader.getWidth(), invader.getHeight());
+                    batcher.draw(AssetLoader.textureInvader, invader.getPosition().x, invader.getPosition().y, invader.getWidth(), invader.getHeight());
                 }
             }
         }
@@ -111,6 +112,8 @@ public class GameRenderer {
 
     public void render(float runTime) {
         PlayerShip playerShip = myWorld.getPlayerShip();
+        invadersAlive = myWorld.getInvadersArmy();
+
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
