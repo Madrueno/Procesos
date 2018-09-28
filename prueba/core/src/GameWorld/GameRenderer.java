@@ -92,12 +92,16 @@ public class GameRenderer {
         stage.draw();
     }
 
-    public void invaders (SpriteBatch batcher){
+    public void invaders (SpriteBatch batcher, float time){
+
+        invadersAlive.newInvader(time);
+
         for (Invaders invader : invadersAlive.getArmy()) {
             if (invader.isAlive()) {
                 batcher.draw(AssetLoader.textureInvader, invader.getX(), invader.getY(), invader.getWidth(), invader.getHeight());
             }
         }
+
     }
 
     public void render(float runTime) {
@@ -121,7 +125,8 @@ public class GameRenderer {
             batcher.enableBlending();
             batcher.draw(AssetLoader.texturePlayer,PlayerShip.getX(),PlayerShip.getY(), PlayerShip.getWidth(),PlayerShip.getHeight());
 
-            invaders(batcher);
+            float time = runTime;
+            invaders(batcher,time);
 
         batcher.end();
 

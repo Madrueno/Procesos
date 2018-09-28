@@ -13,6 +13,7 @@ public class GameScreen implements Screen {
     private GameRenderer renderer;
     private float runTime;
 
+
     // This is the constructor, not the class declaration
     public GameScreen() {
 
@@ -36,6 +37,7 @@ public class GameScreen implements Screen {
         world.update(delta);
         renderer.render(runTime);
     }
+
 
     @Override
     public void resize(int width, int height) {
