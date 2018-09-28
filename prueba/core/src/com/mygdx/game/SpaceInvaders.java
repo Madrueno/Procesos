@@ -11,6 +11,7 @@ public class SpaceInvaders extends Game{
 	@Override
 	public void create() {
 		Gdx.app.log("SpaceInvadersGame", "created");
+		AssetLoader.loadBg();
 		setScreen(new GameScreen());
 	}
 

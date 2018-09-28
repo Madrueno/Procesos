@@ -1,6 +1,6 @@
 package GameObjects;
 
-import com.badlogic.gdx.graphics.g2d.freetype.FreeType.Bitmap;
+
 import com.badlogic.gdx.math.Vector2;
 
 
@@ -15,7 +15,7 @@ public class PlayerShip {
     private int width;
     private int height;
     private Rectangle2D recPlayer;
-    private Bitmap bitmap;
+
 
     public PlayerShip(float x, float y, int width, int height) {
         this.width = width;

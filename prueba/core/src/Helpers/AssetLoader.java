@@ -7,14 +7,18 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 public class AssetLoader {
+    public static Texture bg;
+    public static TextureRegion textureBg;
 
+    public static void loadBg() {
+         bg = new Texture (Gdx.files.internal("android/assets/data/bg.jpg"));
+         textureBg =new TextureRegion(bg);
 
-    public static void load() {
 
     }
 
     public static ImageButton buttonLeft(float x, float y){
-        Texture myTexture = new Texture(Gdx.files.internal("data/left.png"));
+        Texture myTexture = new Texture(Gdx.files.internal("android/assets/data/left.png"));
         TextureRegion myTextureRegion = new TextureRegion(myTexture);
         TextureRegionDrawable myTexRegionDrawable = new TextureRegionDrawable(myTextureRegion);
         ImageButton button = new ImageButton(myTexRegionDrawable);
@@ -24,7 +28,7 @@ public class AssetLoader {
     }
 
     public static ImageButton buttonRight(float x, float y){
-        Texture myTexture = new Texture(Gdx.files.internal("data/right.png"));
+        Texture myTexture = new Texture(Gdx.files.internal("android/assets/data/right.png"));
         TextureRegion myTextureRegion = new TextureRegion(myTexture);
         TextureRegionDrawable myTexRegionDrawable = new TextureRegionDrawable(myTextureRegion);
         ImageButton button = new ImageButton(myTexRegionDrawable);
@@ -34,7 +38,7 @@ public class AssetLoader {
     }
 
     public static ImageButton buttonShoot(float x, float y){
-        Texture myTexture = new Texture(Gdx.files.internal("data/pokeball.png"));
+        Texture myTexture = new Texture(Gdx.files.internal("android/assets/data/pokeball.png"));
         TextureRegion myTextureRegion = new TextureRegion(myTexture);
         TextureRegionDrawable myTexRegionDrawable = new TextureRegionDrawable(myTextureRegion);
         ImageButton button = new ImageButton(myTexRegionDrawable);

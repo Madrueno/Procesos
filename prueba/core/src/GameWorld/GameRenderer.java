@@ -97,6 +97,11 @@ public class GameRenderer {
 
         shapeRenderer.end();
 
+        batcher.begin();
+            batcher.disableBlending();
+            batcher.draw(AssetLoader.textureBg,0,0);
+        batcher.end();
+
         buttons(); // Pone los botones
 
         //Falta el sprite
