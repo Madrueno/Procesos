@@ -21,7 +21,7 @@ public class PlayerShip {
         this.height = height;
         position = new Vector2(x, y);
         velocity = new Vector2(0, 0);
-        acceleration = new Vector2(16, 0);
+        acceleration = new Vector2(0, 0);
 
     }
     public void update(float delta) {
@@ -48,11 +48,11 @@ public class PlayerShip {
     }
 
     public void setLeft(){
-        position.x = position.x - 10;
+        position.x = position.x - 3;
     }
 
     public void setRight(){
-        position.x = position.x + 10;
+        position.x = position.x + 3;
     }
 
     public static float getX() {

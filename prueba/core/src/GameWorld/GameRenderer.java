@@ -77,6 +77,7 @@ public class GameRenderer {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 Gdx.app.log("buttonRight", "Boton derecho pulsado");
+                playerShip.setRight();
                 return true;
             }});
 
@@ -84,7 +85,6 @@ public class GameRenderer {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 Gdx.app.log("buttonShoot", "Boton de disparo pulsado");
-                playerShip.setRight();
                 return true;
             }});
 
