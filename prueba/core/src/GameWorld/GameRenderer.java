@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -11,6 +12,8 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 
+import GameObjects.Invaders;
+import GameObjects.ListInvaders;
 import GameObjects.PlayerShip;
 import Helpers.AssetLoader;
 
@@ -25,8 +28,11 @@ public class GameRenderer {
     private int midPointY;
     private int gameHeight;
 
+    public static ListInvaders invadersAlive = new ListInvaders();
+
     public GameRenderer(GameWorld world, int gameHeight, int midPointY) {
         myWorld = world;
+
 
         // The word "this" refers to this instance.
         // We are setting the instance variables' values to be that of the
@@ -41,7 +47,9 @@ public class GameRenderer {
         batcher.setProjectionMatrix(cam.combined);
         shapeRenderer = new ShapeRenderer();
         shapeRenderer.setProjectionMatrix(cam.combined);
+
     }
+
 
     public void buttons(){
         Stage stage = new Stage();
@@ -82,8 +90,16 @@ public class GameRenderer {
         stage.draw();
     }
 
-    public void render(float runTime) {
+    public void invaders (SpriteBatch batcher){
+        for (Invaders invader : invadersAlive.getArmy()) {
+            if (invader.isAlive()) {
+                batcher.draw(AssetLoader.textureInvader, invader.getX(), invader.getY(), invader.getWidth(), invader.getHeight());
+            }
+        }
+    }
 
+    public void render(float runTime) {
+        PlayerShip playerShip = myWorld.getPlayerShip();
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -101,9 +117,12 @@ public class GameRenderer {
             batcher.disableBlending();
             batcher.draw(AssetLoader.textureBg,0, 0, 200, 500);
             batcher.enableBlending();
-            batcher.draw(AssetLoader.texturePlayer,10,50, PlayerShip.getWidth(),PlayerShip.getHeight());
+            batcher.draw(AssetLoader.texturePlayer,10,150, PlayerShip.getWidth(),PlayerShip.getHeight());
+
+            invaders(batcher);
 
         batcher.end();
+
 
         buttons(); // Pone los botones
 

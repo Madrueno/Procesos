@@ -11,6 +11,8 @@ public class AssetLoader {
     public static TextureRegion textureBg;
     public static Texture player;
     public static TextureRegion texturePlayer;
+    public static Texture invader;
+    public static TextureRegion textureInvader;
 
 
     public static void loadBg() {
@@ -18,6 +20,8 @@ public class AssetLoader {
          textureBg =new TextureRegion(bg);
          player = new Texture (Gdx.files.internal("android/assets/data/pikachu.png"));
          texturePlayer =new TextureRegion(player);
+         invader = new Texture (Gdx.files.internal("android/assets/data/unown.gif"));
+         textureInvader =new TextureRegion(invader);
 
     }
 
