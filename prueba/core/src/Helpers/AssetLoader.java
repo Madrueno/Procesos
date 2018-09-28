@@ -9,11 +9,15 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 public class AssetLoader {
     public static Texture bg;
     public static TextureRegion textureBg;
+    public static Texture player;
+    public static TextureRegion texturePlayer;
+
 
     public static void loadBg() {
          bg = new Texture (Gdx.files.internal("android/assets/data/bg.jpg"));
          textureBg =new TextureRegion(bg);
-
+         player = new Texture (Gdx.files.internal("android/assets/data/pikachu.png"));
+         texturePlayer =new TextureRegion(player);
 
     }
 

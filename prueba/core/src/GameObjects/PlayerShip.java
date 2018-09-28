@@ -7,13 +7,13 @@ import com.badlogic.gdx.math.Vector2;
 import java.awt.geom.Rectangle2D;
 
 public class PlayerShip {
-    private Vector2 position;
+    private static Vector2 position;
     private Vector2 velocity;
     private Vector2 acceleration;
 
     private float rotation; // For handling bird rotation
-    private int width;
-    private int height;
+    private static int width;
+    private static int height;
     private Rectangle2D recPlayer;
 
 
@@ -41,19 +41,19 @@ public class PlayerShip {
         velocity.x = -140;
     }
 
-    public float getX() {
+    public static float getX() {
         return position.x;
     }
 
-    public float getY() {
+    public static float getY() {
         return position.y;
     }
 
-    public float getWidth() {
+    public static float getWidth() {
         return width;
     }
 
-    public float getHeight() {
+    public static float getHeight() {
         return height;
     }
 

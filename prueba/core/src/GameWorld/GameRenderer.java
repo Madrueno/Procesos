@@ -99,7 +99,10 @@ public class GameRenderer {
 
         batcher.begin();
             batcher.disableBlending();
-            batcher.draw(AssetLoader.textureBg,0,0);
+            batcher.draw(AssetLoader.textureBg,0, 0, 200, 500);
+            batcher.enableBlending();
+            batcher.draw(AssetLoader.texturePlayer,10,50, PlayerShip.getWidth(),PlayerShip.getHeight());
+
         batcher.end();
 
         buttons(); // Pone los botones
