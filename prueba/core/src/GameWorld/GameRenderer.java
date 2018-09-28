@@ -51,7 +51,7 @@ public class GameRenderer {
     }
 
 
-    public void buttons(){
+    public void buttons(final PlayerShip playerShip){
         Stage stage = new Stage();
         Gdx.input.setInputProcessor(stage);
 
@@ -69,6 +69,7 @@ public class GameRenderer {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 Gdx.app.log("buttonLeft", "Boton izquierdo pulsado");
+                playerShip.setLeft();
                 return true;
             }});
 
@@ -83,6 +84,7 @@ public class GameRenderer {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 Gdx.app.log("buttonShoot", "Boton de disparo pulsado");
+                playerShip.setRight();
                 return true;
             }});
 
@@ -124,7 +126,7 @@ public class GameRenderer {
         batcher.end();
 
 
-        buttons(); // Pone los botones
+        buttons(playerShip); // Pone los botones
 
         //Falta el sprite
     }

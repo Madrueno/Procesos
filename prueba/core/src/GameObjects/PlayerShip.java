@@ -45,7 +45,14 @@ public class PlayerShip {
     }
 
     public void onClick() {
-        velocity.x = -140;
+    }
+
+    public void setLeft(){
+        position.x = position.x - 10;
+    }
+
+    public void setRight(){
+        position.x = position.x + 10;
     }
 
     public static float getX() {
