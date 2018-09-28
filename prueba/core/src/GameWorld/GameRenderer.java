@@ -94,11 +94,11 @@ public class GameRenderer {
 
     public void invaders (SpriteBatch batcher, float time){
 
-        invadersAlive.newInvader(time);
+        //invadersAlive.newInvader(time); opcion de aumentar los invaders
 
         for (Invaders invader : invadersAlive.getArmy()) {
             if (invader.isAlive()) {
-                if (invader.getPosition().y>170){
+                if (invader.getPosition().y>140){
                     batcher.draw(AssetLoader.textureGameOver, 3, 20, 128, 128);
 
                 }

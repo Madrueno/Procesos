@@ -22,7 +22,16 @@ public class Invaders {
         this.alive=true;
     }
 
-    public void update(float delta) {
+    public void update(float delta, int signo) {
+
+        velocity.set(velocity.x*signo, velocity.y);
+
+        velocity.add(acceleration.cpy().scl(delta));
+        position.add(velocity.cpy().scl(delta));
+
+    }
+
+   /* public void update(float delta) {
         if (position.x > 110) {     //CAMBIAR POR EL TAMANO DE LA PANTALLA
             position.x = 110;
             velocity.set(velocity.x*-1, velocity.y);
@@ -36,7 +45,7 @@ public class Invaders {
             velocity.add(acceleration.cpy().scl(delta));
             position.add(velocity.cpy().scl(delta));
 
-    }
+    }/*
 /*
     public void update(float delta) {
         position.add(velocity.cpy().scl(delta));

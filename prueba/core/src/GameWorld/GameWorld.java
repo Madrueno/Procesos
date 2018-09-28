@@ -13,14 +13,24 @@ public class GameWorld {
     private PlayerShip playerShip;
     private ListInvaders invadersArmy = new ListInvaders();
 
+    private int signo = 1;
+
     public GameWorld(float x, float y) {
-        playerShip = new PlayerShip(50, 150, 25, 25);
+        playerShip = new PlayerShip(50, 130, 25, 25);
     }
 
     public void update(float delta) {
         playerShip.update(delta);
         for (int i=0; i<invadersArmy.getArmy().size(); i++){
-                invadersArmy.getArmy().get(i).update(delta);
+            if ((i==4) && invadersArmy.getArmy().get(i).getPosition().x>115){
+                signo = signo*-1;
+                invadersArmy.update();
+            }
+            else if ((i==0) && invadersArmy.getArmy().get(i).getPosition().x<15){
+                signo = signo*-1;
+                invadersArmy.update();
+            }
+                invadersArmy.getArmy().get(i).update(delta, signo);
         }
 
     }

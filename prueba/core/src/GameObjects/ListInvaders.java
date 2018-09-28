@@ -19,6 +19,25 @@ public class ListInvaders {
         this.invadersAlive.add(new Invaders(60,10,15,15, true));
         this.invadersAlive.add(new Invaders(75,10,15,15, true));
         this.invadersAlive.add(new Invaders(90,10,15,15, true));
+
+        this.invadersAlive.add(new Invaders(30,25,15,15, true));
+        this.invadersAlive.add(new Invaders(45,25,15,15, true));
+        this.invadersAlive.add(new Invaders(60,25,15,15, true));
+        this.invadersAlive.add(new Invaders(75,25,15,15, true));
+        this.invadersAlive.add(new Invaders(90,25,15,15, true));
+
+        this.invadersAlive.add(new Invaders(30,40,15,15, true));
+        this.invadersAlive.add(new Invaders(45,40,15,15, true));
+        this.invadersAlive.add(new Invaders(60,40,15,15, true));
+        this.invadersAlive.add(new Invaders(75,40,15,15, true));
+        this.invadersAlive.add(new Invaders(90,40,15,15, true));
+    }
+
+    public void update() {
+        for (int i=0; i<invadersAlive.size(); i++){
+            invadersAlive.get(i).getPosition().y+=1;
+        }
+
     }
 
     public ArrayList<Invaders> getArmy(){
