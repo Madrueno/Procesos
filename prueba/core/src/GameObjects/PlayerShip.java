@@ -11,7 +11,6 @@ public class PlayerShip {
     private Vector2 velocity;
     private Vector2 acceleration;
 
-    private float rotation; // For handling bird rotation
     private static int width;
     private static int height;
     private Rectangle2D recPlayer;
@@ -20,9 +19,9 @@ public class PlayerShip {
     public PlayerShip(float x, float y, int width, int height) {
         this.width = width;
         this.height = height;
-        position = new Vector2(x/2, 10);
+        position = new Vector2(x, y);
         velocity = new Vector2(0, 0);
-        acceleration = new Vector2(260, 0);
+        acceleration = new Vector2(16, 0);
 
     }
     public void update(float delta) {
@@ -31,6 +30,14 @@ public class PlayerShip {
 
         if (velocity.y > 200) {
             velocity.y = 200;
+        }
+
+        if (position.x > 100) {     //CAMBIAR POR EL TAMANO DE LA PANTALLA
+            position.x = 100;
+        }
+
+        if (position.x < 0) {     //CAMBIAR POR EL TAMANO DE LA PANTALLA
+            position.x = 0;
         }
 
         position.add(velocity.cpy().scl(delta));
@@ -57,7 +64,4 @@ public class PlayerShip {
         return height;
     }
 
-    public float getRotation() {
-        return rotation;
-    }
 }
