@@ -14,23 +14,23 @@ public class ListInvaders {
     public ListInvaders(){
         this.invadersAlive = new ArrayList<Invaders>();
 
+        this.invadersAlive.add(new Invaders(10,10,15,15, true));
         this.invadersAlive.add(new Invaders(30,10,15,15, true));
-        this.invadersAlive.add(new Invaders(45,10,15,15, true));
-        this.invadersAlive.add(new Invaders(60,10,15,15, true));
-        this.invadersAlive.add(new Invaders(75,10,15,15, true));
-        this.invadersAlive.add(new Invaders(90,10,15,15, true));
+        this.invadersAlive.add(new Invaders(50,10,15,15, true));
+        this.invadersAlive.add(new Invaders(70,10,15,15, true));
+        //this.invadersAlive.add(new Invaders(90,10,15,15, true));
 
+        this.invadersAlive.add(new Invaders(10,25,15,15, true));
         this.invadersAlive.add(new Invaders(30,25,15,15, true));
-        this.invadersAlive.add(new Invaders(45,25,15,15, true));
-        this.invadersAlive.add(new Invaders(60,25,15,15, true));
-        this.invadersAlive.add(new Invaders(75,25,15,15, true));
-        this.invadersAlive.add(new Invaders(90,25,15,15, true));
+        this.invadersAlive.add(new Invaders(50,25,15,15, true));
+        this.invadersAlive.add(new Invaders(70,25,15,15, true));
+        //this.invadersAlive.add(new Invaders(90,25,15,15, true));
 
+        this.invadersAlive.add(new Invaders(10,40,15,15, true));
         this.invadersAlive.add(new Invaders(30,40,15,15, true));
-        this.invadersAlive.add(new Invaders(45,40,15,15, true));
-        this.invadersAlive.add(new Invaders(60,40,15,15, true));
-        this.invadersAlive.add(new Invaders(75,40,15,15, true));
-        this.invadersAlive.add(new Invaders(90,40,15,15, true));
+        this.invadersAlive.add(new Invaders(50,40,15,15, true));
+        this.invadersAlive.add(new Invaders(70,40,15,15, true));
+        //this.invadersAlive.add(new Invaders(90,40,15,15, true));
     }
 
     public void update() {
