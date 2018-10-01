@@ -7,7 +7,6 @@ import java.awt.Rectangle;
 import GameObjects.Invaders;
 import GameObjects.ListInvaders;
 import GameObjects.PlayerShip;
-
 public class GameWorld {
 
     private PlayerShip playerShip;
@@ -17,6 +16,7 @@ public class GameWorld {
 
     public GameWorld(float x, float y) {
         playerShip = new PlayerShip(x, y, 25, 25);
+
     }
 
     public void update(float delta) {
@@ -32,6 +32,7 @@ public class GameWorld {
             }
                 invadersArmy.getArmy().get(i).update(delta, signo);
         }
+
 
     }
 

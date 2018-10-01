@@ -143,5 +143,21 @@ public class GameRenderer {
 
         //Falta el sprite
     }
+    public void invaders (SpriteBatch batcher, float time){
 
+        //invadersAlive.newInvader(time); opcion de aumentar los invaders
+
+        for (Invaders invader : invadersAlive.getArmy()) {
+            if (invader.isAlive()) {
+                if (invader.getPosition().y>140){
+                    batcher.draw(AssetLoader.textureGameOver, 3, 20, 128, 128);
+
+                }
+                else {
+                    batcher.draw(AssetLoader.textureInvader, invader.getPosition().x, invader.getPosition().y, invader.getWidth(), invader.getHeight());
+                }
+            }
+        }
+
+    }
 }

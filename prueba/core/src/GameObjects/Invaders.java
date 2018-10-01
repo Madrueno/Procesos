@@ -1,7 +1,7 @@
 package GameObjects;
 
 import com.badlogic.gdx.math.Vector2;
-
+import GameObjects.Shots;
 import java.util.ArrayList;
 
 public class Invaders {
@@ -12,6 +12,7 @@ public class Invaders {
     int width;
     int height;
     boolean alive;
+    Shots shots;
 
     public Invaders(float x, float y, int width, int height, boolean alive) {
         position = new Vector2(x, y);
@@ -20,6 +21,7 @@ public class Invaders {
         this.width = width;
         this.height = height;
         this.alive=alive;
+        this.shots = new Shots(this.position, this.velocity, this.width, this.height);
     }
 
     public void update(float delta, int signo) {
@@ -29,6 +31,8 @@ public class Invaders {
         velocity.add(acceleration.cpy().scl(delta));
         position.add(velocity.cpy().scl(delta));
 
+        shots.setPosition(this.position); //Actualizamos la posicion de los disparos
+        shots.setVelocity(this.velocity); // Actualizamos la velocidad de los disparos
     }
 
    /* public void update(float delta) {
@@ -64,6 +68,9 @@ public class Invaders {
         return this.position;
     }
 
+    public Vector2 getVelocity(){
+        return this.velocity;
+    } //Devuelve la posición
 
     public boolean isAlive(){
         return this.alive;

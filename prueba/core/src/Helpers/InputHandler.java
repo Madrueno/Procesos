@@ -9,9 +9,9 @@ public class InputHandler implements InputProcessor {
     private PlayerShip myShip;
 
 
-    // Ask for a reference to the Bird when InputHandler is created.
+    // Ask for a reference when InputHandler is created.
     public InputHandler(PlayerShip ship) {
-        // myBird now represents the gameWorld's bird.
+
         myShip = ship;
     }
 

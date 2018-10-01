@@ -15,6 +15,8 @@ public class AssetLoader {
     public static TextureRegion textureInvader;
     public static Texture gameOver;
     public static TextureRegion textureGameOver;
+    public static Texture laser;
+    public static TextureRegion textureLaser;
 
 
 
@@ -28,6 +30,8 @@ public class AssetLoader {
          gameOver = new Texture (Gdx.files.internal("data/gameOver.png"));
          textureGameOver =new TextureRegion(gameOver);
          textureGameOver.flip(false, true);
+         laser= new Texture (Gdx.files.internal("data/disparo_sprite.png"));
+         textureLaser = new TextureRegion(laser);
 
     }
 
