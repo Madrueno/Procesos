@@ -13,13 +13,16 @@ public class PlayerShip {
 
     private static int width;
     private static int height;
-    private Rectangle2D recPlayer;
+    private float screenWidth;
+    private float screenHeight;
 
 
     public PlayerShip(float x, float y, int width, int height) {
         this.width = width;
         this.height = height;
-        position = new Vector2(x, y);
+        this.screenWidth=x;
+        this.screenHeight= y;
+        position = new Vector2(x/2, 140);
         velocity = new Vector2(0, 0);
         acceleration = new Vector2(0, 0);
 
@@ -32,8 +35,8 @@ public class PlayerShip {
             velocity.y = 200;
         }
 
-        if (position.x > 100) {     //CAMBIAR POR EL TAMANO DE LA PANTALLA
-            position.x = 100;
+        if (position.x > this.screenWidth-width) {     //CAMBIAR POR EL TAMANO DE LA PANTALLA
+            position.x = this.screenWidth-width;
         }
 
         if (position.x < 0) {     //CAMBIAR POR EL TAMANO DE LA PANTALLA
