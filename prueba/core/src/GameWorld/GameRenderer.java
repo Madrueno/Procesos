@@ -131,7 +131,7 @@ public class GameRenderer {
             batcher.disableBlending();
             batcher.draw(AssetLoader.textureBg,0, 0, 200, 500);
             batcher.enableBlending();
-            batcher.draw(AssetLoader.texturePlayer,PlayerShip.getX(),PlayerShip.getY(), PlayerShip.getWidth(),PlayerShip.getHeight());
+           batcher.draw(AssetLoader.texturePlayer,PlayerShip.getX(),PlayerShip.getY(), PlayerShip.getWidth(),PlayerShip.getHeight());
 
             float time = runTime;
             invaders(batcher,time);

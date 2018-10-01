@@ -19,20 +19,20 @@ public class AssetLoader {
 
 
     public static void loadBg() {
-         bg = new Texture (Gdx.files.internal("android/assets/data/bg.jpg"));
+         bg = new Texture (Gdx.files.internal("data/bg.jpg"));
          textureBg =new TextureRegion(bg);
-         player = new Texture (Gdx.files.internal("android/assets/data/pikachu.png"));
+         player = new Texture (Gdx.files.internal("data/pikachu.png"));
          texturePlayer =new TextureRegion(player);
-         invader = new Texture (Gdx.files.internal("android/assets/data/unown.gif"));
+         invader = new Texture (Gdx.files.internal("data/unown.gif"));
          textureInvader =new TextureRegion(invader);
-         gameOver = new Texture (Gdx.files.internal("android/assets/data/gameOver.png"));
+         gameOver = new Texture (Gdx.files.internal("data/gameOver.png"));
          textureGameOver =new TextureRegion(gameOver);
          textureGameOver.flip(false, true);
 
     }
 
     public static ImageButton buttonLeft(float x, float y){
-        Texture myTexture = new Texture(Gdx.files.internal("android/assets/data/left.png"));
+        Texture myTexture = new Texture(Gdx.files.internal("data/left.png"));
         TextureRegion myTextureRegion = new TextureRegion(myTexture);
         TextureRegionDrawable myTexRegionDrawable = new TextureRegionDrawable(myTextureRegion);
         ImageButton button = new ImageButton(myTexRegionDrawable);
@@ -42,7 +42,7 @@ public class AssetLoader {
     }
 
     public static ImageButton buttonRight(float x, float y){
-        Texture myTexture = new Texture(Gdx.files.internal("android/assets/data/right.png"));
+        Texture myTexture = new Texture(Gdx.files.internal("data/right.png"));
         TextureRegion myTextureRegion = new TextureRegion(myTexture);
         TextureRegionDrawable myTexRegionDrawable = new TextureRegionDrawable(myTextureRegion);
         ImageButton button = new ImageButton(myTexRegionDrawable);
@@ -52,7 +52,7 @@ public class AssetLoader {
     }
 
     public static ImageButton buttonShoot(float x, float y){
-        Texture myTexture = new Texture(Gdx.files.internal("android/assets/data/pokeball.png"));
+        Texture myTexture = new Texture(Gdx.files.internal("data/pokeball.png"));
         TextureRegion myTextureRegion = new TextureRegion(myTexture);
         TextureRegionDrawable myTexRegionDrawable = new TextureRegionDrawable(myTextureRegion);
         ImageButton button = new ImageButton(myTexRegionDrawable);
