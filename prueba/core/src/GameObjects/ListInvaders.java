@@ -14,6 +14,11 @@ public class ListInvaders {
     public ListInvaders(){
         this.invadersAlive = new ArrayList<Invaders>();
 
+        this.invadersAlive.add(new Invaders(10,0,15,15, false));
+        this.invadersAlive.add(new Invaders(30,0,15,15, false));
+        this.invadersAlive.add(new Invaders(50,0,15,15, false));
+        this.invadersAlive.add(new Invaders(70,0,15,15, false));
+
         this.invadersAlive.add(new Invaders(10,10,15,15, true));
         this.invadersAlive.add(new Invaders(30,10,15,15, true));
         this.invadersAlive.add(new Invaders(50,10,15,15, true));

@@ -19,7 +19,7 @@ public class Invaders {
         acceleration = new Vector2(0, 0);
         this.width = width;
         this.height = height;
-        this.alive=true;
+        this.alive=alive;
     }
 
     public void update(float delta, int signo) {
