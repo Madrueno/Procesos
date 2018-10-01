@@ -22,11 +22,11 @@ public class GameWorld {
     public void update(float delta) {
         playerShip.update(delta);
         for (int i=0; i<invadersArmy.getArmy().size(); i++){
-            if ((i==3) && invadersArmy.getArmy().get(i).getPosition().x>115){
+            if ((i==0) && invadersArmy.getArmy().get(i).getPosition().x>107){
                 signo = signo*-1;
                 invadersArmy.update();
             }
-            else if ((i==0) && invadersArmy.getArmy().get(i).getPosition().x<10){
+            else if ((i==1) && invadersArmy.getArmy().get(i).getPosition().x<10){
                 signo = signo*-1;
                 invadersArmy.update();
             }

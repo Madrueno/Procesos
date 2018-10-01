@@ -14,10 +14,11 @@ public class ListInvaders {
     public ListInvaders(){
         this.invadersAlive = new ArrayList<Invaders>();
 
-        this.invadersAlive.add(new Invaders(10,0,15,15, false));
-        this.invadersAlive.add(new Invaders(30,0,15,15, false));
-        this.invadersAlive.add(new Invaders(50,0,15,15, false));
+        //Soldados invisibles que mueven el ejercito
         this.invadersAlive.add(new Invaders(70,0,15,15, false));
+
+        this.invadersAlive.add(new Invaders(10,1,15,15, false));
+        //
 
         this.invadersAlive.add(new Invaders(10,10,15,15, true));
         this.invadersAlive.add(new Invaders(30,10,15,15, true));
@@ -40,7 +41,7 @@ public class ListInvaders {
 
     public void update() {
         for (int i=0; i<invadersAlive.size(); i++){
-            invadersAlive.get(i).getPosition().y+=1;
+            invadersAlive.get(i).getPosition().y+=2;
         }
 
     }
