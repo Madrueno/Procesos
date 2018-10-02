@@ -6,7 +6,7 @@ import java.awt.geom.Rectangle2D;
 
 public class Shots {
 
-    Vector2 vel;
+    float vel;
     Vector2 position; //Creo un vector2, que cogera la posicion desde donde sale la bala que será la misma de cada nave
     int width;
     int height;
@@ -17,25 +17,51 @@ public class Shots {
 
 
 
-    public Shots(Vector2 p, Vector2 v, int width, int height){ //POR AHORA SON LOS DISPAROS DE LAS NAVES NO DEL PLAYERSHIP
+    public Shots(Vector2 p,  int height){ //POR AHORA SON LOS DISPAROS DE LAS NAVES NO DEL PLAYERSHIP
         this.position = p; //Pongo la posición de la nave
-        this.vel=v; //le doy a la bala la velocidad de la nave
-        this.width = width;
+        this.vel=40; //poner velocidad constante para todas las balas
+        this.width = 1;
         this.height = height;
-        this.rec=new Rectangle2D()
+        this.direction=-1;
+        //this.height = 10;
+        this.rec=new Rectangle2D.Float();
+        this.isActive=false;
         }
 
+    public void update(float delta) { //delta será la posición "y" del PlayerShip
+        if (this.direction==1)//Bala hacia abajo
+            this.position.y=this.position.y+this.vel;
+        else
+            this.position.y=this.position.y-this.vel;
     }
 
-    public void update(float delta) { //delta será la posición "y" del PlayerShip
-        position.y= delta;
+    public void setActive() {
+        isActive = true;
+    }
+    public void setInactive() {
+        this.isActive=false;
+    }
+
+    public Vector2 getImpactedPoint() {
+        if(this.direction==0)//Si la bala va pa abajo se va aumentando su posición sumando lo que mide
+            this.position.y=this.position.y+this.height;
+        return this.position;
 
     }
 
     public void setPosition (Vector2 p) {
         this.position = p;
     }
-    public void setVelocity (Vector2 v) {
+    public void setVelocity (Float v) {
         this.vel = v;
+    }
+    //Metodo de disparo
+    public boolean shoot(Vector2 initialPosition, int dir) {
+        if(!this.isActive) {
+            this.position=initialPosition;
+            this.direction=dir;
+            this.isActive=true;
+        }
+        return this.isActive;
     }
 }

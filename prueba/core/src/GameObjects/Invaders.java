@@ -21,7 +21,7 @@ public class Invaders {
         this.width = width;
         this.height = height;
         this.alive=alive;
-        this.shots = new Shots(this.position, this.velocity, this.width, this.height);
+        this.shots = new Shots(this.position,4);
     }
 
     public void update(float delta, int signo) {
@@ -32,7 +32,7 @@ public class Invaders {
         position.add(velocity.cpy().scl(delta));
 
         shots.setPosition(this.position); //Actualizamos la posicion de los disparos
-        shots.setVelocity(this.velocity); // Actualizamos la velocidad de los disparos
+
     }
 
    /* public void update(float delta) {
