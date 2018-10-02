@@ -85,8 +85,11 @@ public class GameRenderer {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 Gdx.app.log("buttonShoot", "Boton de disparo pulsado");
+                playerShip.getShots().shoot(playerShip.getPosition(),0);
                 return true;
             }});
+
+
 
         stage.act();
         stage.draw();
@@ -131,10 +134,12 @@ public class GameRenderer {
             batcher.disableBlending();
             batcher.draw(AssetLoader.textureBg,0, 0, 200, 500);
             batcher.enableBlending();
-           batcher.draw(AssetLoader.texturePlayer,PlayerShip.getX(),PlayerShip.getY(), PlayerShip.getWidth(),PlayerShip.getHeight());
+            batcher.draw(AssetLoader.texturePlayer,PlayerShip.getX(),PlayerShip.getY(), PlayerShip.getWidth(),PlayerShip.getHeight());
 
             float time = runTime;
             invaders(batcher,time);
+            //Dibujar Balas activas
+
 
         batcher.end();
 

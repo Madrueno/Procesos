@@ -15,6 +15,7 @@ public class PlayerShip {
     private static int height;
     private float screenWidth;
     private float screenHeight;
+    private Shots shots;
 
 
     public PlayerShip(float x, float y, int width, int height) {
@@ -25,6 +26,7 @@ public class PlayerShip {
         position = new Vector2(x/2, 140);
         velocity = new Vector2(0, 0);
         acceleration = new Vector2(0, 0);
+        shots= new Shots(position,4);
 
     }
     public void update(float delta) {
@@ -41,6 +43,10 @@ public class PlayerShip {
 
         if (position.x < 0) {     //CAMBIAR POR EL TAMANO DE LA PANTALLA
             position.x = 0;
+        }
+
+        if(this.shots.isActive()){
+            this.shots.update(position.x);
         }
 
         position.add(velocity.cpy().scl(delta));
@@ -66,6 +72,10 @@ public class PlayerShip {
         return position.y;
     }
 
+    public static Vector2 getPosition() {
+        return position;
+    }
+
     public static float getWidth() {
         return width;
     }
@@ -74,4 +84,7 @@ public class PlayerShip {
         return height;
     }
 
+    public Shots getShots() {
+        return shots;
+    }
 }
