@@ -3,7 +3,7 @@ package GameObjects;
 import com.badlogic.gdx.math.*;
 
 public class Obstacle { //Mi clase obstaculo es solo un pixel de cada barrera, despues habrá que crear la barrera entera
-                        //Lo he dividido así porque lo veo más fácil para programar más tarde la destrucción de la montaña tanto
+                        //Lo he dividido así porque lo veo más fácil para programar más tarde la destrucción de la barrera tanto
                         //por abajo como por arriba. Destruyendose así cada Obstacle poco a poco mediante status.
 
     Vector2 position;
@@ -25,13 +25,14 @@ public class Obstacle { //Mi clase obstaculo es solo un pixel de cada barrera, d
     public boolean getStatus (){
         return this.status;
     }
-.
+
     public void setStatus(boolean s){
         this.status = s;
     }
 
     public void setPosition (float x, float y){
-        this.position = (x,y);
+        this.position.x= x;
+        this.position.y=y;
     }
 
     public void setPositionV2(Vector2 v){
