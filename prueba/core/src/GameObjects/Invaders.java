@@ -26,8 +26,8 @@ public class Invaders {
         this.height = height;
         this.alive=alive;
         this.shots = new Shots(this.position,1);
-        //hitbox = new Rectangle((getPosition().x), (getPosition().y), width, height);
-        hitbox = new Rectangle(x-15, y-15, 15, 15);
+        //hitbox = new Rectangle(0, 0, 1000, 1000);
+        hitbox = new Rectangle(x, y, 15, 15);
     }
 
     public Rectangle getHitbox(){

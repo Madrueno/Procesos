@@ -88,6 +88,7 @@ public class GameRenderer {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 Gdx.app.log("buttonShoot", "Boton de disparo pulsado");
                 shot.shoot(playerShip.getPosition(),0);
+                shot.setDeaths(0);
                 return true;
             }});
 

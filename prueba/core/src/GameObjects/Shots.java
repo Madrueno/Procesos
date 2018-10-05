@@ -14,6 +14,7 @@ public class Shots {
     private int direction; //Si el disparo va hacia arriba (0) o hacia abajo (1)
     private boolean isActive;
     private float screenY;
+    private int deaths;
     //float tiempo; Habrá que crear algo para que dispare cada cierto tiempo, posiblemente con un random Time
 
 
@@ -27,6 +28,15 @@ public class Shots {
         this.height = 10;
         //this.rec=new Rectangle2D.Float();
         this.isActive=false;
+        deaths = 0;
+        }
+
+        public int getDeaths(){
+            return deaths;
+        }
+
+        public void setDeaths(int deaths){
+            this.deaths = deaths;
         }
 
     public void update() {
