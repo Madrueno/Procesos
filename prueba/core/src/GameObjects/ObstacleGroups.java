@@ -4,6 +4,6 @@ public class ObstacleGroups {
 
 
     public ObstacleGroups(){
-        this.
+
     }
 }

@@ -21,7 +21,7 @@ public class Invaders {
         this.width = width;
         this.height = height;
         this.alive=alive;
-        this.shots = new Shots(this.position,4);
+        this.shots = new Shots(this.position,1);
     }
 
     public void update(float delta, int signo) {
@@ -55,6 +55,10 @@ public class Invaders {
         position.add(velocity.cpy().scl(delta));
 
     }*/
+
+    public Shots getShots() {
+        return shots;
+    }
 
     public int getWidth(){
         return this.width;

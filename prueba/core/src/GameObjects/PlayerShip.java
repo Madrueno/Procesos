@@ -45,9 +45,7 @@ public class PlayerShip {
             position.x = 0;
         }
 
-        if(this.shots.isActive()){
-            this.shots.update(position.x);
-        }
+
 
         position.add(velocity.cpy().scl(delta));
 

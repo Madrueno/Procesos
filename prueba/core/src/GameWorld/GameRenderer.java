@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import GameObjects.Invaders;
 import GameObjects.ListInvaders;
 import GameObjects.PlayerShip;
+import GameObjects.Shots;
 import Helpers.AssetLoader;
 
 public class GameRenderer {
@@ -29,6 +30,7 @@ public class GameRenderer {
 
 
     public static ListInvaders invadersAlive;
+    public Shots shot;
 
     public GameRenderer(GameWorld world, int gameHeight, int midPointY) {
         myWorld = world;
@@ -85,7 +87,7 @@ public class GameRenderer {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 Gdx.app.log("buttonShoot", "Boton de disparo pulsado");
-                playerShip.getShots().shoot(playerShip.getPosition(),0);
+                shot.shoot(playerShip.getPosition(),0);
                 return true;
             }});
 
@@ -116,6 +118,7 @@ public class GameRenderer {
     public void render(float runTime) {
         PlayerShip playerShip = myWorld.getPlayerShip();
         invadersAlive = myWorld.getInvadersArmy();
+        shot = myWorld.getShotsPlayer();
 
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -139,6 +142,8 @@ public class GameRenderer {
             float time = runTime;
             invaders(batcher,time);
             //Dibujar Balas activas
+            if(shot.isActive())
+                batcher.draw(AssetLoader.textureLaser,shot.getX(),shot.getY(),shot.getWidth(),shot.getHeight());
 
 
         batcher.end();

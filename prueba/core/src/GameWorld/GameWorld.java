@@ -7,16 +7,19 @@ import java.awt.Rectangle;
 import GameObjects.Invaders;
 import GameObjects.ListInvaders;
 import GameObjects.PlayerShip;
+import GameObjects.Shots;
+
 public class GameWorld {
 
     private PlayerShip playerShip;
     private ListInvaders invadersArmy = new ListInvaders();
+    private Shots shotsPlayer;
 
     private int signo = 1;
 
     public GameWorld(float x, float y) {
         playerShip = new PlayerShip(x, y, 25, 25);
-
+        shotsPlayer =new Shots(playerShip.getPosition(),0);
     }
 
     public void update(float delta) {
@@ -30,8 +33,12 @@ public class GameWorld {
                 signo = signo*-1;
                 invadersArmy.update();
             }
-                invadersArmy.getArmy().get(i).update(delta, signo);
+            if(invadersArmy.getArmy().get(i).getShots().isActive())
+                invadersArmy.getArmy().get(i).getShots().update();
+            invadersArmy.getArmy().get(i).update(delta, signo);
         }
+        if (shotsPlayer.isActive())
+            shotsPlayer.update();
 
 
     }
@@ -43,5 +50,9 @@ public class GameWorld {
     public ListInvaders getInvadersArmy() {
         return invadersArmy;
 
+    }
+
+    public Shots getShotsPlayer() {
+        return shotsPlayer;
     }
 }
