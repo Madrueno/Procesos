@@ -7,11 +7,16 @@ public class Obstacle { //Mi clase obstaculo es solo un pixel de cada barrera, d
                         //por abajo como por arriba. Destruyendose así cada Obstacle poco a poco mediante status.
 
     Vector2 position;
-    boolean status;
+    boolean status; //Status será true o false, true se mostrara, y false no se mostrará (cuando le disparen deja de mostrarse y de ser barrera)
+    int width;
+    int height;
 
     public Obstacle ( float x, float y){
         this.position= new Vector2(x,y);
         this.status=true;
+        this.height=15;
+        this.width=15;
+
     }
     public Obstacle (Vector2 v){
         this.position= v;
@@ -37,6 +42,14 @@ public class Obstacle { //Mi clase obstaculo es solo un pixel de cada barrera, d
 
     public void setPositionV2(Vector2 v){
         this.position= v;
+    }
+
+    public int getWidth() { //Devolvemos la anchura
+        return width;
+    }
+
+    public int getHeight() { //Devolvemos la altura
+        return height;
     }
 
 
