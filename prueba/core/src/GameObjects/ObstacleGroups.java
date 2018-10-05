@@ -27,4 +27,17 @@ public class ObstacleGroups {
         this.obstacleActive4= new ArrayList<Obstacle>();
 
     }
+
+    public ArrayList<Obstacle> getObstacleActive1(){
+        return obstacleActive1;
+    }
+    public ArrayList<Obstacle> getObstacleActive2(){
+        return obstacleActive2;
+    }
+    public ArrayList<Obstacle> getObstacleActive3(){
+        return obstacleActive3;
+    }
+    public ArrayList<Obstacle> getObstacleActive4(){
+        return obstacleActive4;
+    }
 }

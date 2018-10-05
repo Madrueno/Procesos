@@ -8,17 +8,20 @@ import GameObjects.Invaders;
 import GameObjects.ListInvaders;
 import GameObjects.PlayerShip;
 import GameObjects.Shots;
+import GameObjects.ObstacleGroups;
 
 public class GameWorld {
 
     private PlayerShip playerShip;
     private ListInvaders invadersArmy = new ListInvaders();
     private Shots shotsPlayer;
+    private ObstacleGroups allObstacle;
 
     private int signo = 1;
 
     public GameWorld(float x, float y) {
         playerShip = new PlayerShip(x, y, 25, 25);
+        allObstacle= new ObstacleGroups(x,y);
         shotsPlayer =new Shots(playerShip.getPosition(),0);
         shotsPlayer.setScreenY(y);
     }
@@ -69,5 +72,9 @@ public class GameWorld {
 
     public Shots getShotsPlayer() {
         return shotsPlayer;
+    }
+
+    public ObstacleGroups getAllObstacle() {
+        return allObstacle;
     }
 }

@@ -16,6 +16,8 @@ import GameObjects.Invaders;
 import GameObjects.ListInvaders;
 import GameObjects.PlayerShip;
 import GameObjects.Shots;
+import GameObjects.ObstacleGroups;
+import GameObjects.Obstacle;
 import Helpers.AssetLoader;
 
 public class GameRenderer {
@@ -32,6 +34,8 @@ public class GameRenderer {
 
     public static ListInvaders invadersAlive;
     public Shots shot;
+
+    public static ObstacleGroups obstacleActive;
 
     public GameRenderer(GameWorld world, int gameHeight, int midPointY) {
         myWorld = world;
@@ -115,6 +119,19 @@ public class GameRenderer {
                     if(invader.getShots().isActive())
                         batcher.draw(AssetLoader.textureLaser,invader.getShots().getX(),invader.getShots().getY(),invader.getShots().getWidth(),invader.getShots().getHeight());
                 }
+            }
+        }
+
+    }
+
+    public void obstacles (SpriteBatch batcher){
+
+        //invadersAlive.newInvader(time); opcion de aumentar los invaders
+        //Primera barrera
+        for (Obstacle obstacle : obstacleActive.getObstacleActive1()) {
+            if (obstacle.getStatus()) {
+                batcher.draw(AssetLoader.textureObstacle, obstacle.getPosition().x, obstacle.getPosition().y, obstacle.getWidth(), obstacle.getHeight());
+                
             }
         }
 
