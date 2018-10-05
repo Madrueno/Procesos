@@ -34,8 +34,6 @@ public class GameWorld {
                 signo = signo*-1;
                 invadersArmy.update();
             }
-            /*if(invadersArmy.getArmy().get(i).getShots().isActive())
-                invadersArmy.getArmy().get(i).getShots().update();*/
             invadersArmy.getArmy().get(i).update(delta, signo);
         }
         if (shotsPlayer.isActive())

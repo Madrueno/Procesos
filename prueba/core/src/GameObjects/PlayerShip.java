@@ -23,7 +23,7 @@ public class PlayerShip {
         this.height = height;
         this.screenWidth=x;
         this.screenHeight= y;
-        position = new Vector2(x/2, 140);
+        position = new Vector2(x/2, screenHeight-(height+23));
         velocity = new Vector2(0, 0);
         acceleration = new Vector2(0, 0);
 

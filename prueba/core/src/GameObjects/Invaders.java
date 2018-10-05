@@ -1,7 +1,6 @@
 package GameObjects;
 
 import com.badlogic.gdx.math.Vector2;
-import GameObjects.Shots;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -33,7 +32,7 @@ public class Invaders {
         velocity.add(acceleration.cpy().scl(delta));
         position.add(velocity.cpy().scl(delta));
         Random generator = new Random();
-        int randomNumber=generator.nextInt(10);
+        int randomNumber=generator.nextInt(1000);
         if (randomNumber==1)
             this.shots.shoot(this.position,1);
             this.shots.update();
