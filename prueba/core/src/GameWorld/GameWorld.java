@@ -50,9 +50,9 @@ public class GameWorld {
             shotsPlayer.update();
             for (int i=0; i<invadersArmy.getArmy().size(); i++){
                 //Aqui mato marcianitos
-                if ((shotsPlayer.getDeaths()==0) && invadersArmy.getArmy().get(i).getHitbox().contains(shotsPlayer.getPosition())) {
-                    shotsPlayer.setDeaths(1);               //Pa no matar a toda la columna de marcianitos
-                    invadersArmy.getArmy().get(i).kill();   //Pongo al marcianito a no alive
+                if (shotsPlayer.isActive()&&(shotsPlayer.getDeaths()==0) && invadersArmy.getArmy().get(i).getHitbox().contains(shotsPlayer.getPosition())) {
+                    shotsPlayer.setInactive();               //Pa no matar a toda la columna de marcianitos
+                    invadersArmy.kill(i);   //Pongo al marcianito a no alive
                     playerShip.setScore(100);               //Aumento puntuacion
                 }
             }

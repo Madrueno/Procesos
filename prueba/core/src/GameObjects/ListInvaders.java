@@ -52,6 +52,10 @@ public class ListInvaders {
         return invadersAlive;
     }
 
+    public void kill(int i){
+        this.getArmy().remove(i);
+    }
+
     public void newInvader(float time){
         int seconds = (int) time;
         int nuevos=invadersAlive.size() - 3;

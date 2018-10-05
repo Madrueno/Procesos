@@ -38,11 +38,13 @@ public class Invaders {
         this.alive=false;
     }
 
-    public void updateHitbox(){
-        hitbox.x=this.position.x;
-        hitbox.y=this.position.y;
-        hitbox.width=this.width;
-        hitbox.height=this.height;
+    public void updateHitbox() {
+        if (this.isAlive()) {
+            hitbox.x = this.position.x;
+            hitbox.y = this.position.y;
+            hitbox.width = this.width;
+            hitbox.height = this.height;
+        }
     }
 
     public void update(float delta, int signo) {
