@@ -29,7 +29,7 @@ public class GameWorld {
     public void update(float delta) {
         playerShip.update(delta);
         for (int i=0; i<invadersArmy.getArmy().size(); i++){
-            if(invadersArmy.getArmy().get(i).getShots()!=null) {
+            if(invadersArmy.getArmy().get(i).getShots().isActive()) {
                 if (playerShip.getHitbox().overlaps(invadersArmy.getArmy().get(i).getShots().getRec())) {
                     System.out.println("player (" + playerShip.getHitbox().x + " , " + playerShip.getHitbox().y + " )");
                     System.out.println("invader" + (invadersArmy.getArmy().get(i).getShots().getPosition()).x + (invadersArmy.getArmy().get(i).getShots().getPosition()).y);
