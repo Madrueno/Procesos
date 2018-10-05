@@ -15,7 +15,7 @@ public class PlayerShip {
     private static int height;
     private float screenWidth;
     private float screenHeight;
-    private Shots shots;
+
 
 
     public PlayerShip(float x, float y, int width, int height) {
@@ -26,7 +26,7 @@ public class PlayerShip {
         position = new Vector2(x/2, 140);
         velocity = new Vector2(0, 0);
         acceleration = new Vector2(0, 0);
-        shots= new Shots(position,4);
+
 
     }
     public void update(float delta) {
@@ -82,7 +82,4 @@ public class PlayerShip {
         return height;
     }
 
-    public Shots getShots() {
-        return shots;
-    }
 }

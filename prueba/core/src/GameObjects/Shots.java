@@ -24,7 +24,7 @@ public class Shots {
         //this.height = height;
         this.direction=dir;
         this.height = 6;
-        this.rec=new Rectangle2D.Float();
+        //this.rec=new Rectangle2D.Float();
         this.isActive=false;
         }
 
@@ -34,6 +34,8 @@ public class Shots {
         else
             this.position.y=this.position.y-this.vel;
         //Actualizar rectangulo para impactos
+
+
     }
 
     public boolean isActive() {
