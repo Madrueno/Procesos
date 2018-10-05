@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -151,6 +152,11 @@ public class GameRenderer {
             //Dibujar Balas activas
             if(shot.isActive())
                 batcher.draw(AssetLoader.textureLaser,shot.getX(),shot.getY(),shot.getWidth(),shot.getHeight());
+
+            //SCORE
+            BitmapFont font = new BitmapFont(true);
+            font.draw(batcher, "Score: " +String.valueOf(playerShip.getScore()), 10, 10);
+            //
 
 
         batcher.end();

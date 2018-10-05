@@ -46,12 +46,11 @@ public class GameWorld {
         if (shotsPlayer.isActive()) {
             shotsPlayer.update();
             for (int i=0; i<invadersArmy.getArmy().size(); i++){
-                //System.out.println("Invader: " + invadersArmy.getArmy().get(i).getHitbox().x + invadersArmy.getArmy().get(i).getHitbox().y);
-                //System.out.println("Pikachu: " + shotsPlayer.getPosition().x + shotsPlayer.getPosition().y);
-                System.out.println(invadersArmy.getArmy().get(i).getHitbox().contains(shotsPlayer.getPosition()));
+                //Aqui mato marcianitos
                 if ((shotsPlayer.getDeaths()==0) && invadersArmy.getArmy().get(i).getHitbox().contains(shotsPlayer.getPosition())) {
-                    shotsPlayer.setDeaths(1);
-                    invadersArmy.getArmy().get(i).kill();
+                    shotsPlayer.setDeaths(1);               //Pa no matar a toda la columna de marcianitos
+                    invadersArmy.getArmy().get(i).kill();   //Pongo al marcianito a no alive
+                    playerShip.setScore(100);               //Aumento puntuacion
                 }
             }
         }

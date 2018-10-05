@@ -19,6 +19,7 @@ public class PlayerShip {
     private Rectangle hitbox;
 
     private int lives;
+    private int score;
 
     public PlayerShip(float x, float y, int width, int height) {
         this.width = width;
@@ -31,6 +32,15 @@ public class PlayerShip {
         hitbox = new Rectangle(x/2, screenHeight-(height+23), 3, 3);
         //hitbox = new Rectangle(0, 0, 0, 0);
         lives=1;
+        score=0;
+    }
+
+    public void setScore(int score){
+        this.score+=score;
+    }
+
+    public int getScore(){
+        return score;
     }
 
     public void setLives(int lives){
