@@ -1,6 +1,7 @@
 package GameObjects;
 
 
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 
@@ -15,8 +16,9 @@ public class PlayerShip {
     private static int height;
     private float screenWidth;
     private float screenHeight;
+    private Rectangle hitbox;
 
-
+    private int lives;
 
     public PlayerShip(float x, float y, int width, int height) {
         this.width = width;
@@ -26,11 +28,34 @@ public class PlayerShip {
         position = new Vector2(x/2, screenHeight-(height+23));
         velocity = new Vector2(0, 0);
         acceleration = new Vector2(0, 0);
-
-
+        hitbox = new Rectangle(x/2, screenHeight-(height+23), 3, 3);
+        //hitbox = new Rectangle(0, 0, 0, 0);
+        lives=1;
     }
-    public void update(float delta) {
 
+    public void setLives(int lives){
+        this.lives=lives;
+    }
+
+    public void updateHitbox(){
+        hitbox.x=this.position.x;
+        hitbox.y=this.position.y;
+        hitbox.width=3;
+        hitbox.height=3;
+    }
+
+
+    public int getLives(){
+        return lives;
+    }
+
+    public Rectangle getHitbox(){
+        return hitbox;
+    }
+
+    public void update(float delta) {
+        //Actualizar hitbox
+        updateHitbox();
         velocity.add(acceleration.cpy().scl(delta));
 
         if (velocity.y > 200) {

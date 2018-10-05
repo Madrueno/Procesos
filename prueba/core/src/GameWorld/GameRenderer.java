@@ -105,6 +105,7 @@ public class GameRenderer {
         for (Invaders invader : invadersAlive.getArmy()) {
             if (invader.isAlive()) {
                 if (invader.getPosition().y>140){
+
                     batcher.draw(AssetLoader.textureGameOver, 3, 20, 128, 128);
 
                 }
@@ -142,6 +143,9 @@ public class GameRenderer {
             batcher.enableBlending();
             batcher.draw(AssetLoader.texturePlayer,PlayerShip.getX(),PlayerShip.getY(), PlayerShip.getWidth(),PlayerShip.getHeight());
 
+            if (playerShip.getLives()==0){
+                batcher.draw(AssetLoader.textureGameOver, 3, 20, 128, 128);
+            }
             float time = runTime;
             invaders(batcher,time);
             //Dibujar Balas activas
