@@ -52,5 +52,9 @@ public class Obstacle { //Mi clase obstaculo es solo un pixel de cada barrera, d
         return height;
     }
 
+    public Rectangle getRec(){
+        return new Rectangle(position.x, position.y, width, height);
+    }
+
 
 }
