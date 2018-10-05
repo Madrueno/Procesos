@@ -20,7 +20,7 @@ public class Invaders {
 
     public Invaders(float x, float y, int width, int height, boolean alive) {
         position = new Vector2(x, y);
-        velocity = new Vector2(0, 0);
+        velocity = new Vector2(15, 0);
         acceleration = new Vector2(0, 0);
         this.width = width;
         this.height = height;

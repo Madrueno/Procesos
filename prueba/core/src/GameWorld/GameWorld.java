@@ -34,7 +34,7 @@ public class GameWorld {
                     System.out.println("player (" + playerShip.getHitbox().x + " , " + playerShip.getHitbox().y + " )");
                     System.out.println("invader" + (invadersArmy.getArmy().get(i).getShots().getPosition()).x + (invadersArmy.getArmy().get(i).getShots().getPosition()).y);
 
-                    playerShip.setLives(0);
+                    //playerShip.setLives(0);
                 }
 
                 for(int j=0; i<allObstacle.getObstacleActive1().size(); i++)
