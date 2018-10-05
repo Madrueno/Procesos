@@ -17,6 +17,8 @@ public class AssetLoader {
     public static TextureRegion textureGameOver;
     public static Texture laser;
     public static TextureRegion textureLaser;
+    public static Texture obstacle;
+    public static TextureRegion textureObstacle;
 
 
 
@@ -32,6 +34,10 @@ public class AssetLoader {
          textureGameOver.flip(false, true);
          laser= new Texture (Gdx.files.internal("data/disparo_sprite.png"));
          textureLaser = new TextureRegion(laser);
+         obstacle= new Texture (Gdx.files.internal("data/square.gif"));
+         textureObstacle = new TextureRegion(obstacle);
+
+
 
     }
 

@@ -28,7 +28,7 @@ public class Shots {
         this.isActive=false;
         }
 
-    public void update(float delta) { //delta será la posición "x" del PlayerShip
+    public void update(float delta) { //delta será la posición "x" de las naves
         if (this.direction==1)//Bala hacia abajo
             this.position.y=this.position.y+this.vel;
         else
