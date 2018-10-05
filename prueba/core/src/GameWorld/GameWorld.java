@@ -37,30 +37,31 @@ public class GameWorld {
                     //playerShip.setLives(0);
                 }
 
-                for(int j=0; i<allObstacle.getObstacleActive1().size(); i++)
-                    if(allObstacle.getObstacleActive1().get(i).getStatus())
-                        if(allObstacle.getObstacleActive1().get(i).getRec().overlaps(invadersArmy.getArmy().get(i).getShots().getRec())) {
-                            allObstacle.getObstacleActive1().get(i).setStatus(false);
+                for (int j = 0; j < allObstacle.getObstacleActive1().size(); j++){
+                    if (allObstacle.getObstacleActive1().get(j).getStatus())
+                        if (allObstacle.getObstacleActive1().get(j).getRec().overlaps(invadersArmy.getArmy().get(i).getShots().getRec())) {
+                            allObstacle.getObstacleActive1().get(j).setStatus(false);
                             invadersArmy.getArmy().get(i).getShots().setInactive();
                         }
-                for(int j=0; i<allObstacle.getObstacleActive2().size(); i++)
-                    if(allObstacle.getObstacleActive2().get(i).getStatus())
-                        if(allObstacle.getObstacleActive2().get(i).getRec().overlaps(invadersArmy.getArmy().get(i).getShots().getRec())) {
-                            allObstacle.getObstacleActive2().get(i).setStatus(false);
-                            invadersArmy.getArmy().get(i).getShots().setInactive();
-                        }
-                for(int j=0; i<allObstacle.getObstacleActive3().size(); i++)
-                    if(allObstacle.getObstacleActive3().get(i).getStatus())
-                        if(allObstacle.getObstacleActive3().get(i).getRec().overlaps(invadersArmy.getArmy().get(i).getShots().getRec())) {
-                            allObstacle.getObstacleActive3().get(i).setStatus(false);
-                            invadersArmy.getArmy().get(i).getShots().setInactive();
-                        }
-                for(int j=0; i<allObstacle.getObstacleActive4().size(); i++)
-                    if(allObstacle.getObstacleActive4().get(i).getStatus())
-                        if(allObstacle.getObstacleActive4().get(i).getRec().overlaps(invadersArmy.getArmy().get(i).getShots().getRec())) {
-                            allObstacle.getObstacleActive4().get(i).setStatus(false);
-                            invadersArmy.getArmy().get(i).getShots().setInactive();
-                        }
+                //for(int j=0; i<allObstacle.getObstacleActive2().size(); i++)
+                if (allObstacle.getObstacleActive2().get(j).getStatus())
+                    if (allObstacle.getObstacleActive2().get(j).getRec().overlaps(invadersArmy.getArmy().get(i).getShots().getRec())) {
+                        allObstacle.getObstacleActive2().get(j).setStatus(false);
+                        invadersArmy.getArmy().get(i).getShots().setInactive();
+                    }
+                // for(int j=0; i<allObstacle.getObstacleActive3().size(); i++)
+                if (allObstacle.getObstacleActive3().get(j).getStatus())
+                    if (allObstacle.getObstacleActive3().get(j).getRec().overlaps(invadersArmy.getArmy().get(i).getShots().getRec())) {
+                        allObstacle.getObstacleActive3().get(j).setStatus(false);
+                        invadersArmy.getArmy().get(i).getShots().setInactive();
+                    }
+                //for(int j=0; i<allObstacle.getObstacleActive4().size(); i++)
+                if (allObstacle.getObstacleActive4().get(j).getStatus())
+                    if (allObstacle.getObstacleActive4().get(j).getRec().overlaps(invadersArmy.getArmy().get(i).getShots().getRec())) {
+                        allObstacle.getObstacleActive4().get(j).setStatus(false);
+                        invadersArmy.getArmy().get(i).getShots().setInactive();
+                    }
+                }
             }
             if ((i==0) && invadersArmy.getArmy().get(i).getPosition().x>107){
                 signo = signo*-1;
