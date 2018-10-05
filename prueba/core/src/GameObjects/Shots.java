@@ -1,5 +1,6 @@
 package GameObjects;
 
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 import java.awt.geom.Rectangle2D;
@@ -10,7 +11,7 @@ public class Shots {
     Vector2 position; //Creo un vector2, que cogera la posicion desde donde sale la bala que será la misma de cada nave
     int width;
     int height;
-    private Rectangle2D rec; //Para comprobar impactos de las balas
+    private Rectangle rec; //Para comprobar impactos de las balas
     private int direction; //Si el disparo va hacia arriba (0) o hacia abajo (1)
     private boolean isActive;
     private float screenY;
@@ -22,11 +23,11 @@ public class Shots {
     public Shots(Vector2 p,  int dir){ //POR AHORA SON LOS DISPAROS DE LAS NAVES NO DEL PLAYERSHIP
         this.position = new Vector2(p); //Pongo la posición de la nave
         this.vel=10; //poner velocidad constante para todas las balas
-        this.width = 15;
+        this.width = 10;
         //this.height = height;
         this.direction=dir;
-        this.height = 10;
-        //this.rec=new Rectangle2D.Float();
+        this.height = 15;
+        this.rec=new Rectangle(p.x, p.y, width, height);
         this.isActive=false;
         deaths = 0;
         }
@@ -44,9 +45,7 @@ public class Shots {
             this.position.y=this.position.y+this.vel;
         else
             this.position.y=this.position.y-this.vel;
-        //Actualizar rectangulo para impactos
-
-
+        this.rec.set(position.x, position.y, 10, 15);
     }
 
     public boolean isActive() {
@@ -88,6 +87,8 @@ public class Shots {
 
         return this.isActive;
     }
+
+    public Rectangle getRec(){ return rec; }
 
     public int getWidth() {
         return width;
