@@ -1,7 +1,9 @@
 package GameObjects;
 
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import java.util.ArrayList;
+
+
 import java.util.Random;
 
 
@@ -13,6 +15,7 @@ public class Invaders {
     int width;
     int height;
     boolean alive;
+    Rectangle hitbox;
     Shots shots;
 
     public Invaders(float x, float y, int width, int height, boolean alive) {
@@ -23,9 +26,30 @@ public class Invaders {
         this.height = height;
         this.alive=alive;
         this.shots = new Shots(this.position,1);
+        //hitbox = new Rectangle((getPosition().x), (getPosition().y), width, height);
+        hitbox = new Rectangle(x-15, y-15, 15, 15);
+    }
+
+    public Rectangle getHitbox(){
+        return hitbox;
+    }
+
+    public void kill(){
+        this.alive=false;
+    }
+
+    public void updateHitbox(){
+        hitbox.x=this.position.x;
+        hitbox.y=this.position.y;
+        hitbox.width=this.width;
+        hitbox.height=this.height;
     }
 
     public void update(float delta, int signo) {
+
+        //Actualizar hitbox
+        updateHitbox();
+
 
         velocity.set(velocity.x*signo, velocity.y);
 

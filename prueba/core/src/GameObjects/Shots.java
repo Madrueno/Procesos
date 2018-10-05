@@ -64,6 +64,10 @@ public class Shots {
         this.vel = v;
     }
 
+    public Vector2 getPosition(){
+        return position;
+    }
+
     //Metodo de disparo
     public boolean shoot(Vector2 initialPosition, int dir) {
         if((!this.isActive)||(this.position.y<0)||(this.position.y>this.screenY)) {

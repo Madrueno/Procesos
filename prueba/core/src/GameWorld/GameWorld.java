@@ -36,9 +36,18 @@ public class GameWorld {
             }
             invadersArmy.getArmy().get(i).update(delta, signo);
         }
-        if (shotsPlayer.isActive())
+        if (shotsPlayer.isActive()) {
             shotsPlayer.update();
-
+            for (int i=0; i<invadersArmy.getArmy().size(); i++){
+                //System.out.println("Invader: " + invadersArmy.getArmy().get(i).getHitbox().x + invadersArmy.getArmy().get(i).getHitbox().y);
+                //System.out.println("Pikachu: " + shotsPlayer.getPosition().x + shotsPlayer.getPosition().y);
+                System.out.println(invadersArmy.getArmy().get(i).getHitbox().contains(shotsPlayer.getPosition()));
+                if (invadersArmy.getArmy().get(i).getHitbox().contains(shotsPlayer.getPosition())) {
+                    Gdx.app.log("Invader:", "MUERTO");
+                    invadersArmy.getArmy().get(i).kill();
+                }
+            }
+        }
 
     }
 
