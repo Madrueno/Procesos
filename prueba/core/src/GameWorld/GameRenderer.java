@@ -135,6 +135,29 @@ public class GameRenderer {
             }
         }
 
+        //Segunda Barrera
+        for (Obstacle obstacle : obstacleActive.getObstacleActive2()) {
+            if (obstacle.getStatus()) {
+                batcher.draw(AssetLoader.textureObstacle, obstacle.getPosition().x, obstacle.getPosition().y, obstacle.getWidth(), obstacle.getHeight());
+
+            }
+        }
+        //Tercera barrera
+        for (Obstacle obstacle : obstacleActive.getObstacleActive3()) {
+            if (obstacle.getStatus()) {
+                batcher.draw(AssetLoader.textureObstacle, obstacle.getPosition().x, obstacle.getPosition().y, obstacle.getWidth(), obstacle.getHeight());
+
+            }
+        }
+        //Cuarta barrera
+        for (Obstacle obstacle : obstacleActive.getObstacleActive4()) {
+            if (obstacle.getStatus()) {
+                batcher.draw(AssetLoader.textureObstacle, obstacle.getPosition().x, obstacle.getPosition().y, obstacle.getWidth(), obstacle.getHeight());
+
+            }
+        }
+
+
     }
 
     public void render(float runTime) {
