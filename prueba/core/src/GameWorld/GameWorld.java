@@ -20,6 +20,7 @@ public class GameWorld {
     public GameWorld(float x, float y) {
         playerShip = new PlayerShip(x, y, 25, 25);
         shotsPlayer =new Shots(playerShip.getPosition(),0);
+
     }
 
     public void update(float delta) {

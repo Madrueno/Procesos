@@ -13,6 +13,7 @@ public class Shots {
     private Rectangle2D rec; //Para comprobar impactos de las balas
     private int direction; //Si el disparo va hacia arriba (0) o hacia abajo (1)
     private boolean isActive;
+    private float screenY;
     //float tiempo; Habrá que crear algo para que dispare cada cierto tiempo, posiblemente con un random Time
 
 
@@ -50,7 +51,7 @@ public class Shots {
     }
 
     public Vector2 getImpactedPoint() {
-        if(this.direction==0)//Si la bala va pa abajo se va aumentando su posición sumando lo que mide
+        if(this.direction==0)//Si la bala va pa arriba se va aumentando su posición sumando lo que mide
             this.position.y=this.position.y+this.height;
         return this.position;
 
@@ -65,11 +66,12 @@ public class Shots {
 
     //Metodo de disparo
     public boolean shoot(Vector2 initialPosition, int dir) {
-        if(!this.isActive) {
+        if((!this.isActive)||(this.position.y<0)) {
             this.position=new Vector2(initialPosition);
             this.direction=dir;
             this.isActive=true;
         }
+
         return this.isActive;
     }
 
@@ -87,5 +89,9 @@ public class Shots {
 
     public float getY(){
         return this.position.y;
+    }
+
+    public void setScreenY(float screenY) {
+        this.screenY = screenY;
     }
 }
