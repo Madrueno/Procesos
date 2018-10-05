@@ -131,7 +131,7 @@ public class GameRenderer {
         for (Obstacle obstacle : obstacleActive.getObstacleActive1()) {
             if (obstacle.getStatus()) {
                 batcher.draw(AssetLoader.textureObstacle, obstacle.getPosition().x, obstacle.getPosition().y, obstacle.getWidth(), obstacle.getHeight());
-                
+
             }
         }
 
@@ -141,6 +141,7 @@ public class GameRenderer {
         PlayerShip playerShip = myWorld.getPlayerShip();
         invadersAlive = myWorld.getInvadersArmy();
         shot = myWorld.getShotsPlayer();
+        obstacleActive= myWorld.getAllObstacle();
 
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -166,6 +167,7 @@ public class GameRenderer {
             }
             float time = runTime;
             invaders(batcher,time);
+            obstacles(batcher); //Para las barreras
             //Dibujar Balas activas
             if(shot.isActive())
                 batcher.draw(AssetLoader.textureLaser,shot.getX(),shot.getY(),shot.getWidth(),shot.getHeight());

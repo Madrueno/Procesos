@@ -14,8 +14,8 @@ public class Obstacle { //Mi clase obstaculo es solo un pixel de cada barrera, d
     public Obstacle ( float x, float y){
         this.position= new Vector2(x,y);
         this.status=true;
-        this.height=15;
-        this.width=15;
+        this.height=5;
+        this.width=5;
 
     }
     public Obstacle (Vector2 v){
