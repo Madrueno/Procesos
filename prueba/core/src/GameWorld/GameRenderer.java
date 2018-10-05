@@ -109,6 +109,8 @@ public class GameRenderer {
                 }
                 else {
                     batcher.draw(AssetLoader.textureInvader, invader.getPosition().x, invader.getPosition().y, invader.getWidth(), invader.getHeight());
+                    if(invader.getShots().isActive())
+                        batcher.draw(AssetLoader.textureLaser,invader.getShots().getX(),invader.getShots().getY(),invader.getShots().getWidth(),invader.getShots().getHeight());
                 }
             }
         }

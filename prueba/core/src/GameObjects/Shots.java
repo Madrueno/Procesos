@@ -19,12 +19,12 @@ public class Shots {
 
 
     public Shots(Vector2 p,  int dir){ //POR AHORA SON LOS DISPAROS DE LAS NAVES NO DEL PLAYERSHIP
-        this.position = p; //Pongo la posición de la nave
-        this.vel=20; //poner velocidad constante para todas las balas
-        this.width = 10;
+        this.position = new Vector2(p); //Pongo la posición de la nave
+        this.vel=10; //poner velocidad constante para todas las balas
+        this.width = 15;
         //this.height = height;
         this.direction=dir;
-        this.height = 6;
+        this.height = 10;
         //this.rec=new Rectangle2D.Float();
         this.isActive=false;
         }
@@ -66,7 +66,7 @@ public class Shots {
 
     //Metodo de disparo
     public boolean shoot(Vector2 initialPosition, int dir) {
-        if((!this.isActive)||(this.position.y<0)) {
+        if((!this.isActive)||(this.position.y<0)||(this.position.y>this.screenY)) {
             this.position=new Vector2(initialPosition);
             this.direction=dir;
             this.isActive=true;

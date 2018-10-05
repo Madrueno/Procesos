@@ -20,7 +20,7 @@ public class GameWorld {
     public GameWorld(float x, float y) {
         playerShip = new PlayerShip(x, y, 25, 25);
         shotsPlayer =new Shots(playerShip.getPosition(),0);
-
+        shotsPlayer.setScreenY(y);
     }
 
     public void update(float delta) {
@@ -34,8 +34,8 @@ public class GameWorld {
                 signo = signo*-1;
                 invadersArmy.update();
             }
-            if(invadersArmy.getArmy().get(i).getShots().isActive())
-                invadersArmy.getArmy().get(i).getShots().update();
+            /*if(invadersArmy.getArmy().get(i).getShots().isActive())
+                invadersArmy.getArmy().get(i).getShots().update();*/
             invadersArmy.getArmy().get(i).update(delta, signo);
         }
         if (shotsPlayer.isActive())
