@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
 import GameObjects.Invaders;
 import GameObjects.ListInvaders;
@@ -97,7 +98,12 @@ public class GameRenderer {
                 return true;
             }});
 
+        TextButton buttonYes = AssetLoader.buttonYes("Si", 50, 100);
+        TextButton buttonNo = AssetLoader.buttonNo("No", 150, 100);
 
+
+        stage.addActor(buttonYes);
+        stage.addActor(buttonNo);
 
         stage.act();
         stage.draw();

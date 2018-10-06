@@ -1,9 +1,14 @@
 package Helpers;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 public class AssetLoader {
@@ -50,6 +55,59 @@ public class AssetLoader {
 
         return button;
     }
+
+    public static TextButton buttonYes(String text, int x, int y){
+        TextButton button = new TextButton(text, mySkin());
+        button.setPosition(x, y);
+        return button;
+    }
+
+    private static Skin mySkin(){
+        Pixmap pixmap = new Pixmap(60, 50, Pixmap.Format.RGB888);
+        pixmap.setColor(Color.GREEN);           // Color fondo
+        pixmap.fill();
+
+        BitmapFont font = new BitmapFont();
+        Skin skin = new Skin();
+
+        skin.add("background", new Texture(pixmap));
+        skin.add("default", font);
+
+
+        TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
+        textButtonStyle.font = skin.getFont("default");
+        textButtonStyle.up = skin.newDrawable("background", Color.WHITE);   //cambia un poco color fondo
+
+        skin.add("default", textButtonStyle);
+        return skin;
+    }
+
+    public static TextButton buttonNo(String text, int x, int y){
+        TextButton button = new TextButton(text, mySkin2());
+        button.setPosition(x, y);
+        return button;
+    }
+
+    private static Skin mySkin2(){
+        Pixmap pixmap = new Pixmap(60, 50, Pixmap.Format.RGB888);
+        pixmap.setColor(Color.RED);           // Color fondo
+        pixmap.fill();
+
+        BitmapFont font = new BitmapFont();
+        Skin skin = new Skin();
+
+        skin.add("background", new Texture(pixmap));
+        skin.add("default", font);
+
+
+        TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
+        textButtonStyle.font = skin.getFont("default");
+        textButtonStyle.up = skin.newDrawable("background", Color.WHITE);   //cambia un poco color fondo
+
+        skin.add("default", textButtonStyle);
+        return skin;
+    }
+
 
     public static ImageButton buttonRight(float x, float y){
         Texture myTexture = new Texture(Gdx.files.internal("data/right.png"));
