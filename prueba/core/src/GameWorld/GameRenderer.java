@@ -243,7 +243,8 @@ public class GameRenderer {
         batcher.draw(AssetLoader.textureGameOver, 3, 20, 128, 128);
 
         BitmapFont font = new BitmapFont(true);
-        font.draw(batcher, "Your final score: " + String.valueOf(playerShip.getScore()), 10, 150);
+        font.getData().setScale(0.95f, 0.95f);
+        font.draw(batcher, "Your final score: " + String.valueOf(playerShip.getScore()), 8, 150);
 
         batcher.end();
 
@@ -297,7 +298,8 @@ public class GameRenderer {
 
                 //SCORE
                 BitmapFont font = new BitmapFont(true);
-                font.draw(batcher, "Score: " + String.valueOf(playerShip.getScore()), 5, 10);
+                font.getData().setScale(0.6f, 0.6f);
+                font.draw(batcher, "Score: " + String.valueOf(playerShip.getScore()), 5, 5);
                 //
 
 
