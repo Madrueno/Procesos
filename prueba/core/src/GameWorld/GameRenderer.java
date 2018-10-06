@@ -33,6 +33,7 @@ public class GameRenderer {
     private int gameHeight;
 
     private boolean old=false;
+    private boolean gameover = false;
 
 
     public static ListInvaders invadersAlive;
@@ -99,7 +100,7 @@ public class GameRenderer {
                 shot.setDeaths(0);
                 return true;
             }});
-        
+
 
         stage.act();
         stage.draw();
@@ -112,7 +113,7 @@ public class GameRenderer {
         for (Invaders invader : invadersAlive.getArmy()) {
             if (invader.isAlive()) {
                 if (invader.getPosition().y>140){
-
+                    gameover = true;
                     batcher.draw(AssetLoader.textureGameOver, 3, 20, 128, 128);
 
                 }
@@ -204,57 +205,80 @@ public class GameRenderer {
         stage.draw();
     }
 
+    public void gameOver(float runTime, PlayerShip playerShip){
+
+        batcher.begin();
+        batcher.disableBlending();
+        batcher.draw(AssetLoader.textureBg,0, 0, 200, 500);
+        batcher.enableBlending();
+
+        batcher.draw(AssetLoader.textureGameOver, 3, 20, 128, 128);
+
+        BitmapFont font = new BitmapFont(true);
+        font.draw(batcher, "Your final score: " + String.valueOf(playerShip.getScore()), 10, 150);
+
+        batcher.end();
+
+    }
+
     public void render(float runTime) {
         if (old==false){
             start(runTime);
         }
         else {
+
             PlayerShip playerShip = myWorld.getPlayerShip();
-            invadersAlive = myWorld.getInvadersArmy();
-            shot = myWorld.getShotsPlayer();
-            obstacleActive = myWorld.getAllObstacle();
-
-            Gdx.gl.glClearColor(0, 0, 0, 1);
-            Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-            shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-
-            shapeRenderer.setColor(Color.BLUE);
-            shapeRenderer.rect(0, 0, 136, midPointY + 66);
-
-            shapeRenderer.setColor(Color.GREEN);
-            shapeRenderer.rect(0, midPointY + 77, 136, 52);
-
-            shapeRenderer.end();
-
-            batcher.begin();
-            batcher.disableBlending();
-            batcher.draw(AssetLoader.textureBg, 0, 0, 200, 500);
-            batcher.enableBlending();
-            batcher.draw(AssetLoader.texturePlayer, PlayerShip.getX(), PlayerShip.getY(), PlayerShip.getWidth(), PlayerShip.getHeight());
-
-            if (playerShip.getLives() == 0) {
-                batcher.draw(AssetLoader.textureGameOver, 3, 20, 128, 128);
+            if (gameover){
+                gameOver(runTime, playerShip);
             }
-            float time = runTime;
-            invaders(batcher, time);
-            obstacles(batcher); //Para las barreras
-            //Dibujar Balas activas
-            if (shot.isActive())
-                batcher.draw(AssetLoader.textureLaser, shot.getX(), shot.getY(), shot.getWidth(), shot.getHeight());
+            else {
+                invadersAlive = myWorld.getInvadersArmy();
+                shot = myWorld.getShotsPlayer();
+                obstacleActive = myWorld.getAllObstacle();
 
-            //SCORE
-            BitmapFont font = new BitmapFont(true);
-            font.draw(batcher, "Score: " + String.valueOf(playerShip.getScore()), 10, 10);
-            //
+                Gdx.gl.glClearColor(0, 0, 0, 1);
+                Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+                shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+
+                shapeRenderer.setColor(Color.BLUE);
+                shapeRenderer.rect(0, 0, 136, midPointY + 66);
+
+                shapeRenderer.setColor(Color.GREEN);
+                shapeRenderer.rect(0, midPointY + 77, 136, 52);
+
+                shapeRenderer.end();
+
+                batcher.begin();
+                batcher.disableBlending();
+                batcher.draw(AssetLoader.textureBg, 0, 0, 200, 500);
+                batcher.enableBlending();
+                batcher.draw(AssetLoader.texturePlayer, PlayerShip.getX(), PlayerShip.getY(), PlayerShip.getWidth(), PlayerShip.getHeight());
+
+                if (playerShip.getLives() == 0) {
+                    gameover = true;
+                    batcher.draw(AssetLoader.textureGameOver, 3, 20, 128, 128);
+                }
+                float time = runTime;
+                invaders(batcher, time);
+                obstacles(batcher); //Para las barreras
+                //Dibujar Balas activas
+                if (shot.isActive())
+                    batcher.draw(AssetLoader.textureLaser, shot.getX(), shot.getY(), shot.getWidth(), shot.getHeight());
+
+                //SCORE
+                BitmapFont font = new BitmapFont(true);
+                font.draw(batcher, "Score: " + String.valueOf(playerShip.getScore()), 10, 10);
+                //
 
 
-            batcher.end();
+                batcher.end();
 
 
-            buttons(playerShip); // Pone los botones
+                buttons(playerShip); // Pone los botones
 
-            //Falta el sprite
+                //Falta el sprite
+            }
         }
     }
 
