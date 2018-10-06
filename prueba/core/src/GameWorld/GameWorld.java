@@ -64,11 +64,11 @@ public class GameWorld {
                     }
                 }
             }
-            if ((i==0) && invadersArmy.getArmy().get(i).getPosition().x>107){
+            if ((i==invadersArmy.getArmy().size()-1) && invadersArmy.getArmy().get(invadersArmy.getArmy().size()-1).getPosition().x>107){
                 signo = signo*-1;
                 invadersArmy.update();
             }
-            else if ((i==1) && invadersArmy.getArmy().get(i).getPosition().x<10){
+            else if ((i==0) && invadersArmy.getArmy().get(0).getPosition().x<10){
                 signo = signo*-1;
                 invadersArmy.update();
             }
