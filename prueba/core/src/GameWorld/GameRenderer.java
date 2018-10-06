@@ -12,6 +12,8 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.Files.FileType;
 
 import GameObjects.Invaders;
 import GameObjects.ListInvaders;
@@ -28,6 +30,7 @@ public class GameRenderer {
     private ShapeRenderer shapeRenderer;
 
     private SpriteBatch batcher;
+    private Sound soundShot;
 
     private int midPointY;
     private int gameHeight;
@@ -50,7 +53,7 @@ public class GameRenderer {
         // parameters passed in from GameScreen.
         this.gameHeight = gameHeight;
         this.midPointY = midPointY;
-
+        this.soundShot= Gdx.audio.newSound(Gdx.files.getFileHandle("data/las.mp3",FileType.Internal));
         cam = new OrthographicCamera();
         cam.setToOrtho(true, 136, gameHeight);
 
@@ -97,6 +100,7 @@ public class GameRenderer {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 Gdx.app.log("buttonShoot", "Boton de disparo pulsado");
                 shot.shoot(playerShip.getPosition(),0);
+                soundShot.play();
                 shot.setDeaths(0);
                 return true;
             }});
