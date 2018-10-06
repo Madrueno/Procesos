@@ -18,16 +18,19 @@ public class PlayerShip {
     private float screenHeight;
     private Rectangle hitbox;
 
+    private int move;// 0 Stopped 1 izq 2 der
+
     private int lives;
     private int score;
 
     public PlayerShip(float x, float y, int width, int height) {
         this.width = width;
         this.height = height;
+        this.move=0;
         this.screenWidth=x;
         this.screenHeight= y;
         position = new Vector2(x/2, screenHeight-(height+23));
-        velocity = new Vector2(0, 0);
+        velocity = new Vector2(1, 0);
         acceleration = new Vector2(0, 0);
         hitbox = new Rectangle(x/2, screenHeight-(height+23), 3, 3);
         //hitbox = new Rectangle(0, 0, 0, 0);
@@ -64,9 +67,8 @@ public class PlayerShip {
     }
 
     public void update(float delta) {
-        //Actualizar hitbox
-        updateHitbox();
-        velocity.add(acceleration.cpy().scl(delta));
+
+        //velocity.add(acceleration.cpy().scl(delta));
 
         if (velocity.y > 200) {
             velocity.y = 200;
@@ -80,9 +82,18 @@ public class PlayerShip {
             position.x = 0;
         }
 
+        if (move==0){
 
+        }
+        else if (move==1){
+            position.x=position.x-velocity.x;
+        }
+        else{
+            position.x=position.x+velocity.x;
+        }
+        //Actualizar hitbox
+        updateHitbox();
 
-        position.add(velocity.cpy().scl(delta));
 
     }
 
@@ -118,5 +129,9 @@ public class PlayerShip {
     }
     public void minumLive(){
         this.lives=this.lives-1;
+    }
+
+    public void setMove(int move) {
+        this.move = move;
     }
 }

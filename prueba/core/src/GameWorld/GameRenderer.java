@@ -81,10 +81,23 @@ public class GameRenderer {
         stage.addActor(buttonShoot);
 
         // aqui va la funcionalidad de los botones
-        buttonLeft.addListener(new InputListener() {
+        /*buttonLeft.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 Gdx.app.log("buttonLeft", "Boton izquierdo pulsado");
+                playerShip.setMove(1);
+                return true;
+            }
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                Gdx.app.log("buttonLeft", "Boton izquierdo pulsado");
+                playerShip.setMove(0);
+
+            }
+        });*/
+        buttonLeft.addListener(new InputListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                Gdx.app.log("buttonRight", "Boton izquierdo pulsado");
                 playerShip.setLeft();
                 return true;
             }});
