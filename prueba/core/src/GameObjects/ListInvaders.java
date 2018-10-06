@@ -14,29 +14,19 @@ public class ListInvaders {
     public ListInvaders(){
         this.invadersAlive = new ArrayList<Invaders>();
 
-        //Soldados invisibles que mueven el ejercito
-        this.invadersAlive.add(new Invaders(70,0,15,15, false));
-
-        this.invadersAlive.add(new Invaders(10,1,15,15, false));
-        //
-
         this.invadersAlive.add(new Invaders(10,10,15,15, true));
-        this.invadersAlive.add(new Invaders(30,10,15,15, true));
-        this.invadersAlive.add(new Invaders(50,10,15,15, true));
-        this.invadersAlive.add(new Invaders(70,10,15,15, true));
-        //this.invadersAlive.add(new Invaders(90,10,15,15, true));
-
         this.invadersAlive.add(new Invaders(10,25,15,15, true));
-        this.invadersAlive.add(new Invaders(30,25,15,15, true));
-        this.invadersAlive.add(new Invaders(50,25,15,15, true));
-        this.invadersAlive.add(new Invaders(70,25,15,15, true));
-        //this.invadersAlive.add(new Invaders(90,25,15,15, true));
-
         this.invadersAlive.add(new Invaders(10,40,15,15, true));
+        this.invadersAlive.add(new Invaders(30,10,15,15, true));
+        this.invadersAlive.add(new Invaders(30,25,15,15, true));
         this.invadersAlive.add(new Invaders(30,40,15,15, true));
+        this.invadersAlive.add(new Invaders(50,10,15,15, true));
+        this.invadersAlive.add(new Invaders(50,25,15,15, true));
         this.invadersAlive.add(new Invaders(50,40,15,15, true));
+        this.invadersAlive.add(new Invaders(70,10,15,15, true));
+        this.invadersAlive.add(new Invaders(70,25,15,15, true));
         this.invadersAlive.add(new Invaders(70,40,15,15, true));
-        //this.invadersAlive.add(new Invaders(90,40,15,15, true));
+
     }
 
     public void update() {
