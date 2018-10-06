@@ -71,13 +71,13 @@ public class GameRenderer {
         Stage stage = new Stage();
         Gdx.input.setInputProcessor(stage);
 
-        ImageButton buttonLeft = AssetLoader.buttonLeft(25, 10);
+        ImageButton buttonLeft = AssetLoader.buttonLeft(stage.getWidth()/20, stage.getHeight()/20);
         stage.addActor(buttonLeft);
 
-        ImageButton buttonRight = AssetLoader.buttonRight(125, 10);
+        ImageButton buttonRight = AssetLoader.buttonRight(7*stage.getWidth()/20, stage.getHeight()/20);
         stage.addActor(buttonRight);
 
-        ImageButton buttonShoot = AssetLoader.buttonShoot(200, 10);
+        ImageButton buttonShoot = AssetLoader.buttonShoot(15*stage.getWidth()/20, stage.getHeight()/20);
         stage.addActor(buttonShoot);
 
         // aqui va la funcionalidad de los botones
@@ -106,7 +106,6 @@ public class GameRenderer {
                 shot.setDeaths(0);
                 return true;
             }});
-
 
         stage.act();
         stage.draw();
@@ -212,7 +211,7 @@ public class GameRenderer {
     }
 
     public void gameOver(float runTime, PlayerShip playerShip){
-        soundGameOver.loop();
+        soundGameOver.play();
         batcher.begin();
         batcher.disableBlending();
         batcher.draw(AssetLoader.textureBg,0, 0, 200, 500);
@@ -227,6 +226,9 @@ public class GameRenderer {
 
     }
 
+    public void retry(boolean isRetry){
+
+    }
     public void render(float runTime) {
         myOld = (myWorld.getOlder());
         if (!myOld.getOld()){
@@ -275,7 +277,7 @@ public class GameRenderer {
 
                 //SCORE
                 BitmapFont font = new BitmapFont(true);
-                font.draw(batcher, "Score: " + String.valueOf(playerShip.getScore()), 10, 10);
+                font.draw(batcher, "Score: " + String.valueOf(playerShip.getScore()), 5, 10);
                 //
 
 
