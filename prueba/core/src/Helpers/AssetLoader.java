@@ -16,8 +16,8 @@ public class AssetLoader {
     public static TextureRegion textureBg;
     public static Texture player;
     public static TextureRegion texturePlayer;
-    public static Texture invader;
-    public static TextureRegion textureInvader;
+    public static Texture invader2;
+    public static TextureRegion textureInvader2;
     public static Texture gameOver;
     public static TextureRegion textureGameOver;
     public static Texture laser;
@@ -28,12 +28,12 @@ public class AssetLoader {
 
 
     public static void loadBg() {
-         bg = new Texture (Gdx.files.internal("data/bg.jpg"));
+         bg = new Texture (Gdx.files.internal("data/bbb.png"));
          textureBg =new TextureRegion(bg);
-         player = new Texture (Gdx.files.internal("data/pikachu.png"));
+         player = new Texture (Gdx.files.internal("data/nave2.png"));
          texturePlayer =new TextureRegion(player);
-         invader = new Texture (Gdx.files.internal("data/unown.gif"));
-         textureInvader =new TextureRegion(invader);
+         invader2 = new Texture (Gdx.files.internal("data/alien1.png"));
+         textureInvader2=new TextureRegion(invader2);
          gameOver = new Texture (Gdx.files.internal("data/gameOver.png"));
          textureGameOver =new TextureRegion(gameOver);
          textureGameOver.flip(false, true);
@@ -47,8 +47,8 @@ public class AssetLoader {
     }
 
     public static ImageButton buttonLeft(float x, float y){
-        Pixmap pixmap2 = new Pixmap(Gdx.files.internal("data/left.png"));
-        Pixmap pixmap1 = new Pixmap(Gdx.graphics.getWidth()/5, Gdx.graphics.getWidth()/5, pixmap2.getFormat());
+        Pixmap pixmap2 = new Pixmap(Gdx.files.internal("data/left2.png"));
+        Pixmap pixmap1 = new Pixmap(Gdx.graphics.getWidth()/5 -10, Gdx.graphics.getWidth()/5 -10, pixmap2.getFormat());
         pixmap1.drawPixmap(pixmap2,
                 0, 0, pixmap2.getWidth(), pixmap2.getHeight(),
                 0, 0, pixmap1.getWidth(), pixmap1.getHeight()
@@ -121,8 +121,8 @@ public class AssetLoader {
 
 
     public static ImageButton buttonRight(float x, float y){
-        Pixmap pixmap2 = new Pixmap(Gdx.files.internal("data/right.png"));
-        Pixmap pixmap1 = new Pixmap(Gdx.graphics.getWidth()/5, Gdx.graphics.getWidth()/5, pixmap2.getFormat());
+        Pixmap pixmap2 = new Pixmap(Gdx.files.internal("data/right2.png"));
+        Pixmap pixmap1 = new Pixmap(Gdx.graphics.getWidth()/5-10, Gdx.graphics.getWidth()/5-10, pixmap2.getFormat());
         pixmap1.drawPixmap(pixmap2,
                 0, 0, pixmap2.getWidth(), pixmap2.getHeight(),
                 0, 0, pixmap1.getWidth(), pixmap1.getHeight()
@@ -143,8 +143,8 @@ public class AssetLoader {
     }
 
     public static ImageButton buttonShoot(float x, float y){
-        Pixmap pixmap2 = new Pixmap(Gdx.files.internal("data/pokeball.png"));
-        Pixmap pixmap1 = new Pixmap(Gdx.graphics.getWidth()/5, Gdx.graphics.getWidth()/5, pixmap2.getFormat());
+        Pixmap pixmap2 = new Pixmap(Gdx.files.internal("data/disparo2.png"));
+        Pixmap pixmap1 = new Pixmap(Gdx.graphics.getWidth()/5 -10, Gdx.graphics.getWidth()/5 -10, pixmap2.getFormat());
         pixmap1.drawPixmap(pixmap2,
                 0, 0, pixmap2.getWidth(), pixmap2.getHeight(),
                 0, 0, pixmap1.getWidth(), pixmap1.getHeight()

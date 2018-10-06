@@ -109,4 +109,8 @@ public class Invaders {
     public boolean isAlive(){
         return this.alive;
     }
+
+    public float getX (){
+        return this.position.x;
+    }
 }

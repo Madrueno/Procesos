@@ -71,13 +71,13 @@ public class GameRenderer {
         Stage stage = new Stage();
         Gdx.input.setInputProcessor(stage);
 
-        ImageButton buttonLeft = AssetLoader.buttonLeft(stage.getWidth()/20, stage.getHeight()/20);
+        ImageButton buttonLeft = AssetLoader.buttonLeft(stage.getWidth()/20, stage.getHeight()/20 -15);
         stage.addActor(buttonLeft);
 
-        ImageButton buttonRight = AssetLoader.buttonRight(7*stage.getWidth()/20, stage.getHeight()/20);
+        ImageButton buttonRight = AssetLoader.buttonRight(7*stage.getWidth()/20 -17, stage.getHeight()/20 -15);
         stage.addActor(buttonRight);
 
-        ImageButton buttonShoot = AssetLoader.buttonShoot(15*stage.getWidth()/20, stage.getHeight()/20);
+        ImageButton buttonShoot = AssetLoader.buttonShoot(15*stage.getWidth()/20, stage.getHeight()/20 -15);
         stage.addActor(buttonShoot);
 
         // aqui va la funcionalidad de los botones
@@ -136,7 +136,8 @@ public class GameRenderer {
 
                 }
                 else {
-                    batcher.draw(AssetLoader.textureInvader, invader.getPosition().x, invader.getPosition().y, invader.getWidth(), invader.getHeight());
+                        batcher.draw(AssetLoader.textureInvader2, invader.getPosition().x, invader.getPosition().y, invader.getWidth(), invader.getHeight());
+
                     if(invader.getShots().isActive())
                         batcher.draw(AssetLoader.textureLaser,invader.getShots().getX(),invader.getShots().getY(),invader.getShots().getWidth(),invader.getShots().getHeight());
                 }
