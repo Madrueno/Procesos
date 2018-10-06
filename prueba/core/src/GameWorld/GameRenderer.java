@@ -40,7 +40,7 @@ public class GameRenderer {
 
     private older13 myOld;
     private boolean gameover = false;
-
+    private boolean nono =false;
 
     public static ListInvaders invadersAlive;
     public Shots shot;
@@ -195,7 +195,6 @@ public class GameRenderer {
         batcher.draw(AssetLoader.textureTitle, 0, 10, 140, 100);
 
         BitmapFont font = new BitmapFont(true);
-        BitmapFont font2 = new BitmapFont(true);
         font.getData().setScale(0.6f, 0.6f);
         font.draw(batcher, "¿Eres mayor de 13 años? " , 20, 2*Gdx.graphics.getHeight()/20 +80);
      //   font.draw(batcher, "de 13 años? " , 25, 90);
@@ -220,17 +219,20 @@ public class GameRenderer {
         buttonNo.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+
                 myOld.setOld(false);
+                nono=true;
                 return true;
             }});
+
 
         stage.addActor(buttonYes);
         stage.addActor(buttonNo);
 
 
-
         stage.act();
         stage.draw();
+
     }
 
     public void gameOver(float runTime, PlayerShip playerShip){
@@ -249,19 +251,40 @@ public class GameRenderer {
         batcher.end();
 
     }
+    public void gameOverNO(float runTime){
+        soundGameOver.play();
+        batcher.begin();
+        batcher.disableBlending();
+        batcher.draw(AssetLoader.textureBg,0, 0, 200, 500);
+        batcher.enableBlending();
+
+        batcher.draw(AssetLoader.textureGameOver, 3, 20, 128, 128);
+
+        BitmapFont font = new BitmapFont(true);
+        font.getData().setScale(0.95f, 0.95f);
+        font.draw(batcher, "Lo siento, necesitas tener mas de 13 años " , 8, 150);
+
+        batcher.end();
+
+    }
 
     public void render(float runTime) {
         myOld = (myWorld.getOlder());
+        nono=false;
         if (!myOld.getOld()){
-            start(runTime);
+            if(nono ==true){
+                gameOverNO(runTime);
+            }else{
+                start(runTime);
+            }
+
         }
         else {
 
             PlayerShip playerShip = myWorld.getPlayerShip();
             if (gameover){
                 gameOver(runTime, playerShip);
-            }
-            else {
+            }else {
                 invadersAlive = myWorld.getInvadersArmy();
                 shot = myWorld.getShotsPlayer();
                 obstacleActive = myWorld.getAllObstacle();
