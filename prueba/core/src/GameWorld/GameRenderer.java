@@ -22,6 +22,7 @@ import GameObjects.PlayerShip;
 import GameObjects.Shots;
 import GameObjects.ObstacleGroups;
 import GameObjects.Obstacle;
+import GameObjects.older13;
 import Helpers.AssetLoader;
 
 public class GameRenderer {
@@ -37,7 +38,7 @@ public class GameRenderer {
     private int midPointY;
     private int gameHeight;
 
-    private boolean old=false;
+    private older13 myOld;
     private boolean gameover = false;
 
 
@@ -49,10 +50,6 @@ public class GameRenderer {
     public GameRenderer(GameWorld world, int gameHeight, int midPointY) {
         myWorld = world;
 
-
-        // The word "this" refers to this instance.
-        // We are setting the instance variables' values to be that of the
-        // parameters passed in from GameScreen.
         this.gameHeight = gameHeight;
         this.midPointY = midPointY;
         this.soundShot= Gdx.audio.newSound(Gdx.files.getFileHandle("data/las.mp3",FileType.Internal));
@@ -195,13 +192,13 @@ public class GameRenderer {
         buttonYes.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                old=true;
+                myOld.setOld(true);
                 return true;
             }});
         buttonNo.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                old=false;
+                myOld.setOld(false);
                 return true;
             }});
 
@@ -231,7 +228,8 @@ public class GameRenderer {
     }
 
     public void render(float runTime) {
-        if (old==false){
+        myOld = (myWorld.getOlder());
+        if (!myOld.getOld()){
             start(runTime);
         }
         else {
