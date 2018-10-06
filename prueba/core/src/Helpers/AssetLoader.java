@@ -74,7 +74,7 @@ public class AssetLoader {
     }
 
     private static Skin mySkin(){
-        Pixmap pixmap = new Pixmap(60, 50, Pixmap.Format.RGB888);
+        Pixmap pixmap = new Pixmap(18*Gdx.graphics.getWidth()/20, 3*Gdx.graphics.getHeight()/20, Pixmap.Format.RGB888);
         pixmap.setColor(Color.GREEN);           // Color fondo
         pixmap.fill();
 
@@ -100,7 +100,7 @@ public class AssetLoader {
     }
 
     private static Skin mySkin2(){
-        Pixmap pixmap = new Pixmap(60, 50, Pixmap.Format.RGB888);
+        Pixmap pixmap = new Pixmap(18*Gdx.graphics.getWidth()/20, 3*Gdx.graphics.getHeight()/20, Pixmap.Format.RGB888);
         pixmap.setColor(Color.RED);           // Color fondo
         pixmap.fill();
 

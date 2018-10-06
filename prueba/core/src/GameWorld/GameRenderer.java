@@ -185,8 +185,11 @@ public class GameRenderer {
         Stage stage = new Stage();
         Gdx.input.setInputProcessor(stage);
 
-        TextButton buttonYes = AssetLoader.buttonYes("Si", 50, 100);
-        TextButton buttonNo = AssetLoader.buttonNo("No", 150, 100);
+        TextButton buttonYes = AssetLoader.buttonYes("Si", Gdx.graphics.getWidth()/20, 6*Gdx.graphics.getHeight()/20);
+        buttonYes.getLabel().setFontScale(Gdx.graphics.getWidth()/136);
+
+        TextButton buttonNo = AssetLoader.buttonNo("No", Gdx.graphics.getWidth()/20, 2*Gdx.graphics.getHeight()/20);
+        buttonNo.getLabel().setFontScale(Gdx.graphics.getWidth()/136);
 
         buttonYes.addListener(new InputListener() {
             @Override
@@ -226,9 +229,6 @@ public class GameRenderer {
 
     }
 
-    public void retry(boolean isRetry){
-
-    }
     public void render(float runTime) {
         myOld = (myWorld.getOlder());
         if (!myOld.getOld()){
