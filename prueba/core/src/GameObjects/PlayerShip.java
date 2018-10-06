@@ -116,5 +116,7 @@ public class PlayerShip {
     public static float getHeight() {
         return height;
     }
-
+    public void minumLive(){
+        this.lives=this.lives-1;
+    }
 }

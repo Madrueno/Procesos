@@ -58,7 +58,7 @@ public class Invaders {
         velocity.add(acceleration.cpy().scl(delta));
         position.add(velocity.cpy().scl(delta));
         Random generator = new Random();
-        int randomNumber=generator.nextInt(1000);
+        int randomNumber=generator.nextInt(500);
         if (randomNumber==1)
             this.shots.shoot(this.position,1);
             this.shots.update();
