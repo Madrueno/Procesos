@@ -24,6 +24,8 @@ public class AssetLoader {
     public static TextureRegion textureLaser;
     public static Texture obstacle;
     public static TextureRegion textureObstacle;
+    public static Texture title;
+    public static TextureRegion textureTitle;
 
 
 
@@ -41,6 +43,8 @@ public class AssetLoader {
          textureLaser = new TextureRegion(laser);
          obstacle= new Texture (Gdx.files.internal("data/square.gif"));
          textureObstacle = new TextureRegion(obstacle);
+         title= new Texture (Gdx.files.internal("data/invadpt2.png"));
+         textureTitle = new TextureRegion(title);
 
 
 
@@ -74,7 +78,7 @@ public class AssetLoader {
     }
 
     private static Skin mySkin(){
-        Pixmap pixmap = new Pixmap(18*Gdx.graphics.getWidth()/20, 3*Gdx.graphics.getHeight()/20, Pixmap.Format.RGB888);
+        Pixmap pixmap = new Pixmap(18*Gdx.graphics.getWidth()/20 -175, 3*Gdx.graphics.getHeight()/20 -10, Pixmap.Format.RGB888);
         pixmap.setColor(Color.GREEN);           // Color fondo
         pixmap.fill();
 
@@ -100,7 +104,7 @@ public class AssetLoader {
     }
 
     private static Skin mySkin2(){
-        Pixmap pixmap = new Pixmap(18*Gdx.graphics.getWidth()/20, 3*Gdx.graphics.getHeight()/20, Pixmap.Format.RGB888);
+        Pixmap pixmap = new Pixmap(18*Gdx.graphics.getWidth()/20 -175, 3*Gdx.graphics.getHeight()/20 -10, Pixmap.Format.RGB888);
         pixmap.setColor(Color.RED);           // Color fondo
         pixmap.fill();
 

@@ -187,22 +187,28 @@ public class GameRenderer {
         batcher.begin();
         batcher.disableBlending();
         batcher.draw(AssetLoader.textureBg,0, 0, 200, 500);
+
         batcher.enableBlending();
+
+
+
+        batcher.draw(AssetLoader.textureTitle, 0, 10, 140, 100);
 
         BitmapFont font = new BitmapFont(true);
         BitmapFont font2 = new BitmapFont(true);
-        font.draw(batcher, "¿Eres mayor " , 25, 30);
-        font.draw(batcher, "de 13 años? " , 25, 70);
+        font.getData().setScale(0.6f, 0.6f);
+        font.draw(batcher, "¿Eres mayor de 13 años? " , 20, 2*Gdx.graphics.getHeight()/20 +80);
+     //   font.draw(batcher, "de 13 años? " , 25, 90);
 
         batcher.end();
 
         Stage stage = new Stage();
         Gdx.input.setInputProcessor(stage);
 
-        TextButton buttonYes = AssetLoader.buttonYes("Si", Gdx.graphics.getWidth()/20, 6*Gdx.graphics.getHeight()/20);
+        TextButton buttonYes = AssetLoader.buttonYes("Si", Gdx.graphics.getWidth()/20 +45 , 2*Gdx.graphics.getHeight()/20 +40);
         buttonYes.getLabel().setFontScale(Gdx.graphics.getWidth()/136);
 
-        TextButton buttonNo = AssetLoader.buttonNo("No", Gdx.graphics.getWidth()/20, 2*Gdx.graphics.getHeight()/20);
+        TextButton buttonNo = AssetLoader.buttonNo("No", Gdx.graphics.getWidth()/20 +150, 2*Gdx.graphics.getHeight()/20 +40);
         buttonNo.getLabel().setFontScale(Gdx.graphics.getWidth()/136);
 
         buttonYes.addListener(new InputListener() {
