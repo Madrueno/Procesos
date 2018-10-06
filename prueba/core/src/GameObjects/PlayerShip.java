@@ -50,8 +50,8 @@ public class PlayerShip {
     public void updateHitbox(){
         hitbox.x=this.position.x;
         hitbox.y=this.position.y;
-        hitbox.width=3;
-        hitbox.height=3;
+        hitbox.width=this.width;
+        hitbox.height=this.height;
     }
 
 

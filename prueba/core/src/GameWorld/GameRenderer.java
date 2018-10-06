@@ -56,7 +56,7 @@ public class GameRenderer {
         this.gameHeight = gameHeight;
         this.midPointY = midPointY;
         this.soundShot= Gdx.audio.newSound(Gdx.files.getFileHandle("data/las.mp3",FileType.Internal));
-        this.musicEsp=Gdx.audio.newMusic(Gdx.files.getFileHandle("data/esp.mp3",FileType.Internal));
+        this.musicEsp=Gdx.audio.newMusic(Gdx.files.getFileHandle("data/esp1.mp3",FileType.Internal));
         this.musicEsp.play();
         cam = new OrthographicCamera();
         cam.setToOrtho(true, 136, gameHeight);
