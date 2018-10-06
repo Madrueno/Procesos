@@ -31,7 +31,7 @@ public class GameRenderer {
     private ShapeRenderer shapeRenderer;
 
     private SpriteBatch batcher;
-    private Sound soundShot;
+    private Sound soundShot, soundGameOver;
     private Music musicEsp;
 
     private int midPointY;
@@ -56,6 +56,7 @@ public class GameRenderer {
         this.gameHeight = gameHeight;
         this.midPointY = midPointY;
         this.soundShot= Gdx.audio.newSound(Gdx.files.getFileHandle("data/las.mp3",FileType.Internal));
+        this.soundGameOver= Gdx.audio.newSound(Gdx.files.getFileHandle("data/go.mp3",FileType.Internal));
         this.musicEsp=Gdx.audio.newMusic(Gdx.files.getFileHandle("data/esp1.mp3",FileType.Internal));
         this.musicEsp.play();
         cam = new OrthographicCamera();
@@ -214,7 +215,7 @@ public class GameRenderer {
     }
 
     public void gameOver(float runTime, PlayerShip playerShip){
-
+        soundGameOver.loop();
         batcher.begin();
         batcher.disableBlending();
         batcher.draw(AssetLoader.textureBg,0, 0, 200, 500);
