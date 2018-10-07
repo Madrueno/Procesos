@@ -23,7 +23,8 @@ public class Invaders {
 
     public Invaders(float x, float y, int width, int height, boolean alive) {
         position = new Vector2(x, y);
-        velocity = new Vector2(Gdx.graphics.getWidth()/25, 0);
+        //velocity = new Vector2(Gdx.graphics.getWidth()/25, 0);
+        velocity = new Vector2(10, 0);
         acceleration = new Vector2(0, 0);
         this.width = width;
         this.height = height;
@@ -63,7 +64,8 @@ public class Invaders {
         Random generator = new Random();
         int randomNumber=generator.nextInt(750);
         if (randomNumber==1) {
-            this.shots.setPosition(new Vector2(this.position.x + (this.width / 2) - this.getShots().width/2, this.getPosition().y));
+            this.shots.setPosition(new Vector2(this.position.x + (this.width / 2) - 4, this.getPosition().y));
+            //this.shots.setPosition(new Vector2(this.position.x + (this.width / 2) - this.getShots().width/2, this.getPosition().y));
             this.shots.shoot(this.shots.getPosition(), 1);
         }
         this.shots.update();
