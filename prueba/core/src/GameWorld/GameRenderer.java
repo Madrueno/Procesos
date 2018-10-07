@@ -213,12 +213,14 @@ public class GameRenderer {
         Stage stage = new Stage();
         Gdx.input.setInputProcessor(stage);
 
-        TextButton buttonYes = AssetLoader.buttonYes("Si", Gdx.graphics.getWidth()/20 +45 , 2*Gdx.graphics.getHeight()/20 +40);
-        buttonYes.getLabel().setFontScale(Gdx.graphics.getWidth()/136);
+        TextButton buttonYes = AssetLoader.buttonYes("Si",0,0  );
+        buttonYes.setBounds(Gdx.graphics.getWidth()/9, Gdx.graphics.getHeight()/10 +40, Gdx.graphics.getWidth()/3, Gdx.graphics.getHeight()/7);
+        buttonYes.getLabel().setFontScale((float) Math.min(buttonYes.getWidth()/35, buttonYes.getHeight()/35));
 
-        TextButton buttonNo = AssetLoader.buttonNo("No", Gdx.graphics.getWidth()/20 +150, 2*Gdx.graphics.getHeight()/20 +40);
-        buttonNo.getLabel().setFontScale(Gdx.graphics.getWidth()/136);
-
+        TextButton buttonNo = AssetLoader.buttonNo("No", 5*Gdx.graphics.getWidth()/9, Gdx.graphics.getHeight()/10 +40);
+        buttonNo.setBounds(5*Gdx.graphics.getWidth()/9, Gdx.graphics.getHeight()/10 +40, Gdx.graphics.getWidth()/3, Gdx.graphics.getHeight()/7);
+        buttonNo.getLabel().setFontScale((float) Math.min(buttonNo.getWidth()/35, buttonNo.getHeight()/35));
+        
         buttonYes.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
