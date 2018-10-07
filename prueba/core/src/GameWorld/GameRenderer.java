@@ -258,7 +258,22 @@ public class GameRenderer {
         font.draw(batcher, "Your final score: " + String.valueOf(playerShip.getScore()), 8, 150);
 
         batcher.end();
+        Stage stageGameOv = new Stage();
+        Gdx.input.setInputProcessor(stageGameOv);
 
+        TextButton buttonRetry = AssetLoader.buttonYes("Retry", Gdx.graphics.getWidth()/20 +75 , 2*Gdx.graphics.getHeight()/20 +70);
+        buttonRetry.getLabel().setFontScale(Gdx.graphics.getWidth()/136);
+
+        buttonRetry.addListener(new InputListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                gameover=false;
+                myWorld.getPlayerShip().setLives(1);
+                return true;
+            }});
+        stageGameOv.addActor(buttonRetry);
+        stageGameOv.act();
+        stageGameOv.draw();
     }
     public void gameOverNO(float runTime){
         soundGameOver.play();
