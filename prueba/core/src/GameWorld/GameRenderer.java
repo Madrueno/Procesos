@@ -192,7 +192,7 @@ public class GameRenderer {
     }
 
     public void start(float runTime){
-
+        soundGameOver.stop();
         batcher.begin();
         batcher.disableBlending();
         batcher.draw(AssetLoader.textureBg,0, 0, 200, 500);
@@ -321,6 +321,7 @@ public class GameRenderer {
             soundGameOver.pause();
             start(runTime);
         }*/
+
     }
 
 
