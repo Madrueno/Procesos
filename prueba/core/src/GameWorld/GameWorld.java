@@ -19,10 +19,13 @@ public class GameWorld {
     private Shots shotsPlayer;
     private ObstacleGroups allObstacle;
     private int invadersDeath=0;
+    private float screenX,screenY;
 
     private int signo = 1;
 
     public GameWorld(float x, float y) {
+        this.screenX=x;
+        this.screenY=y;
         playerShip = new PlayerShip(x, y, 25, 25);
         allObstacle= new ObstacleGroups(x,y);
         shotsPlayer =new Shots(playerShip.getPosition(),0);
@@ -186,5 +189,11 @@ public class GameWorld {
 
     public ObstacleGroups getAllObstacle() {
         return allObstacle;
+    }
+    public void restPlay(){
+        playerShip = new PlayerShip(this.screenX, this.screenY, 25, 25);
+        allObstacle= new ObstacleGroups(this.screenX,this.screenY);
+        shotsPlayer =new Shots(playerShip.getPosition(),0);
+        shotsPlayer.setScreenY(this.screenY);
     }
 }

@@ -269,6 +269,8 @@ public class GameRenderer {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 gameover=false;
                 myWorld.getPlayerShip().setLives(1);
+                myWorld.getPlayerShip().setScore(0);
+                myWorld.restPlay();
                 return true;
             }});
         stageGameOv.addActor(buttonRetry);
