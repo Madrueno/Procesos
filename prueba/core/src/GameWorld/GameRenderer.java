@@ -275,6 +275,27 @@ public class GameRenderer {
 
     }
 
+    public void winner(float runTime){
+        soundGameOver.play();
+        batcher.begin();
+        batcher.disableBlending();
+        batcher.draw(AssetLoader.textureBg,0, 0, 200, 500);
+        batcher.enableBlending();
+
+       // batcher.draw(AssetLoader.textureGameOver, 3, 20, 128, 128);
+
+        BitmapFont font = new BitmapFont(true);
+        font.getData().setScale(0.85f, 0.85f);
+        font.draw(batcher, "Felicidades" , 9, 150);
+
+        BitmapFont font2 = new BitmapFont(true);
+        font2.getData().setScale(0.85f, 0.85f);
+        font2.draw(batcher, "has ganado " , 8, 170);
+
+        batcher.end();
+
+    }
+
     public void render(float runTime) {
         myOld = (myWorld.getOlder());
         if (!myOld.getOld()){
@@ -337,7 +358,11 @@ public class GameRenderer {
 
                 buttons(playerShip); // Pone los botones
 
-                //Falta el sprite
+                //Mira si hemos exterminado por completo el ejercito
+                if (myWorld.getInvadersDeath()==invadersAlive.getArmy().size()){
+                    winner(runTime);
+                    System.out.println("GANASTE");
+                }
             }
         }
     }

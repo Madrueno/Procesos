@@ -18,6 +18,7 @@ public class GameWorld {
     private older13 old = new older13(false);
     private Shots shotsPlayer;
     private ObstacleGroups allObstacle;
+    private int invadersDeath=0;
 
     private int signo = 1;
 
@@ -31,7 +32,13 @@ public class GameWorld {
     public void update(float delta) {
         if (old.getOld()) {
             playerShip.update(delta);
-            for (int i = 0; i < invadersArmy.getArmy().size() && playerShip.getLives() > 0; i++) {
+            for (int i = 0; i < invadersArmy.getArmy().size() && playerShip.getLives() > 0; i++) { //comienzo for
+                if (!invadersArmy.getArmy().get(i).isAlive()){  //Mira si hemos exterminado por completo el ejercito
+                    invadersDeath++;
+                }
+                else{
+                    invadersDeath=0;
+                }
                 if (invadersArmy.getArmy().get(i).getShots().isActive()) {
                     if (playerShip.getHitbox().overlaps(invadersArmy.getArmy().get(i).getShots().getRec())) {
                         System.out.println("player (" + playerShip.getHitbox().x + " , " + playerShip.getHitbox().y + " )");
@@ -75,8 +82,10 @@ public class GameWorld {
                     invadersArmy.update();
                 }
                 invadersArmy.getArmy().get(i).update(delta, signo);
-            }
-            if (shotsPlayer.isActive()) {
+            } //fin for
+
+
+            if (shotsPlayer.isActive()) {   //comienzo if
                 shotsPlayer.update();
                 for (int i = 0; i < invadersArmy.getArmy().size(); i++) {
                     //Aqui mato marcianitos
@@ -111,7 +120,7 @@ public class GameWorld {
                             allObstacle.getObstacleActive4().get(i).setStatus(false);
                             shotsPlayer.setInactive();
                         }
-            }
+            }   //fin if
         }
 
     }
@@ -123,6 +132,10 @@ public class GameWorld {
     public ListInvaders getInvadersArmy() {
         return invadersArmy;
 
+    }
+
+    public int getInvadersDeath(){
+        return invadersDeath;
     }
 
     public older13 getOlder() {
