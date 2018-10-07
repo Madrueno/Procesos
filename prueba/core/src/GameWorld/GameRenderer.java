@@ -43,6 +43,8 @@ public class GameRenderer {
     private boolean gameover = false;
     private boolean nono =false;
 
+    private boolean pressed=false;
+
     public static ListInvaders invadersAlive;
     public Shots shot;
 
@@ -269,15 +271,39 @@ public class GameRenderer {
 
         BitmapFont font = new BitmapFont(true);
         font.getData().setScale(0.85f, 0.85f);
-        font.draw(batcher, "Lo siento, necesitas" , 12, 150);
+        font.draw(batcher, "Lo siento, necesitas" , 12, 130);
 
         BitmapFont font2 = new BitmapFont(true);
         font2.getData().setScale(0.85f, 0.85f);
-        font2.draw(batcher, "ser mayor de 13 años " , 8, 170);
+        font2.draw(batcher, "ser mayor de 13 años " , 8, 150);
 
         batcher.end();
 
+        Stage stage = new Stage();
+        Gdx.input.setInputProcessor(stage);
+
+        ImageButton buttonLeft = AssetLoader.buttonLeft(stage.getWidth()/20+100, stage.getHeight()/20);
+        stage.addActor(buttonLeft);
+        stage.addActor(buttonLeft);
+
+        stage.act();
+        stage.draw();
+
+        buttonLeft.addListener(new InputListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                Gdx.app.log("buttonLeft", "Boton izquierdo pulsado");
+                pressed=true;
+                System.out.println("fdsfs");
+                return true;
+            }});
+
+        if (pressed){
+            soundGameOver.pause();
+            start(runTime);
+        }
     }
+
 
     public void winner(float runTime, PlayerShip playerShip){
         soundGameOver.play();
