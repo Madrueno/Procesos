@@ -336,11 +336,29 @@ public class GameRenderer {
         batcher.draw(AssetLoader.textureWin, 3, 20, 128, 128);
 
         BitmapFont font = new BitmapFont(true);
-        font.getData().setScale(0.95f, 0.95f);
-        font.draw(batcher, "Your final score: " + String.valueOf(playerShip.getScore()), 8, 160);
+        font.getData().setScale(0.90f, 0.90f);
+        font.draw(batcher, "Your final score: " + String.valueOf(playerShip.getScore()), 8, 150);
 
         batcher.end();
 
+        Stage stageGameOv = new Stage();
+        Gdx.input.setInputProcessor(stageGameOv);
+
+        TextButton buttonRetry = AssetLoader.buttonYes("Retry", Gdx.graphics.getWidth()/20 +75 , 2*Gdx.graphics.getHeight()/20 -25);
+        buttonRetry.getLabel().setFontScale(Gdx.graphics.getWidth()/140);
+
+        buttonRetry.addListener(new InputListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                gameover=false;
+                myWorld.getPlayerShip().setLives(1);
+                myWorld.getPlayerShip().setScore(0);
+                myWorld.restPlay();
+                return true;
+            }});
+        stageGameOv.addActor(buttonRetry);
+        stageGameOv.act();
+        stageGameOv.draw();
     }
 
     public void render(float runTime) {
