@@ -40,6 +40,7 @@ public class GameWorld {
                     invadersDeath=0;
                 }
                 if (invadersArmy.getArmy().get(i).getShots().isActive()) {
+
                     if (playerShip.getHitbox().overlaps(invadersArmy.getArmy().get(i).getShots().getRec())) {
                         System.out.println("player (" + playerShip.getHitbox().x + " , " + playerShip.getHitbox().y + " )");
                         System.out.println("invader" + (invadersArmy.getArmy().get(i).getShots().getPosition()).x + (invadersArmy.getArmy().get(i).getShots().getPosition()).y);
@@ -49,28 +50,64 @@ public class GameWorld {
                     }
 
                     for (int j = 0; j < allObstacle.getObstacleActive1().size(); j++) {
+                        //Primer obstaculo:
+                            //  si es disparada se elimina:
+
                         if (allObstacle.getObstacleActive1().get(j).getStatus())
                             if (allObstacle.getObstacleActive1().get(j).getRec().overlaps(invadersArmy.getArmy().get(i).getShots().getRec())) {
                                 allObstacle.getObstacleActive1().get(j).setStatus(false);
                                 invadersArmy.getArmy().get(i).getShots().setInactive();
                             }
+
+                            //  Si choca contra un invader se elimina:
+                        if (allObstacle.getObstacleActive1().get(j).getStatus())
+                            if (allObstacle.getObstacleActive1().get(j).getRec().overlaps(invadersArmy.getArmy().get(i).getHitbox())) {
+                                allObstacle.getObstacleActive1().get(j).setStatus(false);
+                            }
+
+                        //Segundo obstaculo:
+                            //  si es disparada se elimina:
                         //for(int j=0; i<allObstacle.getObstacleActive2().size(); i++)
                         if (allObstacle.getObstacleActive2().get(j).getStatus())
                             if (allObstacle.getObstacleActive2().get(j).getRec().overlaps(invadersArmy.getArmy().get(i).getShots().getRec())) {
                                 allObstacle.getObstacleActive2().get(j).setStatus(false);
                                 invadersArmy.getArmy().get(i).getShots().setInactive();
                             }
+
+                            //  Si choca contra un invader se elimina:
+                        if (allObstacle.getObstacleActive2().get(j).getStatus())
+                            if (allObstacle.getObstacleActive2().get(j).getRec().overlaps(invadersArmy.getArmy().get(i).getHitbox())) {
+                                allObstacle.getObstacleActive2().get(j).setStatus(false);
+                            }
+
+                        //Tercer obstaculo:
+                            //  si es disparada se elimina:
                         // for(int j=0; i<allObstacle.getObstacleActive3().size(); i++)
                         if (allObstacle.getObstacleActive3().get(j).getStatus())
                             if (allObstacle.getObstacleActive3().get(j).getRec().overlaps(invadersArmy.getArmy().get(i).getShots().getRec())) {
                                 allObstacle.getObstacleActive3().get(j).setStatus(false);
                                 invadersArmy.getArmy().get(i).getShots().setInactive();
                             }
+
+                            //  Si choca contra un invader se elimina:
+                        if (allObstacle.getObstacleActive3().get(j).getStatus())
+                            if (allObstacle.getObstacleActive3().get(j).getRec().overlaps(invadersArmy.getArmy().get(i).getHitbox())) {
+                                allObstacle.getObstacleActive3().get(j).setStatus(false);
+                            }
+
+                        //Cuarto obstaculo:
+                             //  si es disparada se elimina:
                         //for(int j=0; i<allObstacle.getObstacleActive4().size(); i++)
                         if (allObstacle.getObstacleActive4().get(j).getStatus())
                             if (allObstacle.getObstacleActive4().get(j).getRec().overlaps(invadersArmy.getArmy().get(i).getShots().getRec())) {
                                 allObstacle.getObstacleActive4().get(j).setStatus(false);
                                 invadersArmy.getArmy().get(i).getShots().setInactive();
+                            }
+                        
+                            //  Si choca contra un invader se elimina:
+                        if (allObstacle.getObstacleActive4().get(j).getStatus())
+                            if (allObstacle.getObstacleActive4().get(j).getRec().overlaps(invadersArmy.getArmy().get(i).getHitbox())) {
+                                allObstacle.getObstacleActive4().get(j).setStatus(false);
                             }
                     }
                 }
