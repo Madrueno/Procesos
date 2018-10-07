@@ -7,9 +7,12 @@ import java.util.ArrayList;
 
 import Screens.GameScreen;
 
+import static java.lang.StrictMath.abs;
+
 public class ListInvaders {
     static ArrayList<Invaders> invadersAlive;
     static int nuevos = 0;
+    static int bajada=1;
 
     public ListInvaders(){
         this.invadersAlive = new ArrayList<Invaders>();
@@ -30,8 +33,10 @@ public class ListInvaders {
     }
 
     public void update() {
+        bajada++;
         for (int i=0; i<invadersAlive.size(); i++){
-            invadersAlive.get(i).getPosition().y+=2;
+            invadersAlive.get(i).getVelocity().x=abs((int) invadersAlive.get(i).getVelocity().x)+1;
+            invadersAlive.get(i).getPosition().y+=bajada;
             invadersAlive.get(i).updateHitbox();
             invadersAlive.get(i).shots.update(); //No me lo borreis pls
         }
