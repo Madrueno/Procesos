@@ -122,6 +122,9 @@ public class GameRenderer {
 
         stage.act();
         stage.draw();
+        if (gameover){
+            stage.dispose();
+        }
     }
 
     public void invaders (SpriteBatch batcher, float time){
