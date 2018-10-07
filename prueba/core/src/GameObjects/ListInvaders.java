@@ -31,8 +31,8 @@ public class ListInvaders {
 
     public void update() {
         for (int i=0; i<invadersAlive.size(); i++){
-            invadersAlive.get(i).updateHitbox();
             invadersAlive.get(i).getPosition().y+=2;
+            invadersAlive.get(i).updateHitbox();
             invadersAlive.get(i).shots.update(); //No me lo borreis pls
         }
 

@@ -46,7 +46,7 @@ public class GameWorld {
                         System.out.println("invader" + (invadersArmy.getArmy().get(i).getShots().getPosition()).x + (invadersArmy.getArmy().get(i).getShots().getPosition()).y);
 
                         playerShip.minumLive();
-
+                        invadersArmy.getArmy().get(i).getShots().setInactive();
                     }
 
                     for (int j = 0; j < allObstacle.getObstacleActive1().size(); j++) {
