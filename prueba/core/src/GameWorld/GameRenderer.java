@@ -261,8 +261,8 @@ public class GameRenderer {
         Stage stageGameOv = new Stage();
         Gdx.input.setInputProcessor(stageGameOv);
 
-        TextButton buttonRetry = AssetLoader.buttonYes("Retry", Gdx.graphics.getWidth()/20 +75 , 2*Gdx.graphics.getHeight()/20 +70);
-        buttonRetry.getLabel().setFontScale(Gdx.graphics.getWidth()/136);
+        TextButton buttonRetry = AssetLoader.buttonYes("Retry", Gdx.graphics.getWidth()/20 +75 , 2*Gdx.graphics.getHeight()/20 -25);
+        buttonRetry.getLabel().setFontScale(Gdx.graphics.getWidth()/140);
 
         buttonRetry.addListener(new InputListener() {
             @Override
