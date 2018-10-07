@@ -245,7 +245,7 @@ public class GameRenderer {
     }
 
     public void gameOver(float runTime, PlayerShip playerShip){
-        soundGameOver.play();
+        soundGameOver.loop();
         batcher.begin();
         batcher.disableBlending();
         batcher.draw(AssetLoader.textureBg,0, 0, 200, 500);
@@ -278,7 +278,7 @@ public class GameRenderer {
         stageGameOv.draw();
     }
     public void gameOverNO(float runTime){
-        soundGameOver.play();
+        soundGameOver.loop();
         batcher.begin();
         batcher.disableBlending();
         batcher.draw(AssetLoader.textureBg,0, 0, 200, 500);
@@ -312,18 +312,20 @@ public class GameRenderer {
                 Gdx.app.log("buttonLeft", "Boton izquierdo pulsado");
                 pressed=true;
                 System.out.println("fdsfs");
+                myWorld.setOld(new older13(false));
+                nono=false;
                 return true;
             }});
 
-        if (pressed){
+        /*if (pressed){
             soundGameOver.pause();
             start(runTime);
-        }
+        }*/
     }
 
 
     public void winner(float runTime, PlayerShip playerShip){
-        soundGameOver.play();
+
         batcher.begin();
         batcher.disableBlending();
         batcher.draw(AssetLoader.textureBg,0, 0, 200, 500);
@@ -340,6 +342,7 @@ public class GameRenderer {
     }
 
     public void render(float runTime) {
+
         myOld = (myWorld.getOlder());
         if (!myOld.getOld()){
             if(nono ==true){
@@ -355,6 +358,7 @@ public class GameRenderer {
             if (gameover){
                 gameOver(runTime, playerShip);
             }else {
+                soundGameOver.stop();
                 invadersAlive = myWorld.getInvadersArmy();
                 shot = myWorld.getShotsPlayer();
                 obstacleActive = myWorld.getAllObstacle();

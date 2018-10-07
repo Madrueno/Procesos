@@ -200,4 +200,8 @@ public class GameWorld {
         invadersArmy = new ListInvaders();
 
     }
+
+    public void setOld(older13 old) {
+        this.old = old;
+    }
 }
