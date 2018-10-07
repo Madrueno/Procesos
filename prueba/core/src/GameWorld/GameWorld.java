@@ -14,8 +14,8 @@ import GameObjects.older13;
 public class GameWorld {
 
     private PlayerShip playerShip;
-    private ListInvaders invadersArmy = new ListInvaders();
-    private older13 old = new older13(false);
+    private ListInvaders invadersArmy ;
+    private older13 old;
     private Shots shotsPlayer;
     private ObstacleGroups allObstacle;
     private int invadersDeath=0;
@@ -26,6 +26,8 @@ public class GameWorld {
     public GameWorld(float x, float y) {
         this.screenX=x;
         this.screenY=y;
+        invadersArmy = new ListInvaders();
+        old = new older13(false);
         playerShip = new PlayerShip(x, y, 25, 25);
         allObstacle= new ObstacleGroups(x,y);
         shotsPlayer =new Shots(playerShip.getPosition(),0);
@@ -195,5 +197,7 @@ public class GameWorld {
         allObstacle= new ObstacleGroups(this.screenX,this.screenY);
         shotsPlayer =new Shots(playerShip.getPosition(),0);
         shotsPlayer.setScreenY(this.screenY);
+        invadersArmy = new ListInvaders();
+
     }
 }
