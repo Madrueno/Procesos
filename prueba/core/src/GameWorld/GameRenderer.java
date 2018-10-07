@@ -264,9 +264,13 @@ public class GameRenderer {
         batcher.draw(AssetLoader.textureGameOver, 3, 20, 128, 128);
 
         BitmapFont font = new BitmapFont(true);
-        font.getData().setScale(0.95f, 0.95f);
-        font.draw(batcher, "Lo siento, necesitas tener mas de 13 años " , 8, 150);
-        
+        font.getData().setScale(0.85f, 0.85f);
+        font.draw(batcher, "Lo siento, necesitas" , 12, 150);
+
+        BitmapFont font2 = new BitmapFont(true);
+        font2.getData().setScale(0.85f, 0.85f);
+        font2.draw(batcher, "ser mayor de 13 años " , 8, 170);
+
         batcher.end();
 
     }
