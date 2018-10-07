@@ -6,6 +6,8 @@ import com.badlogic.gdx.math.Vector2;
 
 import java.util.Random;
 
+import static java.lang.StrictMath.abs;
+
 
 public class Invaders {
 
@@ -53,7 +55,7 @@ public class Invaders {
         updateHitbox();
 
 
-        velocity.set(velocity.x*signo, velocity.y);
+        velocity.set(abs(velocity.x)*signo, velocity.y);
 
         velocity.add(acceleration.cpy().scl(delta));
         position.add(velocity.cpy().scl(delta));
