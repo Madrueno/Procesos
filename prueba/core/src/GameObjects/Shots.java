@@ -1,5 +1,6 @@
 package GameObjects;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
@@ -22,11 +23,11 @@ public class Shots {
 
     public Shots(Vector2 p,  int dir){ //POR AHORA SON LOS DISPAROS DE LAS NAVES NO DEL PLAYERSHIP
         this.position = new Vector2(p); //Pongo la posición de la nave
-        this.vel=3; //poner velocidad constante para todas las balas
-        this.width = 10;
+        this.vel=Gdx.graphics.getHeight()/150; //poner velocidad constante para todas las balas
+        this.width = Gdx.graphics.getWidth()/25;
         //this.height = height;
         this.direction=dir;
-        this.height = 15;
+        this.height = Gdx.graphics.getHeight()/30;
         this.rec=new Rectangle(p.x, p.y, width, height);
         this.isActive=false;
         deaths = 0;
@@ -45,7 +46,7 @@ public class Shots {
             this.position.y=this.position.y+this.vel;
         else
             this.position.y=this.position.y-this.vel;
-        this.rec.set(position.x, position.y, 10, 15);
+        this.rec.set(position.x, position.y, width, height);
         if((this.position.y<0)||(this.position.y>this.screenY)&&(direction==0))
            isActive=false;
     }

@@ -217,10 +217,10 @@ public class GameRenderer {
         buttonYes.setBounds(Gdx.graphics.getWidth()/9, Gdx.graphics.getHeight()/10 +40, Gdx.graphics.getWidth()/3, Gdx.graphics.getHeight()/7);
         buttonYes.getLabel().setFontScale((float) Math.min(buttonYes.getWidth()/35, buttonYes.getHeight()/35));
 
-        TextButton buttonNo = AssetLoader.buttonNo("No", 5*Gdx.graphics.getWidth()/9, Gdx.graphics.getHeight()/10 +40);
+        TextButton buttonNo = AssetLoader.buttonNo("No", 0, 0);
         buttonNo.setBounds(5*Gdx.graphics.getWidth()/9, Gdx.graphics.getHeight()/10 +40, Gdx.graphics.getWidth()/3, Gdx.graphics.getHeight()/7);
         buttonNo.getLabel().setFontScale((float) Math.min(buttonNo.getWidth()/35, buttonNo.getHeight()/35));
-        
+
         buttonYes.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
