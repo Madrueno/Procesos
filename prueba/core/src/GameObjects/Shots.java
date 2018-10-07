@@ -23,7 +23,7 @@ public class Shots {
 
     public Shots(Vector2 p,  int dir){ //POR AHORA SON LOS DISPAROS DE LAS NAVES NO DEL PLAYERSHIP
         this.position = new Vector2(p); //Pongo la posición de la nave
-        this.vel=3; //poner velocidad constante para todas las balas
+        this.vel=7; //poner velocidad constante para todas las balas
         this.width = 10;
         this.height = 15;
         //this.vel=Gdx.graphics.getHeight()/150; //poner velocidad constante para todas las balas

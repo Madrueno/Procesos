@@ -116,14 +116,17 @@ public class GameWorld {
                             }
                     }
                 }
-                if ((i == invadersArmy.getArmy().size() - 1) && (invadersArmy.getArmy().get(invadersArmy.getArmy().size() - 1).getPosition().x > 107) && (signo==1)){
-                    signo = -1;
-                    invadersArmy.update();
-                } else if ((i == 0) && (invadersArmy.getArmy().get(0).getPosition().x < 10) && (signo==-1)){
+                if ((i == 0) && (invadersArmy.getArmy().get(0).getPosition().x < 10) && (signo==-1)){
                     signo = 1;
                     invadersArmy.update();
                 }
+
                 invadersArmy.getArmy().get(i).update(delta, signo);
+
+                if ((i == invadersArmy.getArmy().size() - 1) && (invadersArmy.getArmy().get(invadersArmy.getArmy().size() - 1).getPosition().x > 107) && (signo==1)){
+                    signo = -1;
+                    invadersArmy.update();
+                }
             } //fin for
 
 
