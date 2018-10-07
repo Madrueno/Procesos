@@ -31,6 +31,7 @@ public class AssetLoader {
 
 
 
+
     public static void loadBg() {
          bg = new Texture (Gdx.files.internal("data/bbb.png"));
          textureBg =new TextureRegion(bg);
@@ -53,10 +54,33 @@ public class AssetLoader {
 
 
 
+
+
     }
 
     public static ImageButton buttonLeft(float x, float y){
         Pixmap pixmap2 = new Pixmap(Gdx.files.internal("data/left2.png"));
+        Pixmap pixmap1 = new Pixmap(Gdx.graphics.getWidth()/5 -10, Gdx.graphics.getWidth()/5 -10, pixmap2.getFormat());
+        pixmap1.drawPixmap(pixmap2,
+                0, 0, pixmap2.getWidth(), pixmap2.getHeight(),
+                0, 0, pixmap1.getWidth(), pixmap1.getHeight()
+        );
+        Texture myTexture = new Texture(pixmap1);
+
+        pixmap2.dispose();
+        pixmap1.dispose();
+
+        //Texture myTexture = new Texture(Gdx.files.internal("data/left.png"));
+        TextureRegion myTextureRegion = new TextureRegion(myTexture);
+        TextureRegionDrawable myTexRegionDrawable = new TextureRegionDrawable(myTextureRegion);
+        ImageButton button = new ImageButton(myTexRegionDrawable);
+        button.setPosition(x, y);
+
+        return button;
+    }
+
+    public static ImageButton buttonRetry(float x, float y){
+        Pixmap pixmap2 = new Pixmap(Gdx.files.internal("data/retryIcon.png"));
         Pixmap pixmap1 = new Pixmap(Gdx.graphics.getWidth()/5 -10, Gdx.graphics.getWidth()/5 -10, pixmap2.getFormat());
         pixmap1.drawPixmap(pixmap2,
                 0, 0, pixmap2.getWidth(), pixmap2.getHeight(),

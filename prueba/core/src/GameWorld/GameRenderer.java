@@ -299,19 +299,18 @@ public class GameRenderer {
         Stage stage = new Stage();
         Gdx.input.setInputProcessor(stage);
 
-        ImageButton buttonLeft = AssetLoader.buttonLeft(stage.getWidth()/20+100, stage.getHeight()/20);
-        stage.addActor(buttonLeft);
-        stage.addActor(buttonLeft);
+        ImageButton buttonRetry = AssetLoader.buttonRetry(stage.getWidth()/20+100, stage.getHeight()/20);
+        stage.addActor(buttonRetry);
+        stage.addActor(buttonRetry);
 
         stage.act();
         stage.draw();
 
-        buttonLeft.addListener(new InputListener() {
+        buttonRetry.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                Gdx.app.log("buttonLeft", "Boton izquierdo pulsado");
+                Gdx.app.log("buttonRetry", "Boton retry pulsado");
                 pressed=true;
-                System.out.println("fdsfs");
                 myWorld.setOld(new older13(false));
                 nono=false;
                 return true;
