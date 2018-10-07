@@ -266,14 +266,13 @@ public class GameRenderer {
         BitmapFont font = new BitmapFont(true);
         font.getData().setScale(0.95f, 0.95f);
         font.draw(batcher, "Lo siento, necesitas tener mas de 13 años " , 8, 150);
-
+        
         batcher.end();
 
     }
 
     public void render(float runTime) {
         myOld = (myWorld.getOlder());
-        nono=false;
         if (!myOld.getOld()){
             if(nono ==true){
                 gameOverNO(runTime);
