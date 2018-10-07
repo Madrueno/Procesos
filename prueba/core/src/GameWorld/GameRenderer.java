@@ -275,22 +275,18 @@ public class GameRenderer {
 
     }
 
-    public void winner(float runTime){
+    public void winner(float runTime, PlayerShip playerShip){
         soundGameOver.play();
         batcher.begin();
         batcher.disableBlending();
         batcher.draw(AssetLoader.textureBg,0, 0, 200, 500);
         batcher.enableBlending();
 
-       // batcher.draw(AssetLoader.textureGameOver, 3, 20, 128, 128);
+        batcher.draw(AssetLoader.textureWin, 3, 20, 128, 128);
 
         BitmapFont font = new BitmapFont(true);
-        font.getData().setScale(0.85f, 0.85f);
-        font.draw(batcher, "Felicidades" , 9, 150);
-
-        BitmapFont font2 = new BitmapFont(true);
-        font2.getData().setScale(0.85f, 0.85f);
-        font2.draw(batcher, "has ganado " , 8, 170);
+        font.getData().setScale(0.95f, 0.95f);
+        font.draw(batcher, "Your final score: " + String.valueOf(playerShip.getScore()), 8, 160);
 
         batcher.end();
 
@@ -360,8 +356,7 @@ public class GameRenderer {
 
                 //Mira si hemos exterminado por completo el ejercito
                 if (myWorld.getInvadersDeath()==invadersAlive.getArmy().size()){
-                    winner(runTime);
-                    System.out.println("GANASTE");
+                    winner(runTime, playerShip);
                 }
             }
         }

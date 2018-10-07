@@ -26,6 +26,8 @@ public class AssetLoader {
     public static TextureRegion textureObstacle;
     public static Texture title;
     public static TextureRegion textureTitle;
+    public static Texture win;
+    public static TextureRegion textureWin;
 
 
 
@@ -45,6 +47,9 @@ public class AssetLoader {
          textureObstacle = new TextureRegion(obstacle);
          title= new Texture (Gdx.files.internal("data/invadpt2.png"));
          textureTitle = new TextureRegion(title);
+         win = new Texture (Gdx.files.internal("data/win.png"));
+         textureWin =new TextureRegion(win);
+         textureWin.flip(false, true);
 
 
 
