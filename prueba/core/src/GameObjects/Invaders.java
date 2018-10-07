@@ -59,10 +59,11 @@ public class Invaders {
         position.add(velocity.cpy().scl(delta));
         Random generator = new Random();
         int randomNumber=generator.nextInt(500);
-        if (randomNumber==1)
-            this.shots.shoot(this.position,1);
-            this.shots.update();
-
+        if (randomNumber==1) {
+            this.shots.setPosition(new Vector2(this.position.x + (this.width / 2) - 4, this.getPosition().y));
+            this.shots.shoot(this.shots.getPosition(), 1);
+        }
+        this.shots.update();
     }
 
    /* public void update(float delta) {

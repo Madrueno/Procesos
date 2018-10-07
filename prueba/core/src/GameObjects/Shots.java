@@ -46,6 +46,8 @@ public class Shots {
         else
             this.position.y=this.position.y-this.vel;
         this.rec.set(position.x, position.y, 10, 15);
+        if((this.position.y<0)||(this.position.y>this.screenY))
+            isActive=false;
     }
 
     public boolean isActive() {
