@@ -1,6 +1,7 @@
 package GameObjects;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ public class ListInvaders {
     static int nuevos = 0;
     static int bajada=1;
     Invaders superEnemy = new Invaders(10,0,15,15, false);
+    Vector2 velSuperEnemy = new Vector2(40, 0);
 
     public ListInvaders(){
         this.invadersAlive = new ArrayList<Invaders>();
@@ -47,6 +49,8 @@ public class ListInvaders {
 
     public void setSuperEnemy(){
         Invaders enemy = new Invaders(10,1,15,15, true);
+
+        enemy.setVelocity(velSuperEnemy);
         this.superEnemy = enemy;
     }
 

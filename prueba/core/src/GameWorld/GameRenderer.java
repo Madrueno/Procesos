@@ -136,8 +136,8 @@ public class GameRenderer {
     public void invaders (SpriteBatch batcher, float time){
 
         invadersAlive.newInvader(time); //opcion de aumentar los invaders
-
-        batcher.draw(AssetLoader.textureInvader2, invadersAlive.getSuperEnemy().getPosition().x, invadersAlive.getSuperEnemy().getPosition().y, invadersAlive.getSuperEnemy().getWidth(), invadersAlive.getSuperEnemy().getHeight());
+        if (invadersAlive.getSuperEnemy().isAlive())
+            batcher.draw(AssetLoader.textureInvader2, invadersAlive.getSuperEnemy().getPosition().x, invadersAlive.getSuperEnemy().getPosition().y, invadersAlive.getSuperEnemy().getWidth(), invadersAlive.getSuperEnemy().getHeight());
         System.out.println(invadersAlive.getSuperEnemy().getVelocity());
         for (Invaders invader : invadersAlive.getArmy()) {
             if (invader.isAlive()) {

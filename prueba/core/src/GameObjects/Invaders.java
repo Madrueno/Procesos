@@ -71,6 +71,8 @@ public class Invaders {
         this.shots.update();
     }
 
+
+
    /* public void update(float delta) {
         if (position.x > 110) {     //CAMBIAR POR EL TAMANO DE LA PANTALLA
             position.x = 110;
@@ -91,6 +93,10 @@ public class Invaders {
         position.add(velocity.cpy().scl(delta));
 
     }*/
+
+   public void setVelocity(Vector2 velocity){
+       this.velocity=velocity;
+   }
 
     public Shots getShots() {
         return shots;
