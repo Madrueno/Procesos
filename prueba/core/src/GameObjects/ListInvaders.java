@@ -68,7 +68,11 @@ public class ListInvaders {
 
         }
 
+        superEnemy.updateHitbox();
+        superEnemy.shots.update();
+
     }
+
 
     public ArrayList<Invaders> getArmy(){
         return invadersAlive;
