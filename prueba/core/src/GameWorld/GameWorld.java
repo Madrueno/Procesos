@@ -47,12 +47,13 @@ public class GameWorld {
                 }
                 if (invadersArmy.getArmy().get(i).getShots().isActive()) {
 
-                    if (playerShip.getHitbox().overlaps(invadersArmy.getArmy().get(i).getShots().getRec())) {
+                    if (playerShip.getHitbox().overlaps(invadersArmy.getArmy().get(i).getShots().getRec()) || playerShip.getHitbox().overlaps(invadersArmy.getSuperEnemy().getShots().getRec())) {
                         System.out.println("player (" + playerShip.getHitbox().x + " , " + playerShip.getHitbox().y + " )");
                         System.out.println("invader" + (invadersArmy.getArmy().get(i).getShots().getPosition()).x + (invadersArmy.getArmy().get(i).getShots().getPosition()).y);
 
                         playerShip.minumLive();
                         invadersArmy.getArmy().get(i).getShots().setInactive();
+                        invadersArmy.getSuperEnemy().getShots().setInactive();
                     }
 
                     for (int j = 0; j < allObstacle.getObstacleActive1().size(); j++) {
