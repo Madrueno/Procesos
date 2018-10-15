@@ -28,6 +28,8 @@ public class AssetLoader {
     public static TextureRegion textureTitle;
     public static Texture win;
     public static TextureRegion textureWin;
+    public static Texture superEnemy;
+    public static TextureRegion textureSuperEnemy;
 
 
 
@@ -51,6 +53,8 @@ public class AssetLoader {
          win = new Texture (Gdx.files.internal("data/win.png"));
          textureWin =new TextureRegion(win);
          textureWin.flip(false, true);
+         superEnemy= new Texture (Gdx.files.internal("data/superEnemy.png"));
+         textureSuperEnemy = new TextureRegion(superEnemy);
 
 
 

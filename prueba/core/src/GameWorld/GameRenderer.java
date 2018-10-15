@@ -137,10 +137,12 @@ public class GameRenderer {
 
         invadersAlive.newInvader(time); //opcion de aumentar los invaders
 
+        //superEnemy
         if (invadersAlive.getSuperEnemy().isAlive())
-            batcher.draw(AssetLoader.textureInvader2, invadersAlive.getSuperEnemy().getPosition().x, invadersAlive.getSuperEnemy().getPosition().y, invadersAlive.getSuperEnemy().getWidth(), invadersAlive.getSuperEnemy().getHeight());
+            batcher.draw(AssetLoader.textureSuperEnemy, invadersAlive.getSuperEnemy().getPosition().x, invadersAlive.getSuperEnemy().getPosition().y, invadersAlive.getSuperEnemy().getWidth(), invadersAlive.getSuperEnemy().getHeight());
         if(invadersAlive.getSuperEnemy().getShots().isActive())
             batcher.draw(AssetLoader.textureLaser,invadersAlive.getSuperEnemy().getShots().getX(),invadersAlive.getSuperEnemy().getShots().getY(),invadersAlive.getSuperEnemy().getShots().getWidth(),invadersAlive.getSuperEnemy().getShots().getHeight());
+        //
 
         for (Invaders invader : invadersAlive.getArmy()) {
             if (invader.isAlive()) {
