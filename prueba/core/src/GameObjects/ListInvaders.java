@@ -66,19 +66,16 @@ public class ListInvaders {
 
     public void newInvader(float time){
         int seconds = (int) time;
-        int nuevos=invadersAlive.size() - 3;
-        int x, y;
+        int nuevos=invadersAlive.size() - 12;
 
         if (seconds%3==0 && seconds!=0 && nuevos<time/3){
             int size = invadersAlive.size() - 1;
-            Invaders lastInvader = invadersAlive.get(size);
-            if ((size+1)%5==0) {
-                invadersAlive.add(new Invaders(invadersAlive.get(size-4).getPosition().x, invadersAlive.get(size).getPosition().y + 15, 15, 15, true));
+            if ((size+1)%4==0) {
+                invadersAlive.add(new Invaders(invadersAlive.get(0).getPosition().x, invadersAlive.get(size).getPosition().y + 15, 15, 15, true));
             }
             else{
-                invadersAlive.add(new Invaders(invadersAlive.get(size).getPosition().x+15, invadersAlive.get(size).getPosition().y, 15, 15, true));
+                invadersAlive.add(new Invaders(invadersAlive.get(size).getPosition().x + 20, invadersAlive.get(size).getPosition().y, 15, 15, true));
             }
-
             nuevos++;
         }
     }

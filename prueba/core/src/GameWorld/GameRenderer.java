@@ -135,7 +135,7 @@ public class GameRenderer {
 
     public void invaders (SpriteBatch batcher, float time){
 
-        //invadersAlive.newInvader(time); opcion de aumentar los invaders
+        invadersAlive.newInvader(time); //opcion de aumentar los invaders
 
         for (Invaders invader : invadersAlive.getArmy()) {
             if (invader.isAlive()) {
