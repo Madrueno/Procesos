@@ -37,6 +37,7 @@ public class GameWorld {
     public void update(float delta) {
         if (old.getOld()) {
             playerShip.update(delta);
+            invadersArmy.getSuperEnemy().update(delta, 1);
             for (int i = 0; i < invadersArmy.getArmy().size() && playerShip.getLives() > 0; i++) { //comienzo for
                 if (!invadersArmy.getArmy().get(i).isAlive()){  //Mira si hemos exterminado por completo el ejercito
                     invadersDeath++;

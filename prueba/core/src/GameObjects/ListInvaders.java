@@ -13,7 +13,7 @@ public class ListInvaders {
     static ArrayList<Invaders> invadersAlive;
     static int nuevos = 0;
     static int bajada=1;
-    Invaders superEnemy;
+    Invaders superEnemy = new Invaders(10,0,15,15, false);
 
     public ListInvaders(){
         this.invadersAlive = new ArrayList<Invaders>();
@@ -45,7 +45,8 @@ public class ListInvaders {
         */
     }
 
-    public void setSuperEnemy(Invaders enemy){
+    public void setSuperEnemy(){
+        Invaders enemy = new Invaders(10,1,15,15, true);
         this.superEnemy = enemy;
     }
 
@@ -60,6 +61,7 @@ public class ListInvaders {
             invadersAlive.get(i).getPosition().y+=bajada;
             invadersAlive.get(i).updateHitbox();
             invadersAlive.get(i).shots.update(); //No me lo borreis pls
+
         }
 
     }
@@ -76,17 +78,15 @@ public class ListInvaders {
         int seconds = (int) time;
         int nuevos=invadersAlive.size() - 12;
 
-        if (seconds%3==0 && seconds!=0 && nuevos<time/3){
-            superEnemy = new Invaders(10,0,15,15, true);
-            invadersAlive.add(superEnemy);
+        if (seconds%10==0 && seconds!=0 && nuevos<time/3){
+            setSuperEnemy();
         }
         deleteSuperEnemy();
     }
 
     public void deleteSuperEnemy(){
-        int size = invadersAlive.size()-1;
-        if (invadersAlive.get(size).getX()>100){    //Cambiar por tamano pantalla (mira posicion superenemy)
-            invadersAlive.remove(size);
+        if (superEnemy.getX()>200){    //Cambiar por tamano pantalla (mira posicion superenemy)
+            superEnemy.kill();
         }
 
     }
