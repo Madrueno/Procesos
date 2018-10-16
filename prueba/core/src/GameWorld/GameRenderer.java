@@ -17,6 +17,8 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.Files.FileType;
 
+import java.util.ArrayList;
+
 import GameObjects.Invaders;
 import GameObjects.ListInvaders;
 import GameObjects.PlayerShip;
@@ -44,6 +46,8 @@ public class GameRenderer {
     private boolean nono =false;
 
     private boolean pressed=false;
+
+    private ArrayList<ArrayList<Obstacle>> obstacles;
 
     public static ListInvaders invadersAlive;
     public Shots shot;
@@ -170,40 +174,17 @@ public class GameRenderer {
             batcher.draw(AssetLoader.textureInvader6, invader.getPosition().x, invader.getPosition().y, invader.getWidth(), invader.getHeight());
     }
 
-    public void obstacles (SpriteBatch batcher){
+    public void obstacles (SpriteBatch batcher, ArrayList<ArrayList <Obstacle>> obstacles){
 
+        for (ArrayList <Obstacle> obstacleGroup : obstacles){
+            for (Obstacle obstacle : obstacleGroup) {
+                if (obstacle.getStatus()) {
+                    batcher.draw(AssetLoader.textureObstacle, obstacle.getPosition().x, obstacle.getPosition().y, obstacle.getWidth(), obstacle.getHeight());
+
+                }
+            }
+        }
         //invadersAlive.newInvader(time); opcion de aumentar los invaders
-        //Primera barrera
-        for (Obstacle obstacle : obstacleActive.getObstacleActive1()) {
-            if (obstacle.getStatus()) {
-                batcher.draw(AssetLoader.textureObstacle, obstacle.getPosition().x, obstacle.getPosition().y, obstacle.getWidth(), obstacle.getHeight());
-
-            }
-        }
-
-        //Segunda Barrera
-        for (Obstacle obstacle : obstacleActive.getObstacleActive2()) {
-            if (obstacle.getStatus()) {
-                batcher.draw(AssetLoader.textureObstacle, obstacle.getPosition().x, obstacle.getPosition().y, obstacle.getWidth(), obstacle.getHeight());
-
-            }
-        }
-        //Tercera barrera
-        for (Obstacle obstacle : obstacleActive.getObstacleActive3()) {
-            if (obstacle.getStatus()) {
-                batcher.draw(AssetLoader.textureObstacle, obstacle.getPosition().x, obstacle.getPosition().y, obstacle.getWidth(), obstacle.getHeight());
-
-            }
-        }
-        //Cuarta barrera
-        for (Obstacle obstacle : obstacleActive.getObstacleActive4()) {
-            if (obstacle.getStatus()) {
-                batcher.draw(AssetLoader.textureObstacle, obstacle.getPosition().x, obstacle.getPosition().y, obstacle.getWidth(), obstacle.getHeight());
-
-            }
-        }
-
-
     }
 
     public void start(float runTime){
@@ -423,7 +404,8 @@ public class GameRenderer {
                 }
                 float time = runTime;
                 invaders(batcher, time);
-                obstacles(batcher); //Para las barreras
+                obstacles = myWorld.setObstacles();
+                obstacles(batcher, obstacles); //Para las barreras
                 //Dibujar Balas activas
                 if (shot.isActive())
                     batcher.draw(AssetLoader.textureLaser, shot.getX(), shot.getY(), shot.getWidth(), shot.getHeight());

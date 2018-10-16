@@ -68,19 +68,17 @@ public class AssetLoader {
     public static ImageButton buttonLeft(float x, float y){
         Pixmap pixmap2 = new Pixmap(Gdx.files.internal("data/left2.png"));
         Pixmap pixmap1 = new Pixmap(Gdx.graphics.getWidth()/5 -10, Gdx.graphics.getWidth()/5 -10, pixmap2.getFormat());
-        pixmap1.drawPixmap(pixmap2,
-                0, 0, pixmap2.getWidth(), pixmap2.getHeight(),
-                0, 0, pixmap1.getWidth(), pixmap1.getHeight()
-        );
-        Texture myTexture = new Texture(pixmap1);
 
-        pixmap2.dispose();
-        pixmap1.dispose();
+        ImageButton button = new ImageButton(createDefaultDrawable(pixmap1, pixmap2));
+        button.setPosition(x, y);
 
-        //Texture myTexture = new Texture(Gdx.files.internal("data/left.png"));
-        TextureRegion myTextureRegion = new TextureRegion(myTexture);
-        TextureRegionDrawable myTexRegionDrawable = new TextureRegionDrawable(myTextureRegion);
-        ImageButton button = new ImageButton(myTexRegionDrawable);
+        return button;
+    }
+
+    public static ImageButton buttonRight(float x, float y){
+        Pixmap pixmap2 = new Pixmap(Gdx.files.internal("data/right2.png"));
+        Pixmap pixmap1 = new Pixmap(Gdx.graphics.getWidth()/5-10, Gdx.graphics.getWidth()/5-10, pixmap2.getFormat());
+        ImageButton button = new ImageButton(createDefaultDrawable(pixmap1, pixmap2));
         button.setPosition(x, y);
 
         return button;
@@ -89,19 +87,8 @@ public class AssetLoader {
     public static ImageButton buttonRetry(float x, float y){
         Pixmap pixmap2 = new Pixmap(Gdx.files.internal("data/retryIcon.png"));
         Pixmap pixmap1 = new Pixmap(Gdx.graphics.getWidth()/5 -10, Gdx.graphics.getWidth()/5 -10, pixmap2.getFormat());
-        pixmap1.drawPixmap(pixmap2,
-                0, 0, pixmap2.getWidth(), pixmap2.getHeight(),
-                0, 0, pixmap1.getWidth(), pixmap1.getHeight()
-        );
-        Texture myTexture = new Texture(pixmap1);
 
-        pixmap2.dispose();
-        pixmap1.dispose();
-
-        //Texture myTexture = new Texture(Gdx.files.internal("data/left.png"));
-        TextureRegion myTextureRegion = new TextureRegion(myTexture);
-        TextureRegionDrawable myTexRegionDrawable = new TextureRegionDrawable(myTextureRegion);
-        ImageButton button = new ImageButton(myTexRegionDrawable);
+        ImageButton button = new ImageButton(createDefaultDrawable(pixmap1, pixmap2));
         button.setPosition(x, y);
 
         return button;
@@ -112,95 +99,66 @@ public class AssetLoader {
         button.setPosition(x, y);
         return button;
     }
-
-    private static Skin mySkin(){
-        Pixmap pixmap = new Pixmap(18*Gdx.graphics.getWidth()/20 -175, 3*Gdx.graphics.getHeight()/20 -10, Pixmap.Format.RGB888);
-        pixmap.setColor(Color.GREEN);           // Color fondo
-        pixmap.fill();
-
-        BitmapFont font = new BitmapFont();
-        Skin skin = new Skin();
-
-        skin.add("background", new Texture(pixmap));
-        skin.add("default", font);
-
-
-        TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
-        textButtonStyle.font = skin.getFont("default");
-        textButtonStyle.up = skin.newDrawable("background", Color.WHITE);   //cambia un poco color fondo
-
-        skin.add("default", textButtonStyle);
-        return skin;
-    }
-
     public static TextButton buttonNo(String text, int x, int y){
         TextButton button = new TextButton(text, mySkin2());
         button.setPosition(x, y);
         return button;
     }
 
+    public static ImageButton buttonShoot(float x, float y){
+        Pixmap pixmap2 = new Pixmap(Gdx.files.internal("data/disparo2.png"));
+        Pixmap pixmap1 = new Pixmap(Gdx.graphics.getWidth()/5 -10, Gdx.graphics.getWidth()/5 -10, pixmap2.getFormat());
+
+        ImageButton button = new ImageButton(createDefaultDrawable(pixmap1, pixmap2));
+        button.setPosition(x, y);
+
+        return button;
+    }
+
+    private static Skin mySkin(){
+        Pixmap pixmap = new Pixmap(18*Gdx.graphics.getWidth()/20 -175, 3*Gdx.graphics.getHeight()/20 -10, Pixmap.Format.RGB888);
+        pixmap.setColor(Color.GREEN);           // Color fondo
+        pixmap.fill();
+        return createDefaultSkin(pixmap);
+    }
+
     private static Skin mySkin2(){
         Pixmap pixmap = new Pixmap(18*Gdx.graphics.getWidth()/20 -175, 3*Gdx.graphics.getHeight()/20 -10, Pixmap.Format.RGB888);
         pixmap.setColor(Color.RED);           // Color fondo
         pixmap.fill();
+        return createDefaultSkin(pixmap);
+    }
 
+    public static TextureRegionDrawable createDefaultDrawable(Pixmap pixmap1, Pixmap pixmap2){
+        pixmap1.drawPixmap(pixmap2,
+                0, 0, pixmap2.getWidth(), pixmap2.getHeight(),
+                0, 0, pixmap1.getWidth(), pixmap1.getHeight()
+        );
+        Texture myTexture = new Texture(pixmap1);
+
+        pixmap2.dispose();
+        pixmap1.dispose();
+
+        //Texture myTexture = new Texture(Gdx.files.internal("data/left.png"));
+        TextureRegion myTextureRegion = new TextureRegion(myTexture);
+        TextureRegionDrawable myTexRegionDrawable = new TextureRegionDrawable(myTextureRegion);
+
+        return myTexRegionDrawable;
+    }
+
+    public static Skin createDefaultSkin(Pixmap pixmap){
         BitmapFont font = new BitmapFont();
         Skin skin = new Skin();
 
         skin.add("background", new Texture(pixmap));
         skin.add("default", font);
-
-
+        
         TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
         textButtonStyle.font = skin.getFont("default");
         textButtonStyle.up = skin.newDrawable("background", Color.WHITE);   //cambia un poco color fondo
 
         skin.add("default", textButtonStyle);
         return skin;
-    }
-
-
-    public static ImageButton buttonRight(float x, float y){
-        Pixmap pixmap2 = new Pixmap(Gdx.files.internal("data/right2.png"));
-        Pixmap pixmap1 = new Pixmap(Gdx.graphics.getWidth()/5-10, Gdx.graphics.getWidth()/5-10, pixmap2.getFormat());
-        pixmap1.drawPixmap(pixmap2,
-                0, 0, pixmap2.getWidth(), pixmap2.getHeight(),
-                0, 0, pixmap1.getWidth(), pixmap1.getHeight()
-        );
-        Texture myTexture = new Texture(pixmap1);
-
-
-        pixmap2.dispose();
-        pixmap1.dispose();
-
-        //Texture myTexture = new Texture(Gdx.files.internal("data/right.png"));
-        TextureRegion myTextureRegion = new TextureRegion(myTexture);
-        TextureRegionDrawable myTexRegionDrawable = new TextureRegionDrawable(myTextureRegion);
-        ImageButton button = new ImageButton(myTexRegionDrawable);
-        button.setPosition(x, y);
-
-        return button;
-    }
-
-    public static ImageButton buttonShoot(float x, float y){
-        Pixmap pixmap2 = new Pixmap(Gdx.files.internal("data/disparo2.png"));
-        Pixmap pixmap1 = new Pixmap(Gdx.graphics.getWidth()/5 -10, Gdx.graphics.getWidth()/5 -10, pixmap2.getFormat());
-        pixmap1.drawPixmap(pixmap2,
-                0, 0, pixmap2.getWidth(), pixmap2.getHeight(),
-                0, 0, pixmap1.getWidth(), pixmap1.getHeight()
-        );
-        Texture myTexture = new Texture(pixmap1);
-
-        pixmap2.dispose();
-        pixmap1.dispose();
-
-        //Texture myTexture = new Texture(Gdx.files.internal("data/pokeball.png"));
-        TextureRegion myTextureRegion = new TextureRegion(myTexture);
-        TextureRegionDrawable myTexRegionDrawable = new TextureRegionDrawable(myTextureRegion);
-        ImageButton button = new ImageButton(myTexRegionDrawable);
-        button.setPosition(x, y);
-
-        return button;
     }
 
     public static void dispose() {
