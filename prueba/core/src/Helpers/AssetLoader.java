@@ -12,35 +12,23 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 public class AssetLoader {
-    public static Texture bg;
-    public static TextureRegion textureBg;
-    public static Texture player;
-    public static TextureRegion texturePlayer;
-    public static Texture invader2;
-    public static TextureRegion textureInvader2;
-    public static Texture gameOver;
-    public static TextureRegion textureGameOver;
-    public static Texture laser;
-    public static TextureRegion textureLaser;
-    public static Texture obstacle;
-    public static TextureRegion textureObstacle;
-    public static Texture title;
-    public static TextureRegion textureTitle;
-    public static Texture win;
-    public static TextureRegion textureWin;
-    public static Texture superEnemy;
-    public static TextureRegion textureSuperEnemy;
+    public static Texture bg, title;
+    public static TextureRegion textureBg, textureTitle;
 
+    public static Texture player, superEnemy, obstacle, laser;
+    public static TextureRegion texturePlayer, textureObstacle, textureLaser, textureSuperEnemy;
 
+    public static Texture gameOver, win;
+    public static TextureRegion textureGameOver, textureWin;
 
+    public static Texture invader2, invader3, invader4, invader5, invader6;
+    public static TextureRegion textureInvader2, textureInvader3, textureInvader4, textureInvader5, textureInvader6;
 
     public static void loadBg() {
          bg = new Texture (Gdx.files.internal("data/bbb.png"));
          textureBg =new TextureRegion(bg);
          player = new Texture (Gdx.files.internal("data/nave2.png"));
          texturePlayer =new TextureRegion(player);
-         invader2 = new Texture (Gdx.files.internal("data/alien1.png"));
-         textureInvader2=new TextureRegion(invader2);
          gameOver = new Texture (Gdx.files.internal("data/gameOver.png"));
          textureGameOver =new TextureRegion(gameOver);
          textureGameOver.flip(false, true);
@@ -56,10 +44,25 @@ public class AssetLoader {
          superEnemy= new Texture (Gdx.files.internal("data/superEnemy.png"));
          textureSuperEnemy = new TextureRegion(superEnemy);
 
+         loadColorInvaders();
 
+    }
 
+    public static void loadColorInvaders() {
+        invader2 = new Texture (Gdx.files.internal("data/alien1.png"));
+        textureInvader2=new TextureRegion(invader2);
 
+        invader3 = new Texture (Gdx.files.internal("data/invader2.png"));
+        textureInvader3=new TextureRegion(invader3);
 
+        invader4 = new Texture (Gdx.files.internal("data/invader3.png"));
+        textureInvader4=new TextureRegion(invader4);
+
+        invader5 = new Texture (Gdx.files.internal("data/invader4.png"));
+        textureInvader5=new TextureRegion(invader5);
+
+        invader6 = new Texture (Gdx.files.internal("data/invader5.png"));
+        textureInvader6=new TextureRegion(invader6);
     }
 
     public static ImageButton buttonLeft(float x, float y){
