@@ -134,15 +134,12 @@ public class GameRenderer {
     }
 
     public void invaders (SpriteBatch batcher, float time){
-
         invadersAlive.newInvader(time); //opcion de aumentar los invaders
 
-        //superEnemy
-        if (invadersAlive.getSuperEnemy().isAlive())
+        if (invadersAlive.getSuperEnemy().isAlive())        //superEnemy
             batcher.draw(AssetLoader.textureSuperEnemy, invadersAlive.getSuperEnemy().getPosition().x, invadersAlive.getSuperEnemy().getPosition().y, invadersAlive.getSuperEnemy().getWidth(), invadersAlive.getSuperEnemy().getHeight());
         if(invadersAlive.getSuperEnemy().getShots().isActive())
             batcher.draw(AssetLoader.textureLaser,invadersAlive.getSuperEnemy().getShots().getX(),invadersAlive.getSuperEnemy().getShots().getY(),invadersAlive.getSuperEnemy().getShots().getWidth(),invadersAlive.getSuperEnemy().getShots().getHeight());
-        //
 
         for (Invaders invader : invadersAlive.getArmy()) {
             if (invader.isAlive()) {
@@ -152,13 +149,25 @@ public class GameRenderer {
 
                 }
                 else {
-                    batcher.draw(AssetLoader.textureInvader2, invader.getPosition().x, invader.getPosition().y, invader.getWidth(), invader.getHeight());
+                    selectTextureInvader(invader);
                     if(invader.getShots().isActive())
                         batcher.draw(AssetLoader.textureLaser,invader.getShots().getX(),invader.getShots().getY(),invader.getShots().getWidth(),invader.getShots().getHeight());
                 }
             }
         }
+    }
 
+    public void selectTextureInvader(Invaders invader){
+        if (invader.getColor()==0)
+            batcher.draw(AssetLoader.textureInvader2, invader.getPosition().x, invader.getPosition().y, invader.getWidth(), invader.getHeight());
+        else if (invader.getColor()==1)
+            batcher.draw(AssetLoader.textureInvader3, invader.getPosition().x, invader.getPosition().y, invader.getWidth(), invader.getHeight());
+        else if (invader.getColor()==2)
+            batcher.draw(AssetLoader.textureInvader4, invader.getPosition().x, invader.getPosition().y, invader.getWidth(), invader.getHeight());
+        else if (invader.getColor()==3)
+            batcher.draw(AssetLoader.textureInvader5, invader.getPosition().x, invader.getPosition().y, invader.getWidth(), invader.getHeight());
+        else if (invader.getColor()==4)
+            batcher.draw(AssetLoader.textureInvader6, invader.getPosition().x, invader.getPosition().y, invader.getWidth(), invader.getHeight());
     }
 
     public void obstacles (SpriteBatch batcher){

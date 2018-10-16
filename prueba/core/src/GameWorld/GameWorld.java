@@ -2,6 +2,7 @@ package GameWorld;
 
 import java.util.ArrayList;
 
+import GameObjects.Invaders;
 import GameObjects.ListInvaders;
 import GameObjects.Obstacle;
 import GameObjects.PlayerShip;
@@ -61,6 +62,7 @@ public class GameWorld {
                     if (obs.get(i).getRec().overlaps(shotsPlayer.getRec())) {
                         obs.get(i).setStatus(false);
                         shotsPlayer.setInactive();
+                        changeColor(invadersArmy);
                     }
             }
         }
@@ -120,6 +122,7 @@ public class GameWorld {
                 obs.get(j).setStatus(false);
                 invadersArmy.getArmy().get(i).getShots().setInactive();
                 invadersArmy.getSuperEnemy().getShots().setInactive();
+                changeColor(invadersArmy);
             }
         //  Si choca contra un invader se elimina:
         if (obs.get(j).getStatus())
@@ -135,6 +138,18 @@ public class GameWorld {
         obstacles.add(allObstacle.getObstacleActive3());
         obstacles.add(allObstacle.getObstacleActive4());
         return obstacles;
+    }
+
+    public void changeColor(ListInvaders invadersArmy){
+        int color;
+        if (invadersArmy.getArmy().get(0).getColor()==4)
+            color=0;
+        else
+            color=invadersArmy.getArmy().get(0).getColor()+1;
+
+        for(Invaders invader: invadersArmy.getArmy()){
+            invader.setColor(color);
+        }
     }
 
     public PlayerShip getPlayerShip() {
@@ -168,7 +183,6 @@ public class GameWorld {
         shotsPlayer =new Shots(playerShip.getPosition(),0);
         shotsPlayer.setScreenY(this.screenY);
         invadersArmy = new ListInvaders();
-
     }
 
     public void setOld(older13 old) {

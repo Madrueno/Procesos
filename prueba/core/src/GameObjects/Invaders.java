@@ -20,6 +20,7 @@ public class Invaders {
     boolean alive;
     Rectangle hitbox;
     Shots shots;
+    int color;
 
     public Invaders(float x, float y, int width, int height, boolean alive) {
         position = new Vector2(x, y);
@@ -32,7 +33,17 @@ public class Invaders {
         this.shots = new Shots(this.position,1);
         //hitbox = new Rectangle(0, 0, 1000, 1000);
         hitbox = new Rectangle(x, y, width, height);
+        color=0;
     }
+
+    public void setColor(int i){
+        this.color=i;
+    }
+
+    public int getColor(){
+        return color;
+    }
+
 
     public Rectangle getHitbox(){
         return hitbox;
