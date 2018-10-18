@@ -93,20 +93,6 @@ public class GameRenderer {
         ImageButton buttonShoot = AssetLoader.buttonShoot(15*stage.getWidth()/20, stage.getHeight()/20 -15);
         stage.addActor(buttonShoot);
 
-        // aqui va la funcionalidad de los botones
-        /*buttonLeft.addListener(new InputListener() {
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                Gdx.app.log("buttonLeft", "Boton izquierdo pulsado");
-                playerShip.setMove(1);
-                return true;
-            }
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                Gdx.app.log("buttonLeft", "Boton izquierdo pulsado");
-                playerShip.setMove(0);
-
-            }
-        });*/
         buttonLeft.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -122,6 +108,23 @@ public class GameRenderer {
                 playerShip.setRight();
                 return true;
             }});
+
+        buttonUp.addListener(new InputListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                System.out.println("1111");
+                playerShip.setUp();
+                return true;
+            }});
+
+        buttonDown.addListener(new InputListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                System.out.println("2222");
+                playerShip.setDown();
+                return true;
+            }});
+
 
         buttonShoot.addListener(new InputListener() {
             @Override

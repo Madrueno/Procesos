@@ -108,6 +108,15 @@ public class PlayerShip {
         position.x = position.x + 3;
     }
 
+    public void setUp(){
+        position.y = position.y - 3;
+    }
+
+    public void setDown(){
+        position.y = position.y + 3;
+    }
+
+
     public static float getX() {
         return position.x;
     }
