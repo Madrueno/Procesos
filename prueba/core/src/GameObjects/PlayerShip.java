@@ -78,8 +78,17 @@ public class PlayerShip {
             position.x = this.screenWidth-width;
         }
 
+        if (position.y > this.screenHeight-height) {     //CAMBIAR POR EL TAMANO DE LA PANTALLA
+            position.y = this.screenHeight-height;
+        }
+
+
         if (position.x < 0) {     //CAMBIAR POR EL TAMANO DE LA PANTALLA
             position.x = 0;
+        }
+
+        if (position.y < 0) {     //CAMBIAR POR EL TAMANO DE LA PANTALLA
+            position.y = 0;
         }
 
         if (move==0){
