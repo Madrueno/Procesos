@@ -84,7 +84,7 @@ public class Invaders {
         }
     }
 
-    public void updateSuperEnemy(float delta) {
+    public void updateSuperEnemy(float delta, boolean old) {
 
         //Actualizar hitbox
         updateHitbox();
@@ -95,7 +95,7 @@ public class Invaders {
         velocity.add(acceleration.cpy().scl(delta));
         position.add(velocity.cpy().scl(delta));
 
-        if (isAlive()){
+        if (isAlive() && old){
             Random generator2 = new Random();
             int randomNumber2 = generator2.nextInt(20);
             if (randomNumber2 == 1) {

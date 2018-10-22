@@ -36,7 +36,7 @@ public class GameWorld {
     public void update(float delta) {
 
             playerShip.update(delta);
-            invadersArmy.getSuperEnemy().updateSuperEnemy(delta);
+            invadersArmy.getSuperEnemy().updateSuperEnemy(delta, old.getOld());
 
             ArrayList<ArrayList <Obstacle>> obstacles = setObstacles();
             for (int i = 0; i < invadersArmy.getArmy().size(); i++)
