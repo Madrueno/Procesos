@@ -235,7 +235,7 @@ public class GameRenderer {
         buttonNo.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-
+                System.out.println("pulsado");
                 myOld.setOld(false);
                 nono=true;
                 return true;
@@ -284,6 +284,7 @@ public class GameRenderer {
         stageGameOv.act();
         stageGameOv.draw();
     }
+    /*
     public void gameOverNO(float runTime){
         soundGameOver.loop();
         batcher.begin();
@@ -322,13 +323,13 @@ public class GameRenderer {
                 nono=false;
                 return true;
             }});
-
+     */
         /*if (pressed){
             soundGameOver.pause();
             start(runTime);
         }*/
 
-    }
+   // }
 
 
     public void winner(float runTime, PlayerShip playerShip){
@@ -369,12 +370,15 @@ public class GameRenderer {
     public void render(float runTime) {
 
         myOld = (myWorld.getOlder());
-        if (!myOld.getOld()){
+        if (!myOld.getOld() && nono==false){
             if(nono ==true){
-                gameOverNO(runTime);
-            }else{
+                System.out.println(nono);
                 start(runTime);
-            }
+               // gameOverNO(runTime);
+            }else{
+                System.out.println(nono);
+                start(runTime);
+           }
 
         }
         else {

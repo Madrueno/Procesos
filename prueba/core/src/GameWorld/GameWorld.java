@@ -34,17 +34,21 @@ public class GameWorld {
     }
 
     public void update(float delta) {
-        if (old.getOld()) {
+
             playerShip.update(delta);
             invadersArmy.getSuperEnemy().updateSuperEnemy(delta);
 
             ArrayList<ArrayList <Obstacle>> obstacles = setObstacles();
-            ShootArmy(delta, obstacles);
+            for (int i = 0; i < invadersArmy.getArmy().size(); i++)
+                updateInvadersArmy(i, delta);
+            if (old.getOld()) {
+                ShootArmy(delta, obstacles);
 
-            if (shotsPlayer.isActive()) {
-                ShootPlayer(obstacles);
+                if (shotsPlayer.isActive()) {
+                    ShootPlayer(obstacles);
+                }
             }
-        }
+
     }
 
     public void ShootPlayer(ArrayList<ArrayList <Obstacle>> obstacles){
@@ -86,7 +90,7 @@ public class GameWorld {
                    }
                 }
             }
-            updateInvadersArmy(i, delta);
+            //updateInvadersArmy(i, delta);
         } //fin for
     }
 
@@ -107,7 +111,7 @@ public class GameWorld {
             signo = 1;
             invadersArmy.update();
         }
-        invadersArmy.getArmy().get(i).update(delta, signo);
+        invadersArmy.getArmy().get(i).update(delta, signo, old.getOld( ));
         if ((i == invadersArmy.getArmy().size() - 1) && (invadersArmy.getArmy().get(invadersArmy.getArmy().size() - 1).getPosition().x > 107) && (signo==1)){
             signo = -1;
             invadersArmy.update();

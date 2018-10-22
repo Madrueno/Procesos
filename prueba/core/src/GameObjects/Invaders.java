@@ -62,7 +62,7 @@ public class Invaders {
         }
     }
 
-    public void update(float delta, int signo) {
+    public void update(float delta, int signo, boolean old) {
 
         //Actualizar hitbox
         updateHitbox();
@@ -72,14 +72,16 @@ public class Invaders {
 
         velocity.add(acceleration.cpy().scl(delta));
         position.add(velocity.cpy().scl(delta));
-        Random generator = new Random();
-        int randomNumber=generator.nextInt(600);
-        if (randomNumber==1) {
-            this.shots.setPosition(new Vector2(this.position.x + (this.width / 2) - 4, this.getPosition().y));
-            //this.shots.setPosition(new Vector2(this.position.x + (this.width / 2) - this.getShots().width/2, this.getPosition().y));
-            this.shots.shoot(this.shots.getPosition(), 1);
+        if (old) {
+            Random generator = new Random();
+            int randomNumber = generator.nextInt(600);
+            if (randomNumber == 1) {
+                this.shots.setPosition(new Vector2(this.position.x + (this.width / 2) - 4, this.getPosition().y));
+                //this.shots.setPosition(new Vector2(this.position.x + (this.width / 2) - this.getShots().width/2, this.getPosition().y));
+                this.shots.shoot(this.shots.getPosition(), 1);
+            }
+            this.shots.update();
         }
-        this.shots.update();
     }
 
     public void updateSuperEnemy(float delta) {
