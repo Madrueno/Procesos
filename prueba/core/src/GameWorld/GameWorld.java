@@ -1,8 +1,6 @@
 package GameWorld;
 
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import GameObjects.Invaders;
 import GameObjects.ListInvaders;
@@ -23,9 +21,6 @@ public class GameWorld {
     private float screenX,screenY;
 
     private int signo = 1;
-
-    private Timer timer = new Timer();
-    private int segundos=0;
 
     public GameWorld(float x, float y) {
         this.screenX=x;
@@ -63,7 +58,6 @@ public class GameWorld {
             if (invadersArmy.getArmy().get(i).isAlive())
                 if (shotsPlayer.isActive() && (shotsPlayer.getDeaths() == 0) && invadersArmy.getArmy().get(i).getHitbox().overlaps(shotsPlayer.getRec())) {
                     updateDeathInvader(i);
-
                 }
         }
         for (int i = 0; i < allObstacle.getObstacleActive1().size(); i++) {
