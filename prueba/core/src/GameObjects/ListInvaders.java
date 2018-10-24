@@ -98,4 +98,8 @@ public class ListInvaders {
         }
 
     }
+
+    public void setBajada(int i){
+        bajada=i;
+    }
 }

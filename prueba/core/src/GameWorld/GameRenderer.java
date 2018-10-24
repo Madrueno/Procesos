@@ -277,6 +277,7 @@ public class GameRenderer {
                 gameover=false;
                 myWorld.getPlayerShip().setLives(1);
                 myWorld.getPlayerShip().setScore(0);
+                myWorld.getInvadersArmy().setBajada(1);
                 myWorld.restPlay();
                 return true;
             }});
