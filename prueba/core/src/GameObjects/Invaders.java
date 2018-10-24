@@ -75,7 +75,7 @@ public class Invaders {
         if (old) {
             Random generator = new Random();
             int randomNumber = generator.nextInt(600);
-            if (randomNumber == 1) {
+            if ((ListInvaders.disparosActivos<4)&&(randomNumber == 1)) {
                 this.shots.setPosition(new Vector2(this.position.x + (this.width / 2) - 4, this.getPosition().y));
                 //this.shots.setPosition(new Vector2(this.position.x + (this.width / 2) - this.getShots().width/2, this.getPosition().y));
                 this.shots.shoot(this.shots.getPosition(), 1);
@@ -97,7 +97,7 @@ public class Invaders {
 
         if (isAlive() && old){
             Random generator2 = new Random();
-            int randomNumber2 = generator2.nextInt(20);
+            int randomNumber2 = generator2.nextInt(40);
             if (randomNumber2 == 1) {
                 //m.out.println(randomNumber2);
                 this.shots.setPosition(new Vector2(this.position.x + (this.width / 2) - 4, this.getPosition().y));

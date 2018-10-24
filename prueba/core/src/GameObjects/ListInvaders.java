@@ -16,6 +16,7 @@ public class ListInvaders {
     static int bajada=1;
     Invaders superEnemy = new Invaders(10,0,15,15, false);
     Vector2 velSuperEnemy = new Vector2(40, 0);
+    static int disparosActivos=0;
 
     public ListInvaders(){
         this.invadersAlive = new ArrayList<Invaders>();
@@ -60,12 +61,14 @@ public class ListInvaders {
 
     public void update() {
         bajada++;
+        disparosActivos=0;
         for (int i=0; i<invadersAlive.size(); i++){
             invadersAlive.get(i).getVelocity().x=abs((int) invadersAlive.get(i).getVelocity().x)+1;
             invadersAlive.get(i).getPosition().y+=bajada;
             invadersAlive.get(i).updateHitbox();
             invadersAlive.get(i).shots.update(); //No me lo borreis pls
-
+            if(invadersAlive.get(i).getShots().isActive())
+                disparosActivos++;
         }
 
         superEnemy.updateHitbox();
@@ -101,5 +104,9 @@ public class ListInvaders {
 
     public void setBajada(int i){
         bajada=i;
+    }
+
+    public int getDisparosActivos() {
+        return disparosActivos;
     }
 }
