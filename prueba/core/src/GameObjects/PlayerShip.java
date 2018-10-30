@@ -5,7 +5,9 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 
+import java.awt.List;
 import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
 
 public class PlayerShip {
     private static Vector2 position;
@@ -22,8 +24,10 @@ public class PlayerShip {
 
     private int lives;
     private int score;
+    private ArrayList <Shots> shots;
 
     public PlayerShip(float x, float y, int width, int height) {
+
         this.width = width;
         this.height = height;
         this.move=0;
@@ -36,10 +40,15 @@ public class PlayerShip {
         //hitbox = new Rectangle(0, 0, 0, 0);
         lives=1;
         score=0;
+        this.shots=new ArrayList();
     }
 
     public void setScore(int score){
         this.score+=score;
+    }
+
+    public ArrayList<Shots> getShots() {
+        return shots;
     }
 
     public int getScore(){
@@ -147,6 +156,10 @@ public class PlayerShip {
     }
     public void minumLive(){
         this.lives=this.lives-1;
+    }
+
+    public float getScreenHeight() {
+        return screenHeight;
     }
 
     public void setMove(int move) {

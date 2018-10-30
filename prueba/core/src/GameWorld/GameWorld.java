@@ -15,7 +15,7 @@ public class GameWorld {
     private PlayerShip playerShip;
     private ListInvaders invadersArmy ;
     private older13 old;
-    private Shots shotsPlayer;
+    //private Shots shotsPlayer;
     private ObstacleGroups allObstacle;
     private int invadersDeath=0;
     private float screenX,screenY;
@@ -29,8 +29,8 @@ public class GameWorld {
         old = new older13(false);
         playerShip = new PlayerShip(x, y, 25, 25);
         allObstacle= new ObstacleGroups(x,y);
-        shotsPlayer =new Shots(playerShip.getPosition(),0);
-        shotsPlayer.setScreenY(y);
+        //shotsPlayer =new Shots(playerShip.getPosition(),0);
+        //shotsPlayer.setScreenY(y);
     }
 
     public void update(float delta) {
@@ -43,31 +43,41 @@ public class GameWorld {
                 updateInvadersArmy(i, delta);
             if (old.getOld()) {
                 ShootArmy(delta, obstacles);
-
-                if (shotsPlayer.isActive()) {
-                    ShootPlayer(obstacles);
+                for (int j=0; j<playerShip.getShots().size();j++){
+                    ShootPlayer(obstacles,j);
                 }
             }
 
     }
 
-    public void ShootPlayer(ArrayList<ArrayList <Obstacle>> obstacles){
-        shotsPlayer.update();
+    public void ShootPlayer(ArrayList<ArrayList <Obstacle>> obstacles,int j){
+            playerShip.getShots().get(j).update();
+            boolean shootDeath = false;
         for (int i = 0; i < invadersArmy.getArmy().size(); i++) {
+
             //Aqui mato marcianitos
+            //POr ahora solo cuenta las balas disparadas por el jugador habría que meter también las otras
             if (invadersArmy.getArmy().get(i).isAlive())
-                if (shotsPlayer.isActive() && (shotsPlayer.getDeaths() == 0) && invadersArmy.getArmy().get(i).getHitbox().overlaps(shotsPlayer.getRec())) {
-                    updateDeathInvader(i);
+                if (invadersArmy.getArmy().get(i).getHitbox().overlaps(playerShip.getShots().get(j).getRec())) {
+                    updateDeathInvader(i,j);
+                    shootDeath=true;
+                    break;
                 }
         }
-        for (int i = 0; i < allObstacle.getObstacleActive1().size(); i++) {
-            for (ArrayList<Obstacle> obs : obstacles) {
-                if (obs.get(i).getStatus())
-                    if (obs.get(i).getRec().overlaps(shotsPlayer.getRec())) {
-                        obs.get(i).setStatus(false);
-                        shotsPlayer.setInactive();
-                        changeColor(invadersArmy);
-                    }
+        if (!shootDeath) {
+            for (int i = 0; i < allObstacle.getObstacleActive1().size(); i++) {
+                for (ArrayList<Obstacle> obs : obstacles) {
+                    if (obs.get(i).getStatus())
+                        if (obs.get(i).getRec().overlaps(playerShip.getShots().get(j).getRec())) {
+                            obs.get(i).setStatus(false);
+                            playerShip.getShots().remove(j);
+                            changeColor(invadersArmy);
+                            shootDeath=true;
+                            break;
+                        }
+                }
+                if (shootDeath)
+                    break;
             }
         }
 
@@ -100,8 +110,8 @@ public class GameWorld {
         invadersArmy.getSuperEnemy().getShots().setInactive();
     }
 
-    public void updateDeathInvader(int i){
-        shotsPlayer.setInactive();               //Pa no matar a toda la columna de marcianitos
+    public void updateDeathInvader(int i,int j){
+        playerShip.getShots().remove(j);               //Pa no matar a toda la columna de marcianitos
         invadersArmy.kill(i);                   //Pongo al marcianito a no alive
         playerShip.setScore(100);               //Aumento puntuacion
     }
@@ -174,9 +184,7 @@ public class GameWorld {
 
     }
 
-    public Shots getShotsPlayer() {
-        return shotsPlayer;
-    }
+
 
     public ObstacleGroups getAllObstacle() {
         return allObstacle;
@@ -184,8 +192,8 @@ public class GameWorld {
     public void restPlay(){
         playerShip = new PlayerShip(this.screenX, this.screenY, 25, 25);
         allObstacle= new ObstacleGroups(this.screenX,this.screenY);
-        shotsPlayer =new Shots(playerShip.getPosition(),0);
-        shotsPlayer.setScreenY(this.screenY);
+        //shotsPlayer =new Shots(playerShip.getPosition(),0);
+        //shotsPlayer.setScreenY(this.screenY);
         invadersArmy = new ListInvaders();
     }
 

@@ -31,6 +31,7 @@ import Helpers.AssetLoader;
 public class GameRenderer {
 
     private GameWorld myWorld;
+    private PlayerShip playerShip;
     private OrthographicCamera cam;
     private ShapeRenderer shapeRenderer;
 
@@ -56,7 +57,7 @@ public class GameRenderer {
 
     public GameRenderer(GameWorld world, int gameHeight, int midPointY) {
         myWorld = world;
-
+        playerShip= world.getPlayerShip();
         this.gameHeight = gameHeight;
         this.midPointY = midPointY;
         this.soundShot= Gdx.audio.newSound(Gdx.files.getFileHandle("data/las.mp3",FileType.Internal));
@@ -130,12 +131,14 @@ public class GameRenderer {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 Gdx.app.log("buttonShoot", "Boton de disparo pulsado");
-                if(!shot.isActive()) {
+                playerShip.getShots().add(new Shots(playerShip.getPosition(),0,playerShip.getScreenHeight()));
+                soundShot.play();
+                /*if(!shot.isActive()) {
                     shot.setPosition(new Vector2(playerShip.getPosition().x + playerShip.getWidth() / 2 - 5, playerShip.getPosition().y));
                     shot.shoot(shot.getPosition(), 0);
                     soundShot.play();
                     shot.setDeaths(0);
-                }
+                }*/
                 return true;
             }});
 
@@ -390,7 +393,7 @@ public class GameRenderer {
             }else {
                 soundGameOver.stop();
                 invadersAlive = myWorld.getInvadersArmy();
-                shot = myWorld.getShotsPlayer();
+
                 obstacleActive = myWorld.getAllObstacle();
 
                 Gdx.gl.glClearColor(0, 0, 0, 1);
@@ -421,8 +424,8 @@ public class GameRenderer {
                 obstacles = myWorld.setObstacles();
                 obstacles(batcher, obstacles); //Para las barreras
                 //Dibujar Balas activas
-                if (shot.isActive())
-                    batcher.draw(AssetLoader.textureLaser, shot.getX(), shot.getY(), shot.getWidth(), shot.getHeight());
+                for (int j=0; j<playerShip.getShots().size(); j++)
+                    batcher.draw(AssetLoader.textureLaser, playerShip.getShots().get(j).getX(), playerShip.getShots().get(j).getY(), playerShip.getShots().get(j).getWidth(), playerShip.getShots().get(j).getHeight());
 
                 //SCORE
                 BitmapFont font = new BitmapFont(true);

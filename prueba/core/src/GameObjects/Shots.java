@@ -35,6 +35,21 @@ public class Shots {
         deaths = 0;
         }
 
+    public Shots(Vector2 p,  int dir, float y){ //POR AHORA SON LOS DISPAROS DE LAS NAVES NO DEL PLAYERSHIP
+        this.position = new Vector2(p); //Pongo la posición de la nave
+        this.vel=7; //poner velocidad constante para todas las balas
+        this.width = 10;
+        this.height = 15;
+        //this.vel=Gdx.graphics.getHeight()/150; //poner velocidad constante para todas las balas
+        //this.width = Gdx.graphics.getWidth()/25;
+        //this.height = Gdx.graphics.getHeight()/30;
+        this.direction=dir;
+        this.rec=new Rectangle(p.x, p.y, width, height);
+        this.isActive=false;
+        deaths = 0;
+        this.screenY=y;
+    }
+
         public int getDeaths(){
             return deaths;
         }
