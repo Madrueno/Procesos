@@ -14,24 +14,27 @@ public class ListInvaders {
     static ArrayList<Invaders> invadersAlive;
     static int nuevos = 0;
     static int bajada=1;
-    Invaders superEnemy = new Invaders(10,0,15,15, false);
+    private float screenY;
+    Invaders superEnemy;
     Vector2 velSuperEnemy = new Vector2(40, 0);
     static int disparosActivos=0;
 
-    public ListInvaders(){
+    public ListInvaders(float screenY){
+        this.screenY=screenY;
+        this.superEnemy= new Invaders(10,0,15,15, false,screenY);
         this.invadersAlive = new ArrayList<Invaders>();
-        this.invadersAlive.add(new Invaders(10,10,15,15, true));
-        this.invadersAlive.add(new Invaders(10,25,15,15, true));
-        this.invadersAlive.add(new Invaders(10,40,15,15, true));
-        this.invadersAlive.add(new Invaders(30,10,15,15, true));
-        this.invadersAlive.add(new Invaders(30,25,15,15, true));
-        this.invadersAlive.add(new Invaders(30,40,15,15, true));
-        this.invadersAlive.add(new Invaders(50,10,15,15, true));
-        this.invadersAlive.add(new Invaders(50,25,15,15, true));
-        this.invadersAlive.add(new Invaders(50,40,15,15, true));
-        this.invadersAlive.add(new Invaders(70,10,15,15, true));
-        this.invadersAlive.add(new Invaders(70,25,15,15, true));
-        this.invadersAlive.add(new Invaders(70,40,15,15, true));
+        this.invadersAlive.add(new Invaders(10,10,15,15, true,screenY));
+        this.invadersAlive.add(new Invaders(10,25,15,15, true,screenY));
+        this.invadersAlive.add(new Invaders(10,40,15,15, true,screenY));
+        this.invadersAlive.add(new Invaders(30,10,15,15, true,screenY));
+        this.invadersAlive.add(new Invaders(30,25,15,15, true,screenY));
+        this.invadersAlive.add(new Invaders(30,40,15,15, true,screenY));
+        this.invadersAlive.add(new Invaders(50,10,15,15, true,screenY));
+        this.invadersAlive.add(new Invaders(50,25,15,15, true,screenY));
+        this.invadersAlive.add(new Invaders(50,40,15,15, true,screenY));
+        this.invadersAlive.add(new Invaders(70,10,15,15, true,screenY));
+        this.invadersAlive.add(new Invaders(70,25,15,15, true,screenY));
+        this.invadersAlive.add(new Invaders(70,40,15,15, true,screenY));
         /*
         this.invadersAlive.add(new Invaders(Gdx.graphics.getWidth()/30,Gdx.graphics.getHeight()/45,Gdx.graphics.getWidth()/16,Gdx.graphics.getHeight()/30, true));
         this.invadersAlive.add(new Invaders(Gdx.graphics.getWidth()/30,Gdx.graphics.getHeight()/18,Gdx.graphics.getWidth()/16,Gdx.graphics.getHeight()/30, true));
@@ -49,7 +52,7 @@ public class ListInvaders {
     }
 
     public void setSuperEnemy(){
-        Invaders enemy = new Invaders(10,1,15,15, true);
+        Invaders enemy = new Invaders(10,1,15,15, true,this.screenY);
 
         enemy.setVelocity(velSuperEnemy);
         this.superEnemy = enemy;

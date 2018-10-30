@@ -22,7 +22,7 @@ public class Invaders {
     Shots shots;
     int color;
 
-    public Invaders(float x, float y, int width, int height, boolean alive) {
+    public Invaders(float x, float y, int width, int height, boolean alive, float screenY) {
         position = new Vector2(x, y);
         //velocity = new Vector2(Gdx.graphics.getWidth()/25, 0);
         velocity = new Vector2(10, 0);
@@ -30,7 +30,7 @@ public class Invaders {
         this.width = width;
         this.height = height;
         this.alive=alive;
-        this.shots = new Shots(this.position,1);
+        this.shots = new Shots(this.position,1,screenY);
         //hitbox = new Rectangle(0, 0, 1000, 1000);
         hitbox = new Rectangle(x, y, width, height);
         color=0;

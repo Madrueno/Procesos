@@ -25,7 +25,8 @@ public class GameWorld {
     public GameWorld(float x, float y) {
         this.screenX=x;
         this.screenY=y;
-        invadersArmy = new ListInvaders();
+        invadersArmy = new ListInvaders(y);
+
         old = new older13(false);
         playerShip = new PlayerShip(x, y, 25, 25);
         allObstacle= new ObstacleGroups(x,y);
@@ -194,7 +195,7 @@ public class GameWorld {
         allObstacle= new ObstacleGroups(this.screenX,this.screenY);
         //shotsPlayer =new Shots(playerShip.getPosition(),0);
         //shotsPlayer.setScreenY(this.screenY);
-        invadersArmy = new ListInvaders();
+        invadersArmy = new ListInvaders(screenY);
     }
 
     public void setOld(older13 old) {

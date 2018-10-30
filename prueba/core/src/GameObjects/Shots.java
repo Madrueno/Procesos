@@ -65,8 +65,12 @@ public class Shots {
             this.position.y=this.position.y-this.vel;
         this.rec.set(position.x, position.y, 10, 15);
         //this.rec.set(position.x, position.y, width, height);
-        if((this.position.y<0)||(this.position.y>this.screenY)&&(direction==0))
-           isActive=false;
+        if((this.position.y<0)||(this.position.y>this.screenY)) {
+            if (this.direction == 1)
+                this.direction = 0;
+            else
+                this.direction = 1;
+        }
     }
 
     public boolean isActive() {
