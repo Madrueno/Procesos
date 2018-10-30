@@ -73,9 +73,9 @@ public class Shots {
         }
     }
 
-    public boolean isActive() {
+    /*public boolean isActive() {
         return isActive;
-    }
+    }*/
 
     public void setActive() {
         isActive = true;
@@ -134,4 +134,6 @@ public class Shots {
     public void setScreenY(float screenY) {
         this.screenY = screenY;
     }
+
+
 }

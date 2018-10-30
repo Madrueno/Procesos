@@ -91,8 +91,8 @@ public class GameWorld {
             else
                 invadersDeath=0;
 
-            if (invadersArmy.getArmy().get(i).getShots().isActive()) {
-                if (playerShip.getHitbox().overlaps(invadersArmy.getArmy().get(i).getShots().getRec()) || playerShip.getHitbox().overlaps(invadersArmy.getSuperEnemy().getShots().getRec())) {
+            if (invadersArmy.getArmy().get(i).getShots()!=null) {
+                if (playerShip.getHitbox().overlaps(invadersArmy.getArmy().get(i).getShots().getRec()) ) {
                     updateDeathPlayer(i);
                 }
                 for (int j = 0; j < allObstacle.getObstacleActive1().size(); j++) {
@@ -101,14 +101,22 @@ public class GameWorld {
                    }
                 }
             }
+            if (invadersArmy.getSuperEnemy().getShots()!=null){
+                if(playerShip.getHitbox().overlaps(invadersArmy.getSuperEnemy().getShots().getRec()))
+                    updateDeathPlayer();
+            }
             //updateInvadersArmy(i, delta);
         } //fin for
     }
 
     public void updateDeathPlayer(int i){
         playerShip.minumLive();
-        invadersArmy.getArmy().get(i).getShots().setInactive();
-        invadersArmy.getSuperEnemy().getShots().setInactive();
+        invadersArmy.getArmy().get(i).removeShoot();
+    }
+
+    public void updateDeathPlayer(){
+        playerShip.minumLive();
+        invadersArmy.getSuperEnemy().removeShoot();
     }
 
     public void updateDeathInvader(int i,int j){
@@ -131,14 +139,20 @@ public class GameWorld {
 
     public void checkObstacleShooted(ArrayList <Obstacle> obs, int i, int j){
         //  si es disparada se elimina:
-        if (obs.get(j).getStatus())
-            if (obs.get(j).getRec().overlaps(invadersArmy.getArmy().get(i).getShots().getRec())
-                    || obs.get(j).getRec().overlaps(invadersArmy.getSuperEnemy().getShots().getRec())) {
-                obs.get(j).setStatus(false);
-                invadersArmy.getArmy().get(i).getShots().setInactive();
-                invadersArmy.getSuperEnemy().getShots().setInactive();
-                changeColor(invadersArmy);
-            }
+        if (obs.get(j).getStatus()) {
+            if (invadersArmy.getArmy().get(i).getShots()!=null)
+                if (obs.get(j).getRec().overlaps(invadersArmy.getArmy().get(i).getShots().getRec())) {
+                    obs.get(j).setStatus(false);
+                    invadersArmy.getArmy().get(i).removeShoot();
+                    changeColor(invadersArmy);
+                }
+            if (invadersArmy.getSuperEnemy().getShots()!=null)
+                if (obs.get(j).getRec().overlaps(invadersArmy.getSuperEnemy().getShots().getRec())){
+                    obs.get(j).setStatus(false);
+                    changeColor(invadersArmy);
+                    invadersArmy.getSuperEnemy().removeShoot();
+                }
+        }
         //  Si choca contra un invader se elimina:
         if (obs.get(j).getStatus())
             if (obs.get(j).getRec().overlaps(invadersArmy.getArmy().get(i).getHitbox())) {
@@ -193,8 +207,6 @@ public class GameWorld {
     public void restPlay(){
         playerShip = new PlayerShip(this.screenX, this.screenY, 25, 25);
         allObstacle= new ObstacleGroups(this.screenX,this.screenY);
-        //shotsPlayer =new Shots(playerShip.getPosition(),0);
-        //shotsPlayer.setScreenY(this.screenY);
         invadersArmy = new ListInvaders(screenY);
     }
 

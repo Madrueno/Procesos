@@ -154,7 +154,7 @@ public class GameRenderer {
 
         if (invadersAlive.getSuperEnemy().isAlive())        //superEnemy
             batcher.draw(AssetLoader.textureSuperEnemy, invadersAlive.getSuperEnemy().getPosition().x, invadersAlive.getSuperEnemy().getPosition().y, invadersAlive.getSuperEnemy().getWidth(), invadersAlive.getSuperEnemy().getHeight());
-        if(invadersAlive.getSuperEnemy().getShots().isActive())
+        if(invadersAlive.getSuperEnemy().getShots()!=null)
             batcher.draw(AssetLoader.textureLaser,invadersAlive.getSuperEnemy().getShots().getX(),invadersAlive.getSuperEnemy().getShots().getY(),invadersAlive.getSuperEnemy().getShots().getWidth(),invadersAlive.getSuperEnemy().getShots().getHeight());
 
         for (Invaders invader : invadersAlive.getArmy()) {
@@ -166,7 +166,7 @@ public class GameRenderer {
                 }
                 else {
                     selectTextureInvader(invader);
-                    if(invader.getShots().isActive())
+                    if(invader.getShots()!=null)
                         batcher.draw(AssetLoader.textureLaser,invader.getShots().getX(),invader.getShots().getY(),invader.getShots().getWidth(),invader.getShots().getHeight());
                 }
             }

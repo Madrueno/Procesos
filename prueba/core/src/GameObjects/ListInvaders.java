@@ -69,13 +69,15 @@ public class ListInvaders {
             invadersAlive.get(i).getVelocity().x=abs((int) invadersAlive.get(i).getVelocity().x)+1;
             invadersAlive.get(i).getPosition().y+=bajada;
             invadersAlive.get(i).updateHitbox();
-            invadersAlive.get(i).shots.update(); //No me lo borreis pls
-            if(invadersAlive.get(i).getShots().isActive())
+            if (invadersAlive.get(i).shots!=null)
+                invadersAlive.get(i).shots.update(); //No me lo borreis pls
+            if(invadersAlive.get(i).getShots()!=null)
                 disparosActivos++;
         }
 
         superEnemy.updateHitbox();
-        superEnemy.shots.update();
+        if(superEnemy.shots!=null)
+            superEnemy.shots.update();
 
     }
 

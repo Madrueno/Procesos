@@ -21,6 +21,7 @@ public class Invaders {
     Rectangle hitbox;
     Shots shots;
     int color;
+    private float screenY;
 
     public Invaders(float x, float y, int width, int height, boolean alive, float screenY) {
         position = new Vector2(x, y);
@@ -30,7 +31,8 @@ public class Invaders {
         this.width = width;
         this.height = height;
         this.alive=alive;
-        this.shots = new Shots(this.position,1,screenY);
+        this.screenY=screenY;
+        //this.shots = new Shots(this.position,1,screenY);
         //hitbox = new Rectangle(0, 0, 1000, 1000);
         hitbox = new Rectangle(x, y, width, height);
         color=0;
@@ -76,11 +78,13 @@ public class Invaders {
             Random generator = new Random();
             int randomNumber = generator.nextInt(600);
             if ((ListInvaders.disparosActivos<4)&&(randomNumber == 1)) {
-                this.shots.setPosition(new Vector2(this.position.x + (this.width / 2) - 4, this.getPosition().y));
+                //this.shots.setPosition(new Vector2(this.position.x + (this.width / 2) - 4, this.getPosition().y));
                 //this.shots.setPosition(new Vector2(this.position.x + (this.width / 2) - this.getShots().width/2, this.getPosition().y));
-                this.shots.shoot(this.shots.getPosition(), 1);
+                //this.shots.shoot(this.shots.getPosition(), 1);
+                shots= new Shots(this.position,1,screenY);
             }
-            this.shots.update();
+            if(shots!=null)
+                this.shots.update();
         }
     }
 
@@ -100,11 +104,13 @@ public class Invaders {
             int randomNumber2 = generator2.nextInt(40);
             if (randomNumber2 == 1) {
                 //m.out.println(randomNumber2);
-                this.shots.setPosition(new Vector2(this.position.x + (this.width / 2) - 4, this.getPosition().y));
+                //this.shots.setPosition(new Vector2(this.position.x + (this.width / 2) - 4, this.getPosition().y));
                 //this.shots.setPosition(new Vector2(this.position.x + (this.width / 2) - this.getShots().width/2, this.getPosition().y));
-                this.shots.shoot(this.shots.getPosition(), 1);
+                //this.shots.shoot(this.shots.getPosition(), 1);
+                shots= new Shots(this.position,1,screenY);
             }
-            this.shots.update();
+            if(shots!=null)
+                this.shots.update();
         }
     }
 
@@ -161,5 +167,8 @@ public class Invaders {
 
     public float getX (){
         return this.position.x;
+    }
+    public void removeShoot(){
+        this.shots=null;
     }
 }
