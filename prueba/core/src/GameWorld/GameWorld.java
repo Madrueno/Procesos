@@ -55,7 +55,6 @@ public class GameWorld {
             playerShip.getShots().get(j).update();
             boolean shootDeath = false;
         for (int i = 0; i < invadersArmy.getArmy().size(); i++) {
-
             //Aqui mato marcianitos
             //POr ahora solo cuenta las balas disparadas por el jugador habría que meter también las otras
             if (invadersArmy.getArmy().get(i).isAlive())
@@ -64,6 +63,11 @@ public class GameWorld {
                     shootDeath=true;
                     break;
                 }
+        }
+
+        if ((!shootDeath)&&(playerShip.getHitbox().overlaps(playerShip.getShots().get(j).getRec()))&&(playerShip.getShots().get(j).getDirection()==1)){
+                updateDeathPlayer();
+                shootDeath=true;
         }
         if (!shootDeath) {
             for (int i = 0; i < allObstacle.getObstacleActive1().size(); i++) {
@@ -85,6 +89,7 @@ public class GameWorld {
     }
 
     public void ShootArmy(float delta, ArrayList<ArrayList <Obstacle>> obstacles){
+        boolean shootDeath=false;
         for (int i = 0; i < invadersArmy.getArmy().size() && playerShip.getLives() > 0; i++) { //comienzo for
             if (!invadersArmy.getArmy().get(i).isAlive())  //Mira si hemos exterminado por completo el ejercito
                 invadersDeath++;
@@ -94,12 +99,26 @@ public class GameWorld {
             if (invadersArmy.getArmy().get(i).getShots()!=null) {
                 if (playerShip.getHitbox().overlaps(invadersArmy.getArmy().get(i).getShots().getRec()) ) {
                     updateDeathPlayer(i);
+                    shootDeath=true;
                 }
-                for (int j = 0; j < allObstacle.getObstacleActive1().size(); j++) {
-                   for (ArrayList <Obstacle> obs: obstacles){
-                      checkObstacleShooted(obs, i, j);          //comprueba con cada barrera
-                   }
+                for(int k=0; k<invadersArmy.getArmy().size()&&!shootDeath;k++) {
+                    if (invadersArmy.getArmy().get(i).getShots().getDirection() == 0) {
+                        if ((invadersArmy.getArmy().get(k).isAlive()) && (invadersArmy.getArmy().get(k).getHitbox().overlaps(invadersArmy.getArmy().get(i).getShots().getRec()))) {
+                            shootDeath = true;
+                            updateDeathInvader(k);
+                            invadersArmy.getArmy().get(i).removeShoot();
+                            break;
+                        }
+                        if (shootDeath)
+                            break;
+                    }
                 }
+                if (!shootDeath)
+                    for (int j = 0; j < allObstacle.getObstacleActive1().size(); j++) {
+                       for (ArrayList <Obstacle> obs: obstacles){
+                          checkObstacleShooted(obs, i, j);          //comprueba con cada barrera
+                       }
+                    }
             }
             if (invadersArmy.getSuperEnemy().getShots()!=null){
                 if(playerShip.getHitbox().overlaps(invadersArmy.getSuperEnemy().getShots().getRec()))
@@ -123,6 +142,11 @@ public class GameWorld {
         playerShip.getShots().remove(j);               //Pa no matar a toda la columna de marcianitos
         invadersArmy.kill(i);                   //Pongo al marcianito a no alive
         playerShip.setScore(100);               //Aumento puntuacion
+    }
+    public void updateDeathInvader(int i){
+
+        invadersArmy.kill(i);                   //Pongo al marcianito a no alive
+
     }
 
     public void updateInvadersArmy(int i, float delta){

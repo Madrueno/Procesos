@@ -135,5 +135,7 @@ public class Shots {
         this.screenY = screenY;
     }
 
-
+    public int getDirection() {
+        return direction;
+    }
 }
