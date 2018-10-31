@@ -74,6 +74,16 @@ public class AssetLoader {
         textureInvader6=new TextureRegion(invader6);
     }
 
+    public static ImageButton buttonTrofeo(float x, float y){
+        Pixmap pixmap2 = new Pixmap(Gdx.files.internal("data/trofeo.png"));
+        Pixmap pixmap1 = new Pixmap(Gdx.graphics.getWidth()/5 -10, Gdx.graphics.getWidth()/5 -10, pixmap2.getFormat());
+
+        ImageButton button = new ImageButton(createDefaultDrawable(pixmap1, pixmap2));
+        button.setPosition(x, y);
+
+        return button;
+    }
+
     public static ImageButton buttonLeft(float x, float y){
         Pixmap pixmap2 = new Pixmap(Gdx.files.internal("data/left2.png"));
         Pixmap pixmap1 = new Pixmap(Gdx.graphics.getWidth()/5 -10, Gdx.graphics.getWidth()/5 -10, pixmap2.getFormat());

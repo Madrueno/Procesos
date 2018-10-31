@@ -26,6 +26,8 @@ public class PlayerShip {
     private int score;
     private ArrayList <Shots> shots;
 
+    private String namePlayer; //nombreJugador
+
     public PlayerShip(float x, float y, int width, int height) {
 
         this.width = width;
@@ -43,6 +45,13 @@ public class PlayerShip {
         this.shots=new ArrayList();
     }
 
+    public void setNamePlayer(String name){
+        namePlayer=name;
+    }
+
+    public String getNamePlayer(){
+        return namePlayer;
+    }
     public void setScore(int score){
         this.score+=score;
     }

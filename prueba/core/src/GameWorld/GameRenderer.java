@@ -255,7 +255,7 @@ public class GameRenderer {
 
     }
 
-    public void gameOver(float runTime, PlayerShip playerShip){
+    public void gameOver(float runTime, PlayerShip playerShip, Ranking ranking){
         soundGameOver.loop();
         batcher.begin();
         batcher.disableBlending();
@@ -267,6 +267,8 @@ public class GameRenderer {
         BitmapFont font = new BitmapFont(true);
         font.getData().setScale(0.95f, 0.95f);
         font.draw(batcher, "Your final score: " + String.valueOf(playerShip.getScore()), 8, 150);
+
+        ranking.newScore(playerShip.getNamePlayer(), playerShip.getScore());   //Pasar datos al ranking
 
         batcher.end();
         Stage stageGameOv = new Stage();
@@ -337,7 +339,7 @@ public class GameRenderer {
    // }
 
 
-    public void winner(float runTime, PlayerShip playerShip){
+    public void winner(float runTime, PlayerShip playerShip, Ranking ranking){
 
         batcher.begin();
         batcher.disableBlending();
@@ -349,6 +351,10 @@ public class GameRenderer {
         BitmapFont font = new BitmapFont(true);
         font.getData().setScale(0.90f, 0.90f);
         font.draw(batcher, "Your final score: " + String.valueOf(playerShip.getScore()), 8, 150);
+
+
+        ranking.newScore(playerShip.getNamePlayer(), playerShip.getScore());   //Pasar datos al ranking
+
 
         batcher.end();
 
@@ -371,7 +377,26 @@ public class GameRenderer {
         stageGameOv.act();
         stageGameOv.draw();
     }
+    public void buttonTrofeo(){
 
+        Stage stage = new Stage();
+        Gdx.input.setInputProcessor(stage);
+
+        ImageButton buttonTrofeo = AssetLoader.buttonTrofeo(15*stage.getWidth()/20, stage.getHeight()/20 -15);
+        stage.addActor(buttonTrofeo);
+
+        buttonTrofeo.addListener(new InputListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                Gdx.app.log("buttonRight", "Boton izquierdo pulsado");
+                playerShip.setLeft();
+                return true;
+            }});
+
+
+        stage.act();
+        stage.draw();
+    }
     public void ranking(Ranking ranking){
 
         batcher.begin();
@@ -391,11 +416,7 @@ public class GameRenderer {
 
         batcher.end();
 
-        Stage stageGameOv = new Stage();
-        Gdx.input.setInputProcessor(stageGameOv);
-
-        stageGameOv.act();
-        stageGameOv.draw();
+       buttonTrofeo();
     }
 
     public void render(float runTime) {
@@ -403,12 +424,12 @@ public class GameRenderer {
         myOld = (myWorld.getOlder());
         if (!myOld.getOld() && nono==false){
             if(nono ==true){
-              //ranking(ranking);
+              ranking(ranking);
                 // start(runTime);
 
             }else{
-                //ranking(ranking);
-                start(runTime);
+                ranking(ranking);
+                //start(runTime);
            }
 
         }
@@ -417,7 +438,7 @@ public class GameRenderer {
             PlayerShip playerShip = myWorld.getPlayerShip();
 
             if (gameover){
-                gameOver(runTime, playerShip);
+                gameOver(runTime, playerShip, ranking);
             }else {
                 soundGameOver.stop();
                 invadersAlive = myWorld.getInvadersArmy();
@@ -469,7 +490,7 @@ public class GameRenderer {
 
                 //Mira si hemos exterminado por completo el ejercito
                 if (myWorld.getInvadersDeath()==invadersAlive.getArmy().size()){
-                    winner(runTime, playerShip);
+                    winner(runTime, playerShip, ranking);
                 }
             }
         }

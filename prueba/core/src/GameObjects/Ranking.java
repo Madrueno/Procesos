@@ -7,7 +7,8 @@ import java.util.TreeMap;
 public class Ranking {
     Map<Integer, String> ranking = new TreeMap<Integer, String>(Collections.reverseOrder());
 
-    public Ranking() {
+
+   public Ranking() {
         ranking.put(300, "Ruben");
         ranking.put(200, "Sandra");
         ranking.put(100, "Rodrigo");
@@ -20,11 +21,15 @@ public class Ranking {
         int cupo = 0;
         for (Integer i : ranking.keySet()) {
             if (cupo < 5) {
-                mejores[cupo] = ranking.get(i);
+                mejores[cupo] = ranking.get(i) + " : "+  i;
                 cupo++;
             }
         }
         return mejores;
+    }
+
+    public void newScore(String name, int score){       //Metodo para introducir el nuevo score
+        ranking.put(score, name);
     }
 
     public String[] getRanking(){
