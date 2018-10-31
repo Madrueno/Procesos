@@ -104,10 +104,10 @@ public class GameWorld {
                 for(int k=0; k<invadersArmy.getArmy().size()&&!shootDeath;k++) {
                     if (invadersArmy.getArmy().get(i).getShots().getDirection() == 0) {
                         if ((invadersArmy.getArmy().get(k).isAlive()) && (invadersArmy.getArmy().get(k).getHitbox().overlaps(invadersArmy.getArmy().get(i).getShots().getRec()))) {
+                            invadersArmy.getArmy().get(i).removeShoot();
                             shootDeath = true;
                             updateDeathInvader(k);
-                            invadersArmy.getArmy().get(i).removeShoot();
-                            break;
+                            i=i-1;
                         }
                         if (shootDeath)
                             break;
