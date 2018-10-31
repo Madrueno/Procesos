@@ -15,13 +15,12 @@ public class ListInvaders {
     static int nuevos = 0;
     static int bajada=1;
     private float screenY;
-    Invaders superEnemy;
-    Vector2 velSuperEnemy = new Vector2(40, 0);
+    private SuperInvader superEnemy;
     static int disparosActivos=0;
 
     public ListInvaders(float screenY){
         this.screenY=screenY;
-        this.superEnemy= new Invaders(10,0,15,15, false,screenY);
+        this.superEnemy= new SuperInvader(10,0,15,15, false,screenY);
         this.invadersAlive = new ArrayList<Invaders>();
         this.invadersAlive.add(new Invaders(10,10,15,15, true,screenY));
         this.invadersAlive.add(new Invaders(10,25,15,15, true,screenY));
@@ -52,13 +51,11 @@ public class ListInvaders {
     }
 
     public void setSuperEnemy(){
-        Invaders enemy = new Invaders(10,1,15,15, true,this.screenY);
-
-        enemy.setVelocity(velSuperEnemy);
-        this.superEnemy = enemy;
+        this.superEnemy.setPosition(new Vector2(10,0));
+        this.superEnemy.setAlive(true);
     }
 
-    public Invaders getSuperEnemy(){
+    public SuperInvader getSuperEnemy(){
         return superEnemy;
     }
 
@@ -76,9 +73,6 @@ public class ListInvaders {
         }
 
         superEnemy.updateHitbox();
-        if(superEnemy.shots!=null)
-            superEnemy.shots.update();
-
     }
 
 

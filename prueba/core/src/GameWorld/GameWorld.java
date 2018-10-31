@@ -37,6 +37,7 @@ public class GameWorld {
     public void update(float delta) {
 
             playerShip.update(delta);
+
             invadersArmy.getSuperEnemy().updateSuperEnemy(delta, old.getOld());
 
             ArrayList<ArrayList <Obstacle>> obstacles = setObstacles();
@@ -99,6 +100,7 @@ public class GameWorld {
             if (invadersArmy.getArmy().get(i).getShots()!=null) {
                 if (playerShip.getHitbox().overlaps(invadersArmy.getArmy().get(i).getShots().getRec()) ) {
                     updateDeathPlayer(i);
+                    invadersArmy.getArmy().get(i).removeShoot();
                     shootDeath=true;
                 }
                 for(int k=0; k<invadersArmy.getArmy().size()&&!shootDeath;k++) {
@@ -114,16 +116,41 @@ public class GameWorld {
                     }
                 }
                 if (!shootDeath)
-                    for (int j = 0; j < allObstacle.getObstacleActive1().size(); j++) {
-                       for (ArrayList <Obstacle> obs: obstacles){
+                    for (int j = 0; j < allObstacle.getObstacleActive1().size(); j++)
+                       for (ArrayList <Obstacle> obs: obstacles)
                           checkObstacleShooted(obs, i, j);          //comprueba con cada barrera
-                       }
+            }
+        }
+        boolean shootDeathSuper=false;
+        for (int j=0;j<invadersArmy.getSuperEnemy().getShots().size();j++){
+            if(playerShip.getHitbox().overlaps(invadersArmy.getSuperEnemy().getShots().get(j).getRec())) {
+                updateDeathPlayerSuper(j);
+                shootDeathSuper=true;
+            }
+            for(int k=0; k<invadersArmy.getArmy().size()&&!shootDeathSuper;k++) {
+                if (invadersArmy.getSuperEnemy().getShots().get(j).getDirection() == 0) {
+                    if ((invadersArmy.getArmy().get(k).isAlive()) && (invadersArmy.getArmy().get(k).getHitbox().overlaps(invadersArmy.getSuperEnemy().getShots().get(j).getRec()))) {
+                        shootDeathSuper = true;
+                        updateDeathInvaderSuper(k,j);
+                        j=j-1;
                     }
+                    if (shootDeathSuper)
+                        break;
+                }
             }
-            if (invadersArmy.getSuperEnemy().getShots()!=null){
-                if(playerShip.getHitbox().overlaps(invadersArmy.getSuperEnemy().getShots().getRec()))
-                    updateDeathPlayer();
-            }
+            if (!shootDeathSuper)
+                for (int h = 0; h < allObstacle.getObstacleActive1().size(); h++) {
+                    for (ArrayList <Obstacle> obs: obstacles ){
+                        checkObstacleShootedSuper(obs,j, h);          //comprueba con cada barrera
+                        if (invadersArmy.getSuperEnemy().getShots().size()<=j) {
+                            shootDeathSuper = true;
+                            j=j-1;
+                            break;
+                        }
+                    }
+                    if(shootDeathSuper)
+                        break;
+                }
             //updateInvadersArmy(i, delta);
         } //fin for
     }
@@ -132,16 +159,24 @@ public class GameWorld {
         playerShip.minumLive();
         invadersArmy.getArmy().get(i).removeShoot();
     }
-
     public void updateDeathPlayer(){
         playerShip.minumLive();
-        invadersArmy.getSuperEnemy().removeShoot();
+
+    }
+
+    public void updateDeathPlayerSuper(int i){
+        playerShip.minumLive();
+        invadersArmy.getSuperEnemy().removeShoot(i);
     }
 
     public void updateDeathInvader(int i,int j){
         playerShip.getShots().remove(j);               //Pa no matar a toda la columna de marcianitos
         invadersArmy.kill(i);                   //Pongo al marcianito a no alive
         playerShip.setScore(100);               //Aumento puntuacion
+    }
+    public void updateDeathInvaderSuper(int i,int j){
+        invadersArmy.getSuperEnemy().getShots().remove(j);               //Pa no matar a toda la columna de marcianitos
+        invadersArmy.kill(i);                   //Pongo al marcianito a no alive
     }
     public void updateDeathInvader(int i){
 
@@ -164,24 +199,31 @@ public class GameWorld {
     public void checkObstacleShooted(ArrayList <Obstacle> obs, int i, int j){
         //  si es disparada se elimina:
         if (obs.get(j).getStatus()) {
-            if (invadersArmy.getArmy().get(i).getShots()!=null)
-                if (obs.get(j).getRec().overlaps(invadersArmy.getArmy().get(i).getShots().getRec())) {
-                    obs.get(j).setStatus(false);
-                    invadersArmy.getArmy().get(i).removeShoot();
-                    changeColor(invadersArmy);
-                }
-            if (invadersArmy.getSuperEnemy().getShots()!=null)
-                if (obs.get(j).getRec().overlaps(invadersArmy.getSuperEnemy().getShots().getRec())){
-                    obs.get(j).setStatus(false);
-                    changeColor(invadersArmy);
-                    invadersArmy.getSuperEnemy().removeShoot();
+                if (invadersArmy.getArmy().get(i).getShots()!=null)
+                    if (obs.get(j).getRec().overlaps(invadersArmy.getArmy().get(i).getShots().getRec())) {
+                        if (obs.get(j).getStatus()) {
+                            obs.get(j).setStatus(false);
+                            invadersArmy.getArmy().get(i).removeShoot();
+                            changeColor(invadersArmy);
+                        }
+                    }
+        }
+        //  Si choca contra un invader se elimina:
+    }
+
+    public void checkObstacleShootedSuper(ArrayList <Obstacle> obs, int i, int j){
+        //  si es disparada se elimina:
+        if (obs.get(j).getStatus()) {
+            if (invadersArmy.getSuperEnemy().getShots().get(i)!=null)
+                if (obs.get(j).getRec().overlaps(invadersArmy.getSuperEnemy().getShots().get(i).getRec())){
+                    if (obs.get(j).getStatus()) {
+                        obs.get(j).setStatus(false);
+                        changeColor(invadersArmy);
+                        invadersArmy.getSuperEnemy().removeShoot(i);
+                    }
                 }
         }
         //  Si choca contra un invader se elimina:
-        if (obs.get(j).getStatus())
-            if (obs.get(j).getRec().overlaps(invadersArmy.getArmy().get(i).getHitbox())) {
-                obs.get(j).setStatus(false);
-            }
     }
 
     public ArrayList<ArrayList <Obstacle>> setObstacles(){

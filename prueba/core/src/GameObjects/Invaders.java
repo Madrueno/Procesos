@@ -88,31 +88,7 @@ public class Invaders {
         }
     }
 
-    public void updateSuperEnemy(float delta, boolean old) {
 
-        //Actualizar hitbox
-        updateHitbox();
-
-
-        velocity.set(abs(velocity.x), velocity.y);
-
-        velocity.add(acceleration.cpy().scl(delta));
-        position.add(velocity.cpy().scl(delta));
-
-        if (isAlive() && old){
-            Random generator2 = new Random();
-            int randomNumber2 = generator2.nextInt(40);
-            if (randomNumber2 == 1) {
-                //m.out.println(randomNumber2);
-                //this.shots.setPosition(new Vector2(this.position.x + (this.width / 2) - 4, this.getPosition().y));
-                //this.shots.setPosition(new Vector2(this.position.x + (this.width / 2) - this.getShots().width/2, this.getPosition().y));
-                //this.shots.shoot(this.shots.getPosition(), 1);
-                shots= new Shots(this.position,1,screenY);
-            }
-            if(shots!=null)
-                this.shots.update();
-        }
-    }
 
 
 
