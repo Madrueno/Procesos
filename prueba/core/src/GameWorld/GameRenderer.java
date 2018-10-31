@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import GameObjects.Invaders;
 import GameObjects.ListInvaders;
 import GameObjects.PlayerShip;
+import GameObjects.Ranking;
 import GameObjects.Shots;
 import GameObjects.ObstacleGroups;
 import GameObjects.Obstacle;
@@ -371,16 +372,42 @@ public class GameRenderer {
         stageGameOv.draw();
     }
 
-    public void render(float runTime) {
+    public void ranking(Ranking ranking){
 
+        batcher.begin();
+        batcher.disableBlending();
+        batcher.draw(AssetLoader.textureBg,0, 0, 200, 500);
+        batcher.enableBlending();
+
+        batcher.draw(AssetLoader.textureRanking1, 3, -30, 128, 128);
+        batcher.draw(AssetLoader.textureRanking2, 3, 20, 128, 128);
+
+        String[] names = ranking.getRanking() ;
+        BitmapFont font = new BitmapFont(true);
+        font.getData().setScale(0.70f, 0.70f);
+        for (int i=0; i<names.length; i++){
+            font.draw(batcher, i+1 + " . " + names[i], 20, 120+(i*15));
+        }
+
+        batcher.end();
+
+        Stage stageGameOv = new Stage();
+        Gdx.input.setInputProcessor(stageGameOv);
+
+        stageGameOv.act();
+        stageGameOv.draw();
+    }
+
+    public void render(float runTime) {
+        Ranking ranking = myWorld.getRanking();
         myOld = (myWorld.getOlder());
         if (!myOld.getOld() && nono==false){
             if(nono ==true){
-                System.out.println(nono);
-                start(runTime);
-               // gameOverNO(runTime);
+              //ranking(ranking);
+                // start(runTime);
+
             }else{
-                System.out.println(nono);
+                //ranking(ranking);
                 start(runTime);
            }
 
@@ -388,6 +415,7 @@ public class GameRenderer {
         else {
 
             PlayerShip playerShip = myWorld.getPlayerShip();
+
             if (gameover){
                 gameOver(runTime, playerShip);
             }else {

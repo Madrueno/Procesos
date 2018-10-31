@@ -18,8 +18,8 @@ public class AssetLoader {
     public static Texture player, superEnemy, obstacle, laser;
     public static TextureRegion texturePlayer, textureObstacle, textureLaser, textureSuperEnemy;
 
-    public static Texture gameOver, win;
-    public static TextureRegion textureGameOver, textureWin;
+    public static Texture gameOver, win, ranking, ranking1, ranking2;
+    public static TextureRegion textureGameOver, textureWin, textureRanking, textureRanking1, textureRanking2;
 
     public static Texture invader2, invader3, invader4, invader5, invader6;
     public static TextureRegion textureInvader2, textureInvader3, textureInvader4, textureInvader5, textureInvader6;
@@ -41,6 +41,15 @@ public class AssetLoader {
          win = new Texture (Gdx.files.internal("data/win.png"));
          textureWin =new TextureRegion(win);
          textureWin.flip(false, true);
+         ranking = new Texture (Gdx.files.internal("data/ranking.png"));
+         textureRanking =new TextureRegion(ranking);
+         textureRanking.flip(false, true);
+         ranking1 = new Texture (Gdx.files.internal("data/ranking1.png"));
+         textureRanking1 =new TextureRegion(ranking1);
+         textureRanking1.flip(false, true);
+         ranking2 = new Texture (Gdx.files.internal("data/ranking2.png"));
+         textureRanking2 =new TextureRegion(ranking2);
+         textureRanking2.flip(false, true);
          superEnemy= new Texture (Gdx.files.internal("data/superEnemy.png"));
          textureSuperEnemy = new TextureRegion(superEnemy);
 

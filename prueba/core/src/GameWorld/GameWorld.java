@@ -6,6 +6,7 @@ import GameObjects.Invaders;
 import GameObjects.ListInvaders;
 import GameObjects.Obstacle;
 import GameObjects.PlayerShip;
+import GameObjects.Ranking;
 import GameObjects.Shots;
 import GameObjects.ObstacleGroups;
 import GameObjects.older13;
@@ -14,6 +15,7 @@ public class GameWorld {
 
     private PlayerShip playerShip;
     private ListInvaders invadersArmy ;
+    private Ranking ranking;
     private older13 old;
     //private Shots shotsPlayer;
     private ObstacleGroups allObstacle;
@@ -30,6 +32,7 @@ public class GameWorld {
         old = new older13(false);
         playerShip = new PlayerShip(x, y, 25, 25);
         allObstacle= new ObstacleGroups(x,y);
+        ranking = new Ranking();
         //shotsPlayer =new Shots(playerShip.getPosition(),0);
         //shotsPlayer.setScreenY(y);
     }
@@ -254,6 +257,10 @@ public class GameWorld {
     public ListInvaders getInvadersArmy() {
         return invadersArmy;
 
+    }
+
+    public Ranking getRanking(){
+        return ranking;
     }
 
     public int getInvadersDeath(){
