@@ -48,6 +48,7 @@ public class GameRenderer {
     private boolean nono =false;
 
     private boolean pressed=false;
+    private boolean rankingPulsado=false;
 
     private ArrayList<ArrayList<Obstacle>> obstacles;
 
@@ -268,11 +269,13 @@ public class GameRenderer {
         font.getData().setScale(0.95f, 0.95f);
         font.draw(batcher, "Your final score: " + String.valueOf(playerShip.getScore()), 8, 150);
 
-        ranking.newScore(playerShip.getNamePlayer(), playerShip.getScore());   //Pasar datos al ranking
-
         batcher.end();
         Stage stageGameOv = new Stage();
         Gdx.input.setInputProcessor(stageGameOv);
+
+        ranking.newScore(playerShip.getNamePlayer(), playerShip.getScore());   //Pasar datos al ranking
+        buttonTrofeo(stageGameOv);
+
 
         TextButton buttonRetry = AssetLoader.buttonYes("Retry", Gdx.graphics.getWidth()/20 +75 , 2*Gdx.graphics.getHeight()/20 -25);
         buttonRetry.getLabel().setFontScale(Gdx.graphics.getWidth()/140);
@@ -353,13 +356,15 @@ public class GameRenderer {
         font.draw(batcher, "Your final score: " + String.valueOf(playerShip.getScore()), 8, 150);
 
 
-        ranking.newScore(playerShip.getNamePlayer(), playerShip.getScore());   //Pasar datos al ranking
 
 
         batcher.end();
 
         Stage stageGameOv = new Stage();
         Gdx.input.setInputProcessor(stageGameOv);
+
+        ranking.newScore(playerShip.getNamePlayer(), playerShip.getScore());   //Pasar datos al ranking
+        buttonTrofeo(stageGameOv);
 
         TextButton buttonRetry = AssetLoader.buttonYes("Retry", Gdx.graphics.getWidth()/20 +75 , 2*Gdx.graphics.getHeight()/20 -25);
         buttonRetry.getLabel().setFontScale(Gdx.graphics.getWidth()/140);
@@ -377,10 +382,7 @@ public class GameRenderer {
         stageGameOv.act();
         stageGameOv.draw();
     }
-    public void buttonTrofeo(){
-
-        Stage stage = new Stage();
-        Gdx.input.setInputProcessor(stage);
+    public void buttonTrofeo(Stage stage){
 
         ImageButton buttonTrofeo = AssetLoader.buttonTrofeo(15*stage.getWidth()/20, stage.getHeight()/20 -15);
         stage.addActor(buttonTrofeo);
@@ -388,15 +390,16 @@ public class GameRenderer {
         buttonTrofeo.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                Gdx.app.log("buttonRight", "Boton izquierdo pulsado");
-                playerShip.setLeft();
+                Gdx.app.log("buttonTrofeo", "Boton Trofeo pulsado");
+                if (!rankingPulsado)
+                    rankingPulsado = true;
+                else
+                    rankingPulsado = false;
                 return true;
             }});
 
-
-        stage.act();
-        stage.draw();
     }
+
     public void ranking(Ranking ranking){
 
         batcher.begin();
@@ -415,21 +418,28 @@ public class GameRenderer {
         }
 
         batcher.end();
+        Stage stage = new Stage();
+        Gdx.input.setInputProcessor(stage);
 
-       buttonTrofeo();
+       buttonTrofeo(stage);
+
+        stage.act();
+        stage.draw();
+
     }
 
     public void render(float runTime) {
         Ranking ranking = myWorld.getRanking();
         myOld = (myWorld.getOlder());
+
         if (!myOld.getOld() && nono==false){
             if(nono ==true){
-              ranking(ranking);
-                // start(runTime);
+              //ranking(ranking);
+                start(runTime);
 
             }else{
-                ranking(ranking);
-                //start(runTime);
+               // ranking(ranking);
+               start(runTime);
            }
 
         }
@@ -439,6 +449,10 @@ public class GameRenderer {
 
             if (gameover){
                 gameOver(runTime, playerShip, ranking);
+                if (rankingPulsado){
+                    ranking(ranking);
+                }
+
             }else {
                 soundGameOver.stop();
                 invadersAlive = myWorld.getInvadersArmy();
@@ -491,6 +505,9 @@ public class GameRenderer {
                 //Mira si hemos exterminado por completo el ejercito
                 if (myWorld.getInvadersDeath()==invadersAlive.getArmy().size()){
                     winner(runTime, playerShip, ranking);
+                    if (rankingPulsado){
+                        ranking(ranking);
+                    }
                 }
             }
         }
