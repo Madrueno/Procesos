@@ -7,17 +7,20 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.Files.FileType;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 
+import java.io.File;
 import java.util.ArrayList;
+import com.badlogic.gdx.files.FileHandle;
 
 import GameObjects.Invaders;
 import GameObjects.ListInvaders;
@@ -39,7 +42,12 @@ public class GameRenderer {
     private SpriteBatch batcher;
     private Sound soundShot, soundGameOver;
     private Music musicEsp;
-
+    private FileHandle file;
+    private File f;
+    private Skin skin;
+    private TextField textField;
+    private TextField.DefaultOnscreenKeyboard keyboard;
+    private String name;
     private int midPointY;
     private int gameHeight;
 
@@ -74,6 +82,11 @@ public class GameRenderer {
         shapeRenderer = new ShapeRenderer();
         shapeRenderer.setProjectionMatrix(cam.combined);
 
+        textField= AssetLoader.fieldText(10,30);
+        textField.setText("hola");
+        keyboard= new TextField.DefaultOnscreenKeyboard();
+        textField.setOnscreenKeyboard(keyboard);
+        
     }
 
 
@@ -205,6 +218,8 @@ public class GameRenderer {
         soundGameOver.stop();
         batcher.begin();
         batcher.disableBlending();
+
+
         batcher.draw(AssetLoader.textureBg,0, 0, 200, 500);
 
         batcher.enableBlending();
@@ -221,8 +236,11 @@ public class GameRenderer {
         batcher.end();
 
         Stage stage = new Stage();
-        Gdx.input.setInputProcessor(stage);
 
+        Gdx.input.setInputProcessor(stage);
+        //TextField textField1 = AssetLoader.fieldText(10,40);
+
+        //textField.setDisabled(true);
         TextButton buttonYes = AssetLoader.buttonYes("Si",0,0  );
         buttonYes.setBounds(Gdx.graphics.getWidth()/9, Gdx.graphics.getHeight()/10 +40, Gdx.graphics.getWidth()/3, Gdx.graphics.getHeight()/7);
         buttonYes.getLabel().setFontScale((float) Math.min(buttonYes.getWidth()/35, buttonYes.getHeight()/35));
@@ -245,11 +263,19 @@ public class GameRenderer {
                 nono=true;
                 return true;
             }});
+        textField.addListener(new InputListener(){
+                @Override
+                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                    System.out.println("pulsadoTextField");
+                    keyboard.show(true);
 
+                    return true;
+
+        }});
 
         stage.addActor(buttonYes);
         stage.addActor(buttonNo);
-
+        stage.addActor(textField);
 
         stage.act();
         stage.draw();
@@ -358,6 +384,7 @@ public class GameRenderer {
 
 
 
+
         batcher.end();
 
         Stage stageGameOv = new Stage();
@@ -378,7 +405,7 @@ public class GameRenderer {
                 myWorld.restPlay();
                 return true;
             }});
-        stageGameOv.addActor(buttonRetry);
+
         stageGameOv.act();
         stageGameOv.draw();
     }

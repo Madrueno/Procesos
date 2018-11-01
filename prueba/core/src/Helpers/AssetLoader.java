@@ -5,10 +5,12 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 public class AssetLoader {
@@ -23,6 +25,10 @@ public class AssetLoader {
 
     public static Texture invader2, invader3, invader4, invader5, invader6;
     public static TextureRegion textureInvader2, textureInvader3, textureInvader4, textureInvader5, textureInvader6;
+
+    public static TextureAtlas text;
+    public static Texture text1;
+    public static TextureRegion text2;
 
     public static void loadBg() {
          bg = new Texture (Gdx.files.internal("data/bbb.png"));
@@ -53,6 +59,11 @@ public class AssetLoader {
          superEnemy= new Texture (Gdx.files.internal("data/superEnemy.png"));
          textureSuperEnemy = new TextureRegion(superEnemy);
 
+         text1=new Texture(Gdx.files.internal("data/bg.jpg"));
+         text2 = new TextureRegion(text1);
+         text= new TextureAtlas();
+         text.addRegion("text",text2);
+         text.addRegion("text",text1,0,0,20,30);
          loadColorInvaders();
 
     }
@@ -154,7 +165,30 @@ public class AssetLoader {
         return button;
     }
 
-    private static Skin mySkin(){
+    public static TextField fieldText(float x, float y){
+        //Skin skin = new Skin(Gdx.files.internal("data/right.png"));
+
+        String name = new String();
+        TextField textField = new TextField(name,textFieldStyle());
+        textField.setPosition(x,y);
+        textField.setDisabled(true);
+        return textField;
+    }
+
+    public static TextField.TextFieldStyle textFieldStyle (){
+        BitmapFont font = new BitmapFont();
+        Pixmap pixmap2 = new Pixmap(Gdx.files.internal("data/bg.jpg"));
+        Pixmap pixmap1 = new Pixmap(Gdx.graphics.getWidth()/5 -10, Gdx.graphics.getWidth()/5 -10, pixmap2.getFormat());
+
+        Pixmap pixmap4 = new Pixmap(Gdx.files.internal("data/cursor.JPG"));
+        Pixmap pixmap3 = new Pixmap(Gdx.graphics.getWidth()/5 -10, Gdx.graphics.getWidth()/5 -10, pixmap2.getFormat());
+
+        return new TextField.TextFieldStyle(font,Color.WHITE,createDefaultDrawable(pixmap3, pixmap4),null,createDefaultDrawable(pixmap1, pixmap2));
+    }
+
+
+
+    public static Skin mySkin(){
         Pixmap pixmap = new Pixmap(18*Gdx.graphics.getWidth()/20 -175, 3*Gdx.graphics.getHeight()/20 -10, Pixmap.Format.RGB888);
         pixmap.setColor(Color.GREEN);           // Color fondo
         pixmap.fill();
@@ -164,6 +198,12 @@ public class AssetLoader {
     private static Skin mySkin2(){
         Pixmap pixmap = new Pixmap(18*Gdx.graphics.getWidth()/20 -175, 3*Gdx.graphics.getHeight()/20 -10, Pixmap.Format.RGB888);
         pixmap.setColor(Color.RED);           // Color fondo
+        pixmap.fill();
+        return createDefaultSkin(pixmap);
+    }
+    public static Skin mySkin3(){
+        Pixmap pixmap = new Pixmap(18*Gdx.graphics.getWidth()/20 -175, 3*Gdx.graphics.getHeight()/20 -10, Pixmap.Format.RGB888);
+        pixmap.setColor(Color.WHITE);           // Color fondo
         pixmap.fill();
         return createDefaultSkin(pixmap);
     }
