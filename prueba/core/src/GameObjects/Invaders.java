@@ -81,7 +81,7 @@ public class Invaders {
                 //this.shots.setPosition(new Vector2(this.position.x + (this.width / 2) - 4, this.getPosition().y));
                 //this.shots.setPosition(new Vector2(this.position.x + (this.width / 2) - this.getShots().width/2, this.getPosition().y));
                 //this.shots.shoot(this.shots.getPosition(), 1);
-                shots= new Shots(this.position,1,screenY);
+                shots= new Shots(new Vector2(this.getPosition().x+this.width/2-5,this.getPosition().y),1,screenY);
             }
             if(shots!=null)
                 this.shots.update();

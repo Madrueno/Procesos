@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -146,7 +147,7 @@ public class GameRenderer {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 Gdx.app.log("buttonShoot", "Boton de disparo pulsado");
-                playerShip.getShots().add(new Shots(playerShip.getPosition(),0,playerShip.getScreenHeight()));
+                playerShip.getShots().add(new Shots(new Vector2(playerShip.getPosition().x+playerShip.getHitbox().width/2-5,playerShip.getPosition().y+20), 0, playerShip.getScreenHeight()));
                 soundShot.play();
                 /*if(!shot.isActive()) {
                     shot.setPosition(new Vector2(playerShip.getPosition().x + playerShip.getWidth() / 2 - 5, playerShip.getPosition().y));
