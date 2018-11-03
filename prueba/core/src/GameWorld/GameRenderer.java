@@ -1,6 +1,7 @@
 package GameWorld;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -216,6 +217,8 @@ public class GameRenderer {
     }
 
     public void start(float runTime){
+
+
         soundGameOver.stop();
         batcher.begin();
         batcher.disableBlending();
@@ -235,6 +238,10 @@ public class GameRenderer {
      //   font.draw(batcher, "de 13 años? " , 25, 90);
 
         batcher.end();
+
+
+
+
 
         Stage stage = new Stage();
 
@@ -385,7 +392,6 @@ public class GameRenderer {
 
 
 
-
         batcher.end();
 
         Stage stageGameOv = new Stage();
@@ -438,6 +444,32 @@ public class GameRenderer {
         batcher.draw(AssetLoader.textureRanking1, 3, -30, 128, 128);
         batcher.draw(AssetLoader.textureRanking2, 3, 20, 128, 128);
 
+
+        keyboard= new TextField.DefaultOnscreenKeyboard();
+
+
+        System.out.println("sisi");
+        Input.TextInputListener textListener = new Input.TextInputListener()
+        {
+
+            @Override
+            public void input(String input)
+            {
+                keyboard.show(true);
+                textField.setOnscreenKeyboard(keyboard);
+                System.out.println(input);
+            }
+
+            @Override
+            public void canceled()
+            {
+                System.out.println("Aborted");
+            }
+        };
+        Gdx.input.getTextInput(textListener, "Your Name: ", "Introduzca su nombre", "");
+
+
+
         String[] names = ranking.getRanking() ;
         BitmapFont font = new BitmapFont(true);
         font.getData().setScale(0.70f, 0.70f);
@@ -456,17 +488,18 @@ public class GameRenderer {
 
     }
 
+
     public void render(float runTime) {
         Ranking ranking = myWorld.getRanking();
         myOld = (myWorld.getOlder());
 
         if (!myOld.getOld() && nono==false){
             if(nono ==true){
-              //ranking(ranking);
+             // ranking(ranking);
                 start(runTime);
 
             }else{
-               // ranking(ranking);
+               //ranking(ranking);
                start(runTime);
            }
 
