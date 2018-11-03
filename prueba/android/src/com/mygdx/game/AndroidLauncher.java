@@ -9,13 +9,16 @@ import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 
 public class AndroidLauncher extends AndroidApplication {
-	
+	private  String name;
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
 		initialize(new SpaceInvaders(), config);
+		//name=getName();
 
+	}
+	/*public String getName (){
 		Input.TextInputListener textListener = new Input.TextInputListener()
 		{
 
@@ -23,6 +26,7 @@ public class AndroidLauncher extends AndroidApplication {
 			public void input(String input)
 			{
 				System.out.println(input);
+				name =input;
 			}
 
 			@Override
@@ -32,5 +36,6 @@ public class AndroidLauncher extends AndroidApplication {
 			}
 		};
 		Gdx.input.getTextInput(textListener, "Your Name: ", "Introduzca su nombre", "");
-	}
+		return name;
+	}*/
 }

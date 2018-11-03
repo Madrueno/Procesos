@@ -1,5 +1,7 @@
 package GameWorld;
 
+import com.mygdx.game.SpaceInvaders;
+
 import java.util.ArrayList;
 
 import GameObjects.Invaders;
@@ -21,6 +23,7 @@ public class GameWorld {
     private ObstacleGroups allObstacle;
     private int invadersDeath=0;
     private float screenX,screenY;
+    private String name;
 
     private int signo = 1;
 
@@ -28,13 +31,13 @@ public class GameWorld {
         this.screenX=x;
         this.screenY=y;
         invadersArmy = new ListInvaders(y);
-
+        name= SpaceInvaders.getName();
         old = new older13(false);
-        playerShip = new PlayerShip(x, y, 25, 25);
+        playerShip = new PlayerShip(x, y, 25, 25,name);
         allObstacle= new ObstacleGroups(x,y);
         ranking = new Ranking();
-        //shotsPlayer =new Shots(playerShip.getPosition(),0);
-        //shotsPlayer.setScreenY(y);
+
+
     }
 
     public void update(float delta) {
@@ -278,7 +281,13 @@ public class GameWorld {
         return allObstacle;
     }
     public void restPlay(){
-        playerShip = new PlayerShip(this.screenX, this.screenY, 25, 25);
+        name=null;
+        playerShip=null;
+        invadersArmy=null;
+        allObstacle=null;
+        while (name==null)
+            name= SpaceInvaders.getName();
+        playerShip = new PlayerShip(this.screenX, this.screenY, 25, 25,name);
         allObstacle= new ObstacleGroups(this.screenX,this.screenY);
         invadersArmy = new ListInvaders(screenY);
     }

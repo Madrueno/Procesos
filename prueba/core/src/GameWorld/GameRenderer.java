@@ -23,6 +23,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import java.io.File;
 import java.util.ArrayList;
 import com.badlogic.gdx.files.FileHandle;
+import com.mygdx.game.SpaceInvaders;
 
 import GameObjects.Invaders;
 import GameObjects.ListInvaders;
@@ -33,6 +34,7 @@ import GameObjects.ObstacleGroups;
 import GameObjects.Obstacle;
 import GameObjects.older13;
 import Helpers.AssetLoader;
+
 
 public class GameRenderer {
 
@@ -63,7 +65,7 @@ public class GameRenderer {
     private ArrayList<ArrayList<Obstacle>> obstacles;
 
     public static ListInvaders invadersAlive;
-    public Shots shot;
+
 
     public static ObstacleGroups obstacleActive;
 
@@ -84,11 +86,6 @@ public class GameRenderer {
         shapeRenderer = new ShapeRenderer();
         shapeRenderer.setProjectionMatrix(cam.combined);
 
-        textField= AssetLoader.fieldText(10,30);
-        textField.setText("hola");
-        keyboard= new TextField.DefaultOnscreenKeyboard();
-        textField.setOnscreenKeyboard(keyboard);
-        
     }
 
 
@@ -246,9 +243,7 @@ public class GameRenderer {
         Stage stage = new Stage();
 
         Gdx.input.setInputProcessor(stage);
-        //TextField textField1 = AssetLoader.fieldText(10,40);
 
-        //textField.setDisabled(true);
         TextButton buttonYes = AssetLoader.buttonYes("Si",0,0  );
         buttonYes.setBounds(Gdx.graphics.getWidth()/9, Gdx.graphics.getHeight()/10 +40, Gdx.graphics.getWidth()/3, Gdx.graphics.getHeight()/7);
         buttonYes.getLabel().setFontScale((float) Math.min(buttonYes.getWidth()/35, buttonYes.getHeight()/35));
@@ -271,19 +266,10 @@ public class GameRenderer {
                 nono=true;
                 return true;
             }});
-        textField.addListener(new InputListener(){
-                @Override
-                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                    System.out.println("pulsadoTextField");
-                    keyboard.show(true);
 
-                    return true;
-
-        }});
 
         stage.addActor(buttonYes);
         stage.addActor(buttonNo);
-        stage.addActor(textField);
 
         stage.act();
         stage.draw();
@@ -291,7 +277,7 @@ public class GameRenderer {
     }
 
     public void gameOver(float runTime, PlayerShip playerShip, Ranking ranking){
-        soundGameOver.loop();
+        //soundGameOver.loop();
         batcher.begin();
         batcher.disableBlending();
         batcher.draw(AssetLoader.textureBg,0, 0, 200, 500);
@@ -317,11 +303,12 @@ public class GameRenderer {
         buttonRetry.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                gameover=false;
-                myWorld.getPlayerShip().setLives(1);
-                myWorld.getPlayerShip().setScore(0);
-                myWorld.getInvadersArmy().setBajada(1);
+
+                //myWorld.getPlayerShip().setLives(1);
+                //myWorld.getPlayerShip().setScore(0);
+                //myWorld.getInvadersArmy().setBajada(1);
                 myWorld.restPlay();
+                gameover=false;
                 return true;
             }});
         stageGameOv.addActor(buttonRetry);

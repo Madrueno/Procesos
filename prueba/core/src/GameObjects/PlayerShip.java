@@ -28,7 +28,7 @@ public class PlayerShip {
 
     private String namePlayer; //nombreJugador
 
-    public PlayerShip(float x, float y, int width, int height) {
+    public PlayerShip(float x, float y, int width, int height,String n) {
 
         this.width = width;
         this.height = height;
@@ -43,6 +43,7 @@ public class PlayerShip {
         lives=1;
         score=0;
         this.shots=new ArrayList();
+        namePlayer=n;
     }
 
     public void setNamePlayer(String name){
