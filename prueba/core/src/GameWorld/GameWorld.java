@@ -178,7 +178,10 @@ public class GameWorld {
     public void updateDeathInvader(int i,int j){
         playerShip.getShots().remove(j);               //Pa no matar a toda la columna de marcianitos
         invadersArmy.kill(i);                   //Pongo al marcianito a no alive
-        playerShip.setScore(100);               //Aumento puntuacion
+        if (playerShip.getLives()>0) {
+            playerShip.setScore(100);           //Aumento puntuacion
+        }
+
     }
     public void updateDeathInvaderSuper(int i,int j){
         invadersArmy.getSuperEnemy().getShots().remove(j);               //Pa no matar a toda la columna de marcianitos
