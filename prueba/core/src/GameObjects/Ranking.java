@@ -16,6 +16,8 @@ public class Ranking {
        ranking.put(50, "David");
     }
     public void add(int punt,String name){
+       if (name==null)
+           name="You";
        ranking.put(punt,name);
     }
 
@@ -32,7 +34,9 @@ public class Ranking {
     }
 
     public void newScore(String name, int score){       //Metodo para introducir el nuevo score
-        ranking.put(score, name);
+        if (name==null)
+            name="You";
+       ranking.put(score, name);
     }
 
     public String[] getRanking(){
