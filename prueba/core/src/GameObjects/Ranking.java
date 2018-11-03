@@ -9,7 +9,11 @@ public class Ranking {
 
 
    public Ranking() {
-        ranking=  new TreeMap<Integer, String>(Collections.reverseOrder());
+       ranking=  new TreeMap<Integer, String>(Collections.reverseOrder());
+       ranking.put(300, "Ruben");
+       ranking.put(200, "Sandra");
+       ranking.put(100, "Rodrigo");
+       ranking.put(50, "David");
     }
     public void add(int punt,String name){
        ranking.put(punt,name);

@@ -58,6 +58,7 @@ public class AssetLoader {
          textureRanking2.flip(false, true);
          superEnemy= new Texture (Gdx.files.internal("data/superEnemy.png"));
          textureSuperEnemy = new TextureRegion(superEnemy);
+         textureSuperEnemy.flip(false, true);
 
          text1=new Texture(Gdx.files.internal("data/bg.jpg"));
          text2 = new TextureRegion(text1);
