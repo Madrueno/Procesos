@@ -445,31 +445,6 @@ public class GameRenderer {
         batcher.draw(AssetLoader.textureRanking2, 3, 20, 128, 128);
 
 
-        keyboard= new TextField.DefaultOnscreenKeyboard();
-
-
-        System.out.println("sisi");
-        Input.TextInputListener textListener = new Input.TextInputListener()
-        {
-
-            @Override
-            public void input(String input)
-            {
-                keyboard.show(true);
-                textField.setOnscreenKeyboard(keyboard);
-                System.out.println(input);
-            }
-
-            @Override
-            public void canceled()
-            {
-                System.out.println("Aborted");
-            }
-        };
-        Gdx.input.getTextInput(textListener, "Your Name: ", "Introduzca su nombre", "");
-
-
-
         String[] names = ranking.getRanking() ;
         BitmapFont font = new BitmapFont(true);
         font.getData().setScale(0.70f, 0.70f);
