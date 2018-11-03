@@ -278,6 +278,7 @@ public class GameRenderer {
 
     public void gameOver(float runTime, PlayerShip playerShip, Ranking ranking){
         //soundGameOver.loop();
+        ranking.add(playerShip.getScore(),playerShip.getNamePlayer());
         batcher.begin();
         batcher.disableBlending();
         batcher.draw(AssetLoader.textureBg,0, 0, 200, 500);
@@ -364,7 +365,7 @@ public class GameRenderer {
 
 
     public void winner(float runTime, PlayerShip playerShip, Ranking ranking){
-
+        ranking.add(playerShip.getScore(),playerShip.getNamePlayer());
         batcher.begin();
         batcher.disableBlending();
         batcher.draw(AssetLoader.textureBg,0, 0, 200, 500);

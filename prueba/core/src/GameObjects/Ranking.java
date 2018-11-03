@@ -5,15 +5,14 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class Ranking {
-    Map<Integer, String> ranking = new TreeMap<Integer, String>(Collections.reverseOrder());
+    Map<Integer, String> ranking;
 
 
    public Ranking() {
-        ranking.put(300, "Ruben");
-        ranking.put(200, "Sandra");
-        ranking.put(100, "Rodrigo");
-        ranking.put(50, "David");
-        ranking.put(20, "Natalia");
+        ranking=  new TreeMap<Integer, String>(Collections.reverseOrder());
+    }
+    public void add(int punt,String name){
+       ranking.put(punt,name);
     }
 
     public String[] mejoresJugadores(){
