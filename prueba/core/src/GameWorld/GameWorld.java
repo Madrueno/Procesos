@@ -36,8 +36,6 @@ public class GameWorld {
         playerShip = new PlayerShip(x, y, 25, 25,name);
         allObstacle= new ObstacleGroups(x,y);
         ranking = new Ranking();
-
-
     }
 
     public void update(float delta) {
@@ -69,6 +67,11 @@ public class GameWorld {
                     updateDeathInvader(i,j);
                     shootDeath=true;
                     break;
+                }
+                if (invadersArmy.getSuperEnemy().isAlive() &&
+                        invadersArmy.getSuperEnemy().getHitbox().overlaps(playerShip.getShots().get(j).getRec())){
+                    invadersArmy.getSuperEnemy().kill();
+                    playerShip.setScore(1000);
                 }
         }
 
