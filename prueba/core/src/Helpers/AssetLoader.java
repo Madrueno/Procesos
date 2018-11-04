@@ -98,17 +98,25 @@ public class AssetLoader {
 
     public static ImageButton buttonLeft(float x, float y){
         Pixmap pixmap2 = new Pixmap(Gdx.files.internal("data/left2.png"));
-        Pixmap pixmap1 = new Pixmap(Gdx.graphics.getWidth()/5 -10, Gdx.graphics.getWidth()/5 -10, pixmap2.getFormat());
+        Pixmap pixmap1 = new Pixmap(Gdx.graphics.getWidth()/5 -20, Gdx.graphics.getWidth()/5 -20, pixmap2.getFormat());
 
         ImageButton button = new ImageButton(createDefaultDrawable(pixmap1, pixmap2));
         button.setPosition(x, y);
 
         return button;
     }
+    public static ImageButton buttonRight(float x, float y){
+        Pixmap pixmap2 = new Pixmap(Gdx.files.internal("data/right2.png"));
+        Pixmap pixmap1 = new Pixmap(Gdx.graphics.getWidth()/5-20, Gdx.graphics.getWidth()/5-20, pixmap2.getFormat());
+        ImageButton button = new ImageButton(createDefaultDrawable(pixmap1, pixmap2));
+        button.setPosition(x, y);
 
+        return button;
+    }
+    
     public static ImageButton buttonUp(float x, float y){
-        Pixmap pixmap2 = new Pixmap(Gdx.files.internal("data/up.png"));
-        Pixmap pixmap1 = new Pixmap(50, 50, pixmap2.getFormat());
+        Pixmap pixmap2 = new Pixmap(Gdx.files.internal("data/uppink.png"));
+        Pixmap pixmap1 = new Pixmap(Gdx.graphics.getWidth()/5 -20, Gdx.graphics.getWidth()/5 -20, pixmap2.getFormat());
 
         ImageButton button = new ImageButton(createDefaultDrawable(pixmap1, pixmap2));
         button.setPosition(x, y);
@@ -117,8 +125,8 @@ public class AssetLoader {
     }
 
     public static ImageButton buttonDown(float x, float y){
-        Pixmap pixmap2 = new Pixmap(Gdx.files.internal("data/down.png"));
-        Pixmap pixmap1 = new Pixmap(50, 50, pixmap2.getFormat());
+        Pixmap pixmap2 = new Pixmap(Gdx.files.internal("data/downGreen.png"));
+        Pixmap pixmap1 = new Pixmap(Gdx.graphics.getWidth()/5 -20,Gdx.graphics.getWidth()/5 -20, pixmap2.getFormat());
 
         ImageButton button = new ImageButton(createDefaultDrawable(pixmap1, pixmap2));
         button.setPosition(x, y);
@@ -126,14 +134,7 @@ public class AssetLoader {
         return button;
     }
 
-    public static ImageButton buttonRight(float x, float y){
-        Pixmap pixmap2 = new Pixmap(Gdx.files.internal("data/right2.png"));
-        Pixmap pixmap1 = new Pixmap(Gdx.graphics.getWidth()/5-10, Gdx.graphics.getWidth()/5-10, pixmap2.getFormat());
-        ImageButton button = new ImageButton(createDefaultDrawable(pixmap1, pixmap2));
-        button.setPosition(x, y);
 
-        return button;
-    }
 
     public static ImageButton buttonRetry(float x, float y){
         Pixmap pixmap2 = new Pixmap(Gdx.files.internal("data/retryIcon.png"));
