@@ -22,7 +22,7 @@ public class SpaceInvaders extends Game{
 		super.dispose();
 		AssetLoader.dispose();
 	}
-	public static String getName (){
+	public static String askForName (){
 		Input.TextInputListener textListener = new Input.TextInputListener()
 		{
 
@@ -43,6 +43,15 @@ public class SpaceInvaders extends Game{
 		};
 		Gdx.input.getTextInput(textListener, "Introduce your Name: ", "", "");
 
+
 		return name;
+	}
+
+	public static String getName(){
+		return name;
+	}
+
+	public static void setName(String n){
+		name=n;
 	}
 }

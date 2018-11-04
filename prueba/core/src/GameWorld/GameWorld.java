@@ -31,7 +31,7 @@ public class GameWorld {
         this.screenX=x;
         this.screenY=y;
         invadersArmy = new ListInvaders(y);
-        name= SpaceInvaders.getName();
+        name= SpaceInvaders.askForName();
         old = new older13(false);
         playerShip = new PlayerShip(x, y, 25, 25,name);
         allObstacle= new ObstacleGroups(x,y);
@@ -249,13 +249,15 @@ public class GameWorld {
 
     public void changeColor(ListInvaders invadersArmy){
         int color;
-        if (invadersArmy.getArmy().get(0).getColor()==4)
-            color=0;
-        else
-            color=invadersArmy.getArmy().get(0).getColor()+1;
+        if(invadersArmy.getArmy().size()>0) {
+            if (invadersArmy.getArmy().get(0).getColor() == 4)
+                color = 0;
+            else
+                color = invadersArmy.getArmy().get(0).getColor() + 1;
 
-        for(Invaders invader: invadersArmy.getArmy()){
-            invader.setColor(color);
+            for (Invaders invader : invadersArmy.getArmy()) {
+                invader.setColor(color);
+            }
         }
     }
 
@@ -287,12 +289,11 @@ public class GameWorld {
         return allObstacle;
     }
     public void restPlay(){
-        name=null;
+        SpaceInvaders.setName(null);
         playerShip=null;
         invadersArmy=null;
         allObstacle=null;
-        while (name==null)
-            name= SpaceInvaders.getName();
+        name= SpaceInvaders.askForName();
         playerShip = new PlayerShip(this.screenX, this.screenY, 25, 25,name);
         allObstacle= new ObstacleGroups(this.screenX,this.screenY);
         invadersArmy = new ListInvaders(screenY);

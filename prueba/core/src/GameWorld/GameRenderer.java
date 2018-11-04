@@ -278,7 +278,7 @@ public class GameRenderer {
 
     public void gameOver(float runTime, PlayerShip playerShip, Ranking ranking){
         //soundGameOver.loop();
-        ranking.add(playerShip.getScore(),playerShip.getNamePlayer());
+        ranking.add(playerShip.getScore(),SpaceInvaders.getName());
         batcher.begin();
         batcher.disableBlending();
         batcher.draw(AssetLoader.textureBg,0, 0, 200, 500);
@@ -294,7 +294,7 @@ public class GameRenderer {
         Stage stageGameOv = new Stage();
         Gdx.input.setInputProcessor(stageGameOv);
 
-        ranking.newScore(playerShip.getNamePlayer(), playerShip.getScore());   //Pasar datos al ranking
+        ranking.newScore(SpaceInvaders.getName(), playerShip.getScore());   //Pasar datos al ranking
         buttonTrofeo(stageGameOv);
 
 
@@ -365,7 +365,7 @@ public class GameRenderer {
 
 
     public void winner(float runTime, PlayerShip playerShip, Ranking ranking){
-        ranking.add(playerShip.getScore(),playerShip.getNamePlayer());
+        ranking.add(playerShip.getScore(),SpaceInvaders.getName());
         batcher.begin();
         batcher.disableBlending();
         batcher.draw(AssetLoader.textureBg,0, 0, 200, 500);
@@ -385,7 +385,7 @@ public class GameRenderer {
         Stage stageGameOv = new Stage();
         Gdx.input.setInputProcessor(stageGameOv);
 
-        ranking.newScore(playerShip.getNamePlayer(), playerShip.getScore());   //Pasar datos al ranking
+        ranking.newScore(SpaceInvaders.getName(), playerShip.getScore());   //Pasar datos al ranking
         buttonTrofeo(stageGameOv);
 
         TextButton buttonRetry = AssetLoader.buttonYes("Retry", Gdx.graphics.getWidth()/20 +75 , 2*Gdx.graphics.getHeight()/20 -25);
