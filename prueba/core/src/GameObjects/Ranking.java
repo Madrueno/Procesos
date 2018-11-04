@@ -1,46 +1,35 @@
 package GameObjects;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.TreeMap;
 
 public class Ranking {
-    Map<Integer, String> ranking;
+    private LinkedList<JugadorRanking> ranking;
 
 
    public Ranking() {
-       ranking=  new TreeMap<Integer, String>(Collections.reverseOrder());
-       ranking.put(300, "Ruben");
-       ranking.put(200, "Sandra");
-       ranking.put(100, "Rodrigo");
-       ranking.put(50, "David");
+       ranking=  new LinkedList<JugadorRanking>();
+       ranking.addLast(new JugadorRanking( "David", 400));
+       ranking.addLast(new JugadorRanking( "Ruben", 300));
+       ranking.addLast(new JugadorRanking( "Sandra", 200));
+       ranking.addLast(new JugadorRanking( "Rodrigo", 100));
     }
     public void add(int punt,String name){
        if ((name==null)||(name.equals("")))
            name="You";
-       ranking.put(punt,name);
-    }
+       int i=0;
+       while((ranking.get(i).getScore()>punt)&&i<ranking.size()-1){
+           i++;
+       }
+       if(i==ranking.size()-1)
+           i++;
+       ranking.add(i,new JugadorRanking(name, punt));
+   }
 
-    public String[] mejoresJugadores(){
-        String[] mejores = new String[5];
-        int cupo = 0;
-        for (Integer i : ranking.keySet()) {
-            if (cupo < 5) {
-                mejores[cupo] = ranking.get(i) + " : "+  i;
-                cupo++;
-            }
-        }
-        return mejores;
-    }
-
-    public void newScore(String name, int score){       //Metodo para introducir el nuevo score
-       if ((name==null)||name.equals(""))
-            name="You";
-       ranking.put(score, name);
-    }
-
-    public String[] getRanking(){
-        String[] mejores = mejoresJugadores();
-        return mejores;
+    public LinkedList<JugadorRanking> getRanking() {
+        return ranking;
     }
 }

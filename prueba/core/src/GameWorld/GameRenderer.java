@@ -26,6 +26,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.mygdx.game.SpaceInvaders;
 
 import GameObjects.Invaders;
+import GameObjects.JugadorRanking;
 import GameObjects.ListInvaders;
 import GameObjects.PlayerShip;
 import GameObjects.Ranking;
@@ -57,6 +58,7 @@ public class GameRenderer {
 
     private older13 myOld;
     public static boolean gameover = false;
+    public int gameoverIterator=0;
     private boolean nono =false;
 
     private boolean pressed=false;
@@ -278,8 +280,10 @@ public class GameRenderer {
 
     public void gameOver(float runTime, PlayerShip playerShip, Ranking ranking){
         //soundGameOver.loop();
-        int punt=playerShip.getScore();
-        ranking.add(punt,SpaceInvaders.getName());
+        if(gameoverIterator==0) {
+            int punt = playerShip.getScore();
+            ranking.add(punt, SpaceInvaders.getName());
+        }
         batcher.begin();
         batcher.disableBlending();
         batcher.draw(AssetLoader.textureBg,0, 0, 200, 500);
@@ -295,7 +299,6 @@ public class GameRenderer {
         Stage stageGameOv = new Stage();
         Gdx.input.setInputProcessor(stageGameOv);
 
-        ranking.newScore(SpaceInvaders.getName(), punt);   //Pasar datos al ranking
         buttonTrofeo(stageGameOv);
 
 
@@ -311,6 +314,7 @@ public class GameRenderer {
                 //myWorld.getInvadersArmy().setBajada(1);
                 myWorld.restPlay();
                 gameover=false;
+                gameoverIterator=0;
                 return true;
             }});
         stageGameOv.addActor(buttonRetry);
@@ -366,8 +370,10 @@ public class GameRenderer {
 
 
     public void winner(float runTime, PlayerShip playerShip, Ranking ranking){
-        int punt=playerShip.getScore();
-        ranking.add(punt,SpaceInvaders.getName());
+        if(gameoverIterator==0) {
+            int punt = playerShip.getScore();
+            ranking.add(punt, SpaceInvaders.getName());
+        }
         batcher.begin();
         batcher.disableBlending();
         batcher.draw(AssetLoader.textureBg,0, 0, 200, 500);
@@ -387,7 +393,6 @@ public class GameRenderer {
         Stage stageGameOv = new Stage();
         Gdx.input.setInputProcessor(stageGameOv);
 
-        ranking.newScore(SpaceInvaders.getName(), punt);   //Pasar datos al ranking
         buttonTrofeo(stageGameOv);
 
         TextButton buttonRetry = AssetLoader.buttonYes("Retry", Gdx.graphics.getWidth()/20 +75 , 2*Gdx.graphics.getHeight()/20 -25);
@@ -435,11 +440,10 @@ public class GameRenderer {
         batcher.draw(AssetLoader.textureRanking2, 3, 20, 128, 128);
 
 
-        String[] names = ranking.getRanking() ;
         BitmapFont font = new BitmapFont(true);
         font.getData().setScale(0.70f, 0.70f);
-        for (int i=0; i<names.length; i++){
-            font.draw(batcher, i+1 + " . " + names[i], 20, 120+(i*15));
+        for (int i=0; i<5; i++){
+            font.draw(batcher, i+1 + " . " + ranking.getRanking().get(i).getName()+" : "+ranking.getRanking().get(i).getScore(), 20, 120+(i*15));
         }
 
         batcher.end();
@@ -475,6 +479,7 @@ public class GameRenderer {
 
             if (gameover){
                 gameOver(runTime, playerShip, ranking);
+                gameoverIterator++;
                 if (rankingPulsado){
                     ranking(ranking);
                 }
@@ -531,6 +536,7 @@ public class GameRenderer {
                 //Mira si hemos exterminado por completo el ejercito
                 if (myWorld.getInvadersDeath()==invadersAlive.getArmy().size()){
                     winner(runTime, playerShip, ranking);
+                    gameoverIterator++;
                     if (rankingPulsado){
                         ranking(ranking);
                     }
