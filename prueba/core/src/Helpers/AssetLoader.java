@@ -113,7 +113,7 @@ public class AssetLoader {
 
         return button;
     }
-    
+
     public static ImageButton buttonUp(float x, float y){
         Pixmap pixmap2 = new Pixmap(Gdx.files.internal("data/uppink.png"));
         Pixmap pixmap1 = new Pixmap(Gdx.graphics.getWidth()/5 -20, Gdx.graphics.getWidth()/5 -20, pixmap2.getFormat());

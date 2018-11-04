@@ -93,16 +93,16 @@ public class GameRenderer {
         Stage stage = new Stage();
         Gdx.input.setInputProcessor(stage);
 
-        ImageButton buttonLeft = AssetLoader.buttonLeft(stage.getWidth()/20, stage.getHeight()/20 -15);
+        ImageButton buttonLeft = AssetLoader.buttonLeft(Gdx.graphics.getWidth()/20, Gdx.graphics.getHeight()/20 );
         stage.addActor(buttonLeft);
 
-        ImageButton buttonRight = AssetLoader.buttonRight(7*stage.getWidth()/20 -17, stage.getHeight()/20 -15);
+        ImageButton buttonRight = AssetLoader.buttonRight(7*Gdx.graphics.getWidth()/20 , Gdx.graphics.getHeight()/20 );
         stage.addActor(buttonRight);
 
-        ImageButton buttonUp = AssetLoader.buttonUp(7*stage.getWidth()/20 +30, 7*stage.getWidth()/20 +15);
+        ImageButton buttonUp = AssetLoader.buttonUp(4*Gdx.graphics.getWidth()/20 , Gdx.graphics.getWidth()/5);
         stage.addActor(buttonUp);
 
-        ImageButton buttonDown = AssetLoader.buttonDown(7*stage.getWidth()/20 +30, 7*stage.getWidth()/20 -50);
+        ImageButton buttonDown = AssetLoader.buttonDown(4*Gdx.graphics.getWidth()/20 , Gdx.graphics.getWidth()/20 -15);
         stage.addActor(buttonDown);
 
         ImageButton buttonShoot = AssetLoader.buttonShoot(15*stage.getWidth()/20, stage.getHeight()/20 -15);
