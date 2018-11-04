@@ -56,7 +56,7 @@ public class GameRenderer {
     private int gameHeight;
 
     private older13 myOld;
-    private boolean gameover = false;
+    public static boolean gameover = false;
     private boolean nono =false;
 
     private boolean pressed=false;
@@ -278,7 +278,8 @@ public class GameRenderer {
 
     public void gameOver(float runTime, PlayerShip playerShip, Ranking ranking){
         //soundGameOver.loop();
-        ranking.add(playerShip.getScore(),SpaceInvaders.getName());
+        int punt=playerShip.getScore();
+        ranking.add(punt,SpaceInvaders.getName());
         batcher.begin();
         batcher.disableBlending();
         batcher.draw(AssetLoader.textureBg,0, 0, 200, 500);
@@ -294,7 +295,7 @@ public class GameRenderer {
         Stage stageGameOv = new Stage();
         Gdx.input.setInputProcessor(stageGameOv);
 
-        ranking.newScore(SpaceInvaders.getName(), playerShip.getScore());   //Pasar datos al ranking
+        ranking.newScore(SpaceInvaders.getName(), punt);   //Pasar datos al ranking
         buttonTrofeo(stageGameOv);
 
 
@@ -365,7 +366,8 @@ public class GameRenderer {
 
 
     public void winner(float runTime, PlayerShip playerShip, Ranking ranking){
-        ranking.add(playerShip.getScore(),SpaceInvaders.getName());
+        int punt=playerShip.getScore();
+        ranking.add(punt,SpaceInvaders.getName());
         batcher.begin();
         batcher.disableBlending();
         batcher.draw(AssetLoader.textureBg,0, 0, 200, 500);
@@ -385,7 +387,7 @@ public class GameRenderer {
         Stage stageGameOv = new Stage();
         Gdx.input.setInputProcessor(stageGameOv);
 
-        ranking.newScore(SpaceInvaders.getName(), playerShip.getScore());   //Pasar datos al ranking
+        ranking.newScore(SpaceInvaders.getName(), punt);   //Pasar datos al ranking
         buttonTrofeo(stageGameOv);
 
         TextButton buttonRetry = AssetLoader.buttonYes("Retry", Gdx.graphics.getWidth()/20 +75 , 2*Gdx.graphics.getHeight()/20 -25);

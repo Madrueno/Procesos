@@ -20,6 +20,7 @@ public class ListInvaders {
 
     public ListInvaders(float screenY){
         this.screenY=screenY;
+        bajada=1;
         this.superEnemy= new SuperInvader(10,0,15,15, false,screenY);
         this.invadersAlive = new ArrayList<Invaders>();
         this.invadersAlive.add(new Invaders(10,10,15,15, true,screenY));

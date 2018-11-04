@@ -22,7 +22,7 @@ public class SpaceInvaders extends Game{
 		super.dispose();
 		AssetLoader.dispose();
 	}
-	public static String askForName (){
+	public static String askForName(){
 		Input.TextInputListener textListener = new Input.TextInputListener()
 		{
 

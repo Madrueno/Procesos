@@ -71,7 +71,7 @@ public class GameWorld {
                 if (invadersArmy.getSuperEnemy().isAlive() &&
                         invadersArmy.getSuperEnemy().getHitbox().overlaps(playerShip.getShots().get(j).getRec())){
                     invadersArmy.getSuperEnemy().kill();
-                    playerShip.setScore(1000);
+                    playerShip.addScore(1000);
                 }
         }
 
@@ -182,7 +182,7 @@ public class GameWorld {
         playerShip.getShots().remove(j);               //Pa no matar a toda la columna de marcianitos
         invadersArmy.kill(i);                   //Pongo al marcianito a no alive
         if (playerShip.getLives()>0) {
-            playerShip.setScore(100);           //Aumento puntuacion
+            playerShip.addScore(100);           //Aumento puntuacion
         }
 
     }

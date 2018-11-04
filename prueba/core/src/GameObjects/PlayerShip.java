@@ -9,6 +9,8 @@ import java.awt.List;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
+import GameWorld.GameRenderer;
+
 public class PlayerShip {
     private static Vector2 position;
     private Vector2 velocity;
@@ -53,8 +55,12 @@ public class PlayerShip {
     public String getNamePlayer(){
         return namePlayer;
     }
-    public void setScore(int score){
-        this.score+=score;
+
+    public void setScore(int score){ this.score=score;}
+
+    public void addScore(int score){
+        if(!GameRenderer.gameover)
+            this.score+=score;
     }
 
     public ArrayList<Shots> getShots() {
