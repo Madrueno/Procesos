@@ -1,6 +1,7 @@
 package GameObjects;
 
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
@@ -8,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import java.awt.List;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
+import java.util.Random;
 
 import GameWorld.GameRenderer;
 
@@ -124,6 +126,18 @@ public class PlayerShip {
         }
         else{
             position.x=position.x+velocity.x;
+        }
+        Random generator = new Random();
+        int randomNumber = generator.nextInt(1000);
+        if (randomNumber == 1) {
+            generator = new Random();
+            float x = generator.nextFloat();
+            generator = new Random();
+            float y = generator.nextFloat();
+            x= (float) (x/2.5);
+            y= (float) (0.25+y/4);
+            this.position.x = ((float) Gdx.graphics.getWidth() * x);
+            this.position.y = ((float) Gdx.graphics.getHeight()*y);
         }
         //Actualizar hitbox
         updateHitbox();
