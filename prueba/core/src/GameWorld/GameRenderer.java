@@ -301,23 +301,25 @@ public class GameRenderer {
 
         buttonTrofeo(stageGameOv);
 
+        if ((playerShip.getScore())>=500) {
+            TextButton buttonRetry = AssetLoader.buttonYes("Retry", Gdx.graphics.getWidth() / 20 + 75, 2 * Gdx.graphics.getHeight() / 20 - 25);
+            buttonRetry.getLabel().setFontScale(Gdx.graphics.getWidth() / 140);
 
-        TextButton buttonRetry = AssetLoader.buttonYes("Retry", Gdx.graphics.getWidth()/20 +75 , 2*Gdx.graphics.getHeight()/20 -25);
-        buttonRetry.getLabel().setFontScale(Gdx.graphics.getWidth()/140);
+            buttonRetry.addListener(new InputListener() {
+                @Override
+                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 
-        buttonRetry.addListener(new InputListener() {
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-
-                //myWorld.getPlayerShip().setLives(1);
-                //myWorld.getPlayerShip().setScore(0);
-                //myWorld.getInvadersArmy().setBajada(1);
-                myWorld.restPlay();
-                gameover=false;
-                gameoverIterator=0;
-                return true;
-            }});
-        stageGameOv.addActor(buttonRetry);
+                    //myWorld.getPlayerShip().setLives(1);
+                    //myWorld.getPlayerShip().setScore(0);
+                    //myWorld.getInvadersArmy().setBajada(1);
+                    myWorld.restPlay();
+                    gameover = false;
+                    gameoverIterator = 0;
+                    return true;
+                }
+            });
+            stageGameOv.addActor(buttonRetry);
+        }
         stageGameOv.act();
         stageGameOv.draw();
     }
@@ -395,19 +397,21 @@ public class GameRenderer {
 
         buttonTrofeo(stageGameOv);
 
-        TextButton buttonRetry = AssetLoader.buttonYes("Retry", Gdx.graphics.getWidth()/20 +75 , 2*Gdx.graphics.getHeight()/20 -25);
-        buttonRetry.getLabel().setFontScale(Gdx.graphics.getWidth()/140);
+        if ((playerShip.getScore())>=500) {
+            TextButton buttonRetry = AssetLoader.buttonYes("Retry", Gdx.graphics.getWidth() / 20 + 75, 2 * Gdx.graphics.getHeight() / 20 - 25);
+            buttonRetry.getLabel().setFontScale(Gdx.graphics.getWidth() / 140);
 
-        buttonRetry.addListener(new InputListener() {
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                gameover=false;
-                myWorld.getPlayerShip().setLives(1);
-                myWorld.getPlayerShip().setScore(0);
-                myWorld.restPlay();
-                return true;
-            }});
-
+            buttonRetry.addListener(new InputListener() {
+                @Override
+                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                    gameover = false;
+                    myWorld.getPlayerShip().setLives(1);
+                    myWorld.getPlayerShip().setScore(0);
+                    myWorld.restPlay();
+                    return true;
+                }
+            });
+        }
         stageGameOv.act();
         stageGameOv.draw();
     }
