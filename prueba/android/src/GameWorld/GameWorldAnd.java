@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import GameObjects.Invaders;
 import GameObjects.ListInvaders;
 import GameObjects.Obstacle;
+import GameObjects.ObstacleGroups;
 import GameObjects.PlayerShip;
 import GameObjects.Ranking;
-import GameObjects.Shots;
-import GameObjects.ObstacleGroups;
 import GameObjects.older13;
+import com.mygdx.game.SpaceInvadersAnd;
+import android.os.Environment;
 
-
-public class GameWorld {
+public class GameWorldAnd {
 
     private PlayerShip playerShip;
     private ListInvaders invadersArmy ;
@@ -28,11 +28,17 @@ public class GameWorld {
 
     private int signo = 1;
 
-    public GameWorld(float x, float y) {
+    public GameWorldAnd(float x, float y) {
         this.screenX=x;
         this.screenY=y;
         invadersArmy = new ListInvaders(y);
-        name= SpaceInvaders.askForName();
+        name= SpaceInvadersAnd.askForName();
+        //Aqui se llama para hacer la foto
+
+
+
+
+        //
         old = new older13(false);
         playerShip = new PlayerShip(x, y, 25, 25,name);
         allObstacle= new ObstacleGroups(x,y);
@@ -295,6 +301,8 @@ public class GameWorld {
         invadersArmy=null;
         allObstacle=null;
         name= SpaceInvaders.askForName();
+
+        //AQUI hay que llamar a hacer la foto
         playerShip = new PlayerShip(this.screenX, this.screenY, 25, 25,name);
         allObstacle= new ObstacleGroups(this.screenX,this.screenY);
         invadersArmy = new ListInvaders(screenY);

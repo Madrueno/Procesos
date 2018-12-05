@@ -4,18 +4,20 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 
+import GameWorld.GameScreenAnd;
 import Helpers.AssetLoader;
 import Screens.GameScreen;
+import android.os.Environment;
 
-public class SpaceInvaders extends Game{
+public class SpaceInvadersAnd extends Game{
 	private static String name;
 	private static boolean android;
 	@Override
 	public void create() {
 		Gdx.app.log("SpaceInvadersGame", "created");
 		AssetLoader.loadBg();
-		setScreen(new GameScreen());
-		android=false;
+		setScreen(new GameScreenAnd());
+		android=true;
 
 	}
 
