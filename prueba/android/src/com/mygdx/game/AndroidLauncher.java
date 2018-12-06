@@ -58,7 +58,7 @@ public class AndroidLauncher extends AndroidApplication {
 		}
 
 		if (fotoHecha){
-			nombreImagen= playerShip.getNamePlayer()+playerShip.getScore()+".jpg";
+			nombreImagen= SpaceInvadersAnd.getName()+playerShip.getScore()+".jpg";
 		}
 		rutaImagenHecha= Environment.getExternalStorageDirectory()+File.separator+rutaFoto+nombreImagen;
 		File imagen=new File(rutaImagenHecha);
