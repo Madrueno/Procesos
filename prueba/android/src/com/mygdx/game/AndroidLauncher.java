@@ -36,7 +36,9 @@ public class AndroidLauncher extends AndroidApplication {
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
 		initialize(new SpaceInvadersAnd(), config);
 		SpaceInvadersAnd.setAndroidLauncher(this);
-		//name=getName();
+		image = new ImageView(this);
+		//image = findViewById(R);
+        //name=getName();
 
 	}
 
@@ -64,6 +66,7 @@ public class AndroidLauncher extends AndroidApplication {
 		intent.putExtra(MediaStore.EXTRA_OUTPUT,Uri.fromFile(imagen));
 		startActivityForResult(intent,0);
 
+
 	}
 	@Override
 	protected  void onActivityResult (int requestCode,int resultCode,Intent data){
@@ -76,7 +79,8 @@ public class AndroidLauncher extends AndroidApplication {
 					}
 				});
 		Bitmap bit =BitmapFactory.decodeFile(rutaImagenHecha);
-		image.setImageBitmap(bit);
+		//image.setImageBitmap(bit);
+
 	}
 
 

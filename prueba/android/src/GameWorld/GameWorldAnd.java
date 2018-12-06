@@ -295,6 +295,7 @@ public class GameWorldAnd {
     public ObstacleGroups getAllObstacle() {
         return allObstacle;
     }
+
     public void restPlay(){
         SpaceInvaders.setName(null);
         playerShip=null;

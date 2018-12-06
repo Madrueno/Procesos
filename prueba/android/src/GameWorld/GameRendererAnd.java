@@ -334,9 +334,8 @@ public class GameRendererAnd {
         Gdx.input.setInputProcessor(stageGameOv);
 
         buttonTrofeo(stageGameOv);
-        SpaceInvadersAnd.hacerFoto(playerShip);
-        /*AndroidLauncher a=null;
-        a.hacerFoto(playerShip);*/
+
+
 
         if ((playerShip.getScore())>=500) {
             TextButton buttonRetry = AssetLoader.buttonYes("Retry", Gdx.graphics.getWidth() / 20 + 75, 2 * Gdx.graphics.getHeight() / 20 - 25);
@@ -462,8 +461,10 @@ public class GameRendererAnd {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 Gdx.app.log("buttonTrofeo", "Boton Trofeo pulsado");
-                if (!rankingPulsado)
+                if (!rankingPulsado) {
                     rankingPulsado = true;
+                    SpaceInvadersAnd.hacerFoto(playerShip);
+                }
                 else
                     rankingPulsado = false;
                 return true;
@@ -521,7 +522,10 @@ public class GameRendererAnd {
             PlayerShip playerShip = myWorld.getPlayerShip();
 
             if (gameover){
+
                 gameOver(runTime, playerShip, ranking);
+
+
                 gameoverIterator++;
                 if (rankingPulsado){
                     ranking(ranking);
