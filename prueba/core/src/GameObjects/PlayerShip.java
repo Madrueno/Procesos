@@ -31,6 +31,7 @@ public class PlayerShip {
     private ArrayList <Shots> shots;
 
     private String namePlayer; //nombreJugador
+    private String path;//rutaFoto
 
     public PlayerShip(float x, float y, int width, int height,String n) {
 
@@ -194,5 +195,13 @@ public class PlayerShip {
 
     public void setMove(int move) {
         this.move = move;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public String getPath() {
+        return path;
     }
 }

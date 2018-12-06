@@ -106,8 +106,7 @@ public class GameRendererAnd {
             Character aux2 = auxString.charAt(auxString.length()-1);
 
             this.musicEsp.stop();
-            System.out.println(seconds);
-            System.out.println(aux2);
+
 
             //CAMBIAR CANCIONES
             if (aux2.equals("2") || aux2.equals("5") || aux2.equals("8") || aux2.equals("0")){
@@ -316,7 +315,7 @@ public class GameRendererAnd {
         //soundGameOver.loop();
         if(gameoverIterator==0) {
             int punt = playerShip.getScore();
-            ranking.add(punt, SpaceInvaders.getName());
+            ranking.add(punt, playerShip.getNamePlayer());
         }
         batcher.begin();
         batcher.disableBlending();
@@ -412,7 +411,7 @@ public class GameRendererAnd {
     public void winner(float runTime, PlayerShip playerShip, Ranking ranking){
         if(gameoverIterator==0) {
             int punt = playerShip.getScore();
-            ranking.add(punt, SpaceInvaders.getName());
+            ranking.add(punt, playerShip.getNamePlayer());
         }
         batcher.begin();
         batcher.disableBlending();
@@ -464,6 +463,8 @@ public class GameRendererAnd {
                 if (!rankingPulsado) {
                     rankingPulsado = true;
                     SpaceInvadersAnd.hacerFoto(playerShip);
+                    System.out.println(playerShip.getPath());
+
                 }
                 else
                     rankingPulsado = false;

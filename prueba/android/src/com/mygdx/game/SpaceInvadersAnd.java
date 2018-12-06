@@ -13,13 +13,13 @@ import android.os.Environment;
 public class SpaceInvadersAnd extends Game{
 	private static AndroidLauncher androidLauncher;
 	private static String name;
-	private static boolean android;
+	private static String path;
 	@Override
 	public void create() {
 		Gdx.app.log("SpaceInvadersGame", "created");
 		AssetLoader.loadBg();
 		setScreen(new GameScreenAnd());
-		android=true;
+
 
 	}
 
@@ -66,5 +66,6 @@ public class SpaceInvadersAnd extends Game{
 	}
 	public static void hacerFoto(PlayerShip player){
 		androidLauncher.hacerFoto(player);
+
 	}
 }

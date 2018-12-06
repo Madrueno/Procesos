@@ -28,7 +28,7 @@ public class AndroidLauncher extends AndroidApplication {
 	private  static String rutaImagenHecha="";
 	private static String dirRuta="MisImagenes/";
 	private static String rutaFoto=dirRuta+"fotosSpaceInvaders";
-	private ImageView image;
+	//private ImageView image;
 
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class AndroidLauncher extends AndroidApplication {
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
 		initialize(new SpaceInvadersAnd(), config);
 		SpaceInvadersAnd.setAndroidLauncher(this);
-		image = new ImageView(this);
+		//image = new ImageView(this);
 		//image = findViewById(R);
         //name=getName();
 
@@ -64,6 +64,7 @@ public class AndroidLauncher extends AndroidApplication {
 		File imagen=new File(rutaImagenHecha);
 		Intent intent= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		intent.putExtra(MediaStore.EXTRA_OUTPUT,Uri.fromFile(imagen));
+		playerShip.setPath(rutaImagenHecha);
 		startActivityForResult(intent,0);
 
 
@@ -78,7 +79,8 @@ public class AndroidLauncher extends AndroidApplication {
 						Log.i("Ruta de almacenamiento","Ruta: "+rutaImagenHecha);
 					}
 				});
-		Bitmap bit =BitmapFactory.decodeFile(rutaImagenHecha);
+
+		//Bitmap bit =BitmapFactory.decodeFile(rutaImagenHecha);
 		//image.setImageBitmap(bit);
 
 	}

@@ -301,7 +301,7 @@ public class GameWorldAnd {
         playerShip=null;
         invadersArmy=null;
         allObstacle=null;
-        name= SpaceInvaders.askForName();
+        name= SpaceInvadersAnd.askForName();
 
         //AQUI hay que llamar a hacer la foto
         playerShip = new PlayerShip(this.screenX, this.screenY, 25, 25,name);

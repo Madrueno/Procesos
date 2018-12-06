@@ -3,6 +3,7 @@ package GameObjects;
 public class JugadorRanking {
     private String name;
     private int Score;
+    private String rutaImagen;
 
     public JugadorRanking(String name, int Score){
         this.name=name;
