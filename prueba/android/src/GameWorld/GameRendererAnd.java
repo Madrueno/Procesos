@@ -13,8 +13,10 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -333,6 +335,7 @@ public class GameRendererAnd {
         Gdx.input.setInputProcessor(stageGameOv);
 
         buttonTrofeo(stageGameOv);
+        buttonCamara(stageGameOv);
 
 
 
@@ -433,6 +436,7 @@ public class GameRendererAnd {
         Gdx.input.setInputProcessor(stageGameOv);
 
         buttonTrofeo(stageGameOv);
+        buttonCamara(stageGameOv);
 
         if ((playerShip.getScore())>=500) {
         TextButton buttonRetry = AssetLoader.buttonYes("Retry", Gdx.graphics.getWidth()/20 +75 , 2*Gdx.graphics.getHeight()/20 -25);
@@ -451,15 +455,16 @@ public class GameRendererAnd {
         stageGameOv.act();
         stageGameOv.draw();
     }
-    public void buttonTrofeo(Stage stage){
 
-        ImageButton buttonTrofeo = AssetLoader.buttonTrofeo(15*stage.getWidth()/20, stage.getHeight()/20 -15);
-        stage.addActor(buttonTrofeo);
+    public void buttonCamara(Stage stage){
 
-        buttonTrofeo.addListener(new InputListener() {
+        ImageButton buttonCamara = AssetLoader.buttonCamara(5*stage.getWidth()/20, stage.getHeight()/20 -15);
+        stage.addActor(buttonCamara);
+
+        buttonCamara.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                Gdx.app.log("buttonTrofeo", "Boton Trofeo pulsado");
+                Gdx.app.log("buttonCamara", "Boton camara pulsado");
                 if (!rankingPulsado) {
                     rankingPulsado = true;
                     SpaceInvadersAnd.hacerFoto(myWorld.getPlayerShip());
@@ -472,6 +477,35 @@ public class GameRendererAnd {
             }});
 
     }
+
+    public void buttonTrofeo(Stage stage){
+
+        ImageButton buttonTrofeo = AssetLoader.buttonTrofeo(15*stage.getWidth()/20, stage.getHeight()/20 -15);
+        stage.addActor(buttonTrofeo);
+
+        buttonTrofeo.addListener(new InputListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                Gdx.app.log("buttonTrofeo", "Boton Trofeo pulsado");
+                if (!rankingPulsado) {
+                    rankingPulsado = true;
+                    //SpaceInvadersAnd.hacerFoto(myWorld.getPlayerShip());
+                   // Texture foto;
+                    //TextureRegion textureFoto;
+                    //System.out.println(playerShip.getPath());
+                    //foto = new Texture (Gdx.files.internal(playerShip.getPath()));
+                    //textureFoto=new TextureRegion(foto);
+                    //batcher.draw(textureFoto, 0, 0, 200, 500);
+                    System.out.println(playerShip.getPath());
+
+                }
+                else
+                    rankingPulsado = false;
+                return true;
+            }});
+
+    }
+
 
     public void ranking(Ranking ranking){
 
@@ -495,6 +529,7 @@ public class GameRendererAnd {
         Gdx.input.setInputProcessor(stage);
 
        buttonTrofeo(stage);
+       buttonCamara(stage);
 
         stage.act();
         stage.draw();

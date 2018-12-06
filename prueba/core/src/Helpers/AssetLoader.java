@@ -96,6 +96,16 @@ public class AssetLoader {
         return button;
     }
 
+    public static ImageButton buttonCamara(float x, float y){
+        Pixmap pixmap2 = new Pixmap(Gdx.files.internal("data/camara.png"));
+        Pixmap pixmap1 = new Pixmap(Gdx.graphics.getWidth()/5 -10, Gdx.graphics.getWidth()/5 -10, pixmap2.getFormat());
+
+        ImageButton button = new ImageButton(createDefaultDrawable(pixmap1, pixmap2));
+        button.setPosition(x, y);
+
+        return button;
+    }
+
     public static ImageButton buttonLeft(float x, float y){
         Pixmap pixmap2 = new Pixmap(Gdx.files.internal("data/left2.png"));
         Pixmap pixmap1 = new Pixmap(Gdx.graphics.getWidth()/5 -20, Gdx.graphics.getWidth()/5 -20, pixmap2.getFormat());
