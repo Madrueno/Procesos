@@ -5,8 +5,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.ImageView;
@@ -17,6 +19,9 @@ import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import java.io.File;
 
 import GameObjects.PlayerShip;
+
+import static android.Manifest.permission.CAMERA;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class AndroidLauncher extends AndroidApplication {
 	private  String name;
@@ -38,6 +43,11 @@ public class AndroidLauncher extends AndroidApplication {
 
 
 	public void hacerFoto(PlayerShip playerShip) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+			requestPermissions(new String[]{WRITE_EXTERNAL_STORAGE,CAMERA},100);
+		}
+		StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+		StrictMode.setVmPolicy(builder.build());
 		File fileImage = new File(Environment.getExternalStorageDirectory(),rutaFoto);
 		boolean fotoHecha=fileImage.exists();
 		String nombreImagen="";
@@ -46,7 +56,7 @@ public class AndroidLauncher extends AndroidApplication {
 		}
 
 		if (fotoHecha){
-			nombreImagen= playerShip.getNamePlayer()+playerShip.getScore()+"jpg";
+			nombreImagen= playerShip.getNamePlayer()+playerShip.getScore()+".jpg";
 		}
 		rutaImagenHecha= Environment.getExternalStorageDirectory()+File.separator+rutaFoto+nombreImagen;
 		File imagen=new File(rutaImagenHecha);
@@ -68,6 +78,9 @@ public class AndroidLauncher extends AndroidApplication {
 		Bitmap bit =BitmapFactory.decodeFile(rutaImagenHecha);
 		image.setImageBitmap(bit);
 	}
+
+
+
 	/*public String getName (){
 		Input.TextInputListener textListener = new Input.TextInputListener()
 		{
