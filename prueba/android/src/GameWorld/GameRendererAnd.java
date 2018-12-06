@@ -24,7 +24,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import com.mygdx.game.AndroidLauncher;
 import com.mygdx.game.SpaceInvaders;
+import com.mygdx.game.SpaceInvadersAnd;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -332,8 +334,9 @@ public class GameRendererAnd {
         Gdx.input.setInputProcessor(stageGameOv);
 
         buttonTrofeo(stageGameOv);
-
-        hacerFoto();
+        SpaceInvadersAnd.hacerFoto(playerShip);
+        /*AndroidLauncher a=null;
+        a.hacerFoto(playerShip);*/
 
         if ((playerShip.getScore())>=500) {
             TextButton buttonRetry = AssetLoader.buttonYes("Retry", Gdx.graphics.getWidth() / 20 + 75, 2 * Gdx.graphics.getHeight() / 20 - 25);
@@ -358,23 +361,7 @@ public class GameRendererAnd {
         stageGameOv.draw();
     }
 
-    private void hacerFoto() {
-        File fileImage = new File(Environment.getExternalStorageDirectory(),rutaFoto);
-        boolean fotoHecha=fileImage.exists();
-        String nombreImagen="";
-        if (!fotoHecha){
-            fotoHecha=fileImage.mkdirs();
-        }
 
-        if (fotoHecha){
-            nombreImagen= playerShip.getNamePlayer()+playerShip.getScore()+"jpg";
-        }
-        String rutaImagenHecha= Environment.getExternalStorageDirectory()+File.separator+rutaFoto+nombreImagen;
-        File imagen=new File(rutaImagenHecha);
-        Intent intent= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT,Uri.fromFile(imagen));
-
-    }
     /*
     public void gameOverNO(float runTime){
         soundGameOver.loop();
