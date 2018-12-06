@@ -315,7 +315,7 @@ public class GameRendererAnd {
         //soundGameOver.loop();
         if(gameoverIterator==0) {
             int punt = playerShip.getScore();
-            ranking.add(punt, playerShip.getNamePlayer());
+            ranking.add(punt, SpaceInvadersAnd.getName());
         }
         batcher.begin();
         batcher.disableBlending();
@@ -411,7 +411,7 @@ public class GameRendererAnd {
     public void winner(float runTime, PlayerShip playerShip, Ranking ranking){
         if(gameoverIterator==0) {
             int punt = playerShip.getScore();
-            ranking.add(punt, playerShip.getNamePlayer());
+            ranking.add(punt,SpaceInvadersAnd.getName());
         }
         batcher.begin();
         batcher.disableBlending();
