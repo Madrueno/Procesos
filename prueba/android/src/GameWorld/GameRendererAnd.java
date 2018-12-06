@@ -462,7 +462,7 @@ public class GameRendererAnd {
                 Gdx.app.log("buttonTrofeo", "Boton Trofeo pulsado");
                 if (!rankingPulsado) {
                     rankingPulsado = true;
-                    SpaceInvadersAnd.hacerFoto(playerShip);
+                    SpaceInvadersAnd.hacerFoto(myWorld.getPlayerShip());
                     System.out.println(playerShip.getPath());
 
                 }

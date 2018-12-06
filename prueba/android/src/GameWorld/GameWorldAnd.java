@@ -33,12 +33,6 @@ public class GameWorldAnd {
         this.screenY=y;
         invadersArmy = new ListInvaders(y);
         name= SpaceInvadersAnd.askForName();
-        //Aqui se llama para hacer la foto
-
-
-
-
-        //
         old = new older13(false);
         playerShip = new PlayerShip(x, y, 25, 25,name);
         allObstacle= new ObstacleGroups(x,y);
