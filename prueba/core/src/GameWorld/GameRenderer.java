@@ -433,6 +433,36 @@ public class GameRenderer {
 
     }
 
+    public void cambioMusica (float time){
+        int seconds = (int) time;
+
+        if ((seconds%20)==0 && seconds!=0) {
+            int aux = (int) seconds/20;
+            String auxString = Integer.toString(aux);
+            Character aux2 = auxString.charAt(auxString.length()-1);
+
+            this.musicEsp.stop();
+            System.out.println(seconds);
+            System.out.println(aux2);
+
+            //CAMBIAR CANCIONES
+            if (aux2.equals("2") || aux2.equals("5") || aux2.equals("8") || aux2.equals("0")){
+                this.musicEsp = Gdx.audio.newMusic(Gdx.files.getFileHandle("data/Countdown.mp3",FileType.Internal));
+                this.musicEsp.play();
+            }
+            else if (aux2.equals("3") || aux2.equals("6") || aux2.equals("9")){
+                this.musicEsp = Gdx.audio.newMusic(Gdx.files.getFileHandle("data/Countdown.mp3",FileType.Internal));
+                this.musicEsp.play();
+            }
+            else if (aux2.equals('4') || aux2.equals('7') || aux2.equals('1')){
+                this.musicEsp = Gdx.audio.newMusic(Gdx.files.getFileHandle("data/Countdown.mp3",FileType.Internal));
+                this.musicEsp.play();
+            }
+        }
+
+    }
+
+
     public void ranking(Ranking ranking){
 
         batcher.begin();
@@ -465,7 +495,7 @@ public class GameRenderer {
     public void render(float runTime) {
         Ranking ranking = myWorld.getRanking();
         myOld = (myWorld.getOlder());
-
+        cambioMusica(runTime);
         if (!myOld.getOld() && nono==false){
             if(nono ==true){
              // ranking(ranking);
