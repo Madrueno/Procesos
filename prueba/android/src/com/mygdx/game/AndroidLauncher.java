@@ -33,6 +33,7 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 public class AndroidLauncher extends AndroidApplication {
 	private  String name;
 	private  static String rutaImagenHecha="";
+
 	private static String dirRuta="MisImagenes/";
 	private static String rutaFoto=dirRuta+"fotosSpaceInvaders";
 	//private ImageView image;
@@ -71,10 +72,9 @@ public class AndroidLauncher extends AndroidApplication {
 		File imagen=new File(rutaImagenHecha);
 		Intent intent= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		intent.putExtra(MediaStore.EXTRA_OUTPUT,Uri.fromFile(imagen));
-		String n=SpaceInvaders.getName();
-		playerShip.setNamePlayer(n);
+		name=SpaceInvadersAnd.getName();
 		playerShip.setPath(rutaImagenHecha);
-
+		playerShip.setNamePlayer(name);
 		startActivityForResult(intent,0);
 
 
