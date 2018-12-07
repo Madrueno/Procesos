@@ -523,8 +523,11 @@ public class GameRendererAnd {
             font.draw(batcher, i+1 + " . " + ranking.getRanking().get(i).getName()+" : "+ranking.getRanking().get(i).getScore(), 20, 120+(i*20));
             if (ranking.getRanking().get(i).getFoto()!=null) {
                 texture = new TextureRegion(ranking.getRanking().get(i).getFoto());
+                int x = texture.getRegionWidth();
+                int y = (int)( texture.getRegionHeight()/1.7);
+                texture.setRegion(0, 0, x,  y);
                 texture.flip(false, true);
-                batcher.draw(texture, 100, 110 + (i * 20), 17, 23);
+                batcher.draw(texture, 100, 110 + (i * 20), 20, 20);
             }
         }
 
