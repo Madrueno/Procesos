@@ -26,6 +26,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.game.AndroidLauncher;
 import com.mygdx.game.SpaceInvaders;
 import com.mygdx.game.SpaceInvadersAnd;
@@ -45,6 +46,8 @@ import Helpers.AssetLoader;
 
 
 public class GameRendererAnd {
+
+    TextureRegion texture;
 
     private GameWorldAnd myWorld;
     private PlayerShip playerShip;
@@ -518,8 +521,11 @@ public class GameRendererAnd {
         font.getData().setScale(0.70f, 0.70f);
         for (int i=0; i<ranking.getRanking().size(); i++){
             font.draw(batcher, i+1 + " . " + ranking.getRanking().get(i).getName()+" : "+ranking.getRanking().get(i).getScore(), 20, 120+(i*20));
-            if (ranking.getRanking().get(i).getFoto()!=null)
-                batcher.draw(ranking.getRanking().get(i).getFoto(),80, 120+(i*20), 40, 25);
+            if (ranking.getRanking().get(i).getFoto()!=null) {
+                texture = new TextureRegion(ranking.getRanking().get(i).getFoto());
+                texture.flip(false, true);
+                batcher.draw(texture, 100, 110 + (i * 20), 17, 23);
+            }
         }
 
         batcher.end();
