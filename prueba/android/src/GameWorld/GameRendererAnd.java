@@ -466,7 +466,7 @@ public class GameRendererAnd {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 Gdx.app.log("buttonCamara", "Boton camara pulsado");
-                
+
                     SpaceInvadersAnd.hacerFoto(myWorld.getPlayerShip());
 
                 return true;
@@ -483,8 +483,8 @@ public class GameRendererAnd {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 Gdx.app.log("buttonTrofeo", "Boton Trofeo pulsado");
-                if (rankingPulsado) {
-                    rankingPulsado = false;
+                if (!rankingPulsado) {
+                    rankingPulsado = true;
                     //SpaceInvadersAnd.hacerFoto(myWorld.getPlayerShip());
                    // Texture foto;
                     //TextureRegion textureFoto;
@@ -497,7 +497,7 @@ public class GameRendererAnd {
 
                 }
                 else
-                    rankingPulsado = true;
+                    rankingPulsado = false;
                 return true;
             }});
 
@@ -520,7 +520,7 @@ public class GameRendererAnd {
         for (int i=0; i<ranking.getRanking().size(); i++){
             font.draw(batcher, i+1 + " . " + ranking.getRanking().get(i).getName()+" : "+ranking.getRanking().get(i).getScore(), 20, 120+(i*15));
             if (ranking.getRanking().get(i).getFoto()!=null)
-            batcher.draw(ranking.getRanking().get(i).getFoto(),3, 20, 128, 128);
+            batcher.draw(ranking.getRanking().get(i).getFoto(),30, 100, 128, 128);
         }
 
         batcher.end();

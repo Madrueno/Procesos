@@ -36,6 +36,8 @@ public class AndroidLauncher extends AndroidApplication {
 
 	private static String dirRuta="MisImagenes/";
 	private static String rutaFoto=dirRuta+"fotosSpaceInvaders";
+	private static  TextureRegion text;
+	private static  Texture t;
 	//private ImageView image;
 
 	@Override
@@ -73,6 +75,8 @@ public class AndroidLauncher extends AndroidApplication {
 		Intent intent= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		intent.putExtra(MediaStore.EXTRA_OUTPUT,Uri.fromFile(imagen));
 		name=SpaceInvadersAnd.getName();
+		t=new Texture(Gdx.files.external(rutaImagenHecha));
+		text=new TextureRegion(t);
 		playerShip.setPath(rutaImagenHecha);
 		playerShip.setNamePlayer(name);
 		startActivityForResult(intent,0);
