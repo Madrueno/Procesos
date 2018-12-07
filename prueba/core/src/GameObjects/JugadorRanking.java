@@ -32,4 +32,8 @@ public class JugadorRanking {
     public void setFoto(TextureRegion foto) {
         this.foto = foto;
     }
+
+    public TextureRegion getFoto() {
+        return foto;
+    }
 }

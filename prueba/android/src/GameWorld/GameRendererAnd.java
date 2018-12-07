@@ -466,14 +466,9 @@ public class GameRendererAnd {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 Gdx.app.log("buttonCamara", "Boton camara pulsado");
-                if (!rankingPulsado) {
-                    rankingPulsado = true;
+                
                     SpaceInvadersAnd.hacerFoto(myWorld.getPlayerShip());
-                    System.out.println(playerShip.getPath());
 
-                }
-                else
-                    rankingPulsado = false;
                 return true;
             }});
 
@@ -524,6 +519,8 @@ public class GameRendererAnd {
         font.getData().setScale(0.70f, 0.70f);
         for (int i=0; i<ranking.getRanking().size(); i++){
             font.draw(batcher, i+1 + " . " + ranking.getRanking().get(i).getName()+" : "+ranking.getRanking().get(i).getScore(), 20, 120+(i*15));
+            if (ranking.getRanking().get(i).getFoto()!=null)
+            batcher.draw(ranking.getRanking().get(i).getFoto(),3, 20, 128, 128);
         }
 
         batcher.end();
