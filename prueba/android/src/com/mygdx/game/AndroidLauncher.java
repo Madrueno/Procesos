@@ -75,8 +75,7 @@ public class AndroidLauncher extends AndroidApplication {
 		Intent intent= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		intent.putExtra(MediaStore.EXTRA_OUTPUT,Uri.fromFile(imagen));
 		name=SpaceInvadersAnd.getName();
-		t=new Texture(Gdx.files.external(rutaImagenHecha));
-		text=new TextureRegion(t);
+
 		playerShip.setPath(rutaImagenHecha);
 		playerShip.setNamePlayer(name);
 		startActivityForResult(intent,0);

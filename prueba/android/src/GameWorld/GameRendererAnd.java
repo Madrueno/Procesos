@@ -63,10 +63,11 @@ public class GameRendererAnd {
     private int midPointY;
     private int gameHeight;
     private static String dirRuta="MisImagenes/";
-    private static String rutaFoto=dirRuta+"fotosSpaceInvaders";
+    private static String rutaFoto=dirRuta+"fotosSpaceInvaders/";
 
     private older13 myOld;
     public static boolean gameover = false;
+    public static boolean jugadorGuardado=false;
     public int gameoverIterator=0;
     private boolean nono =false;
 
@@ -352,6 +353,7 @@ public class GameRendererAnd {
                     //myWorld.getPlayerShip().setScore(0);
                     //myWorld.getInvadersArmy().setBajada(1);
                     myWorld.restPlay();
+                    jugadorGuardado=false;
                     gameover = false;
                     gameoverIterator = 0;
                     return true;
@@ -485,16 +487,13 @@ public class GameRendererAnd {
                 Gdx.app.log("buttonTrofeo", "Boton Trofeo pulsado");
                 if (!rankingPulsado) {
                     rankingPulsado = true;
-                    //SpaceInvadersAnd.hacerFoto(myWorld.getPlayerShip());
-                   // Texture foto;
-                    //TextureRegion textureFoto;
-                    //System.out.println(playerShip.getPath());
-                    //foto = new Texture (Gdx.files.internal(playerShip.getPath()));
-                    //textureFoto=new TextureRegion(foto);
-                    //batcher.draw(textureFoto, 0, 0, 200, 500);
-                    ranking.add(playerShip.getScore(),playerShip.getNamePlayer(),playerShip.getFoto());
-                    System.out.println(playerShip.getPath()+playerShip.getNamePlayer());
-
+                    if(!jugadorGuardado) {
+                        Texture t = new Texture(Gdx.files.absolute(playerShip.getPath()));
+                        TextureRegion text = new TextureRegion(t);
+                        ranking.add(playerShip.getScore(), playerShip.getNamePlayer(), text);
+                        System.out.println(playerShip.getPath() + playerShip.getNamePlayer());
+                        jugadorGuardado=true;
+                    }
                 }
                 else
                     rankingPulsado = false;
@@ -518,9 +517,9 @@ public class GameRendererAnd {
         BitmapFont font = new BitmapFont(true);
         font.getData().setScale(0.70f, 0.70f);
         for (int i=0; i<ranking.getRanking().size(); i++){
-            font.draw(batcher, i+1 + " . " + ranking.getRanking().get(i).getName()+" : "+ranking.getRanking().get(i).getScore(), 20, 120+(i*15));
+            font.draw(batcher, i+1 + " . " + ranking.getRanking().get(i).getName()+" : "+ranking.getRanking().get(i).getScore(), 20, 120+(i*20));
             if (ranking.getRanking().get(i).getFoto()!=null)
-            batcher.draw(ranking.getRanking().get(i).getFoto(),30, 100, 128, 128);
+                batcher.draw(ranking.getRanking().get(i).getFoto(),80, 120+(i*20), 40, 25);
         }
 
         batcher.end();
