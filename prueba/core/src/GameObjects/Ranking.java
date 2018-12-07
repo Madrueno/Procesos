@@ -20,8 +20,8 @@ public class Ranking {
        ranking.addLast(new JugadorRanking( "Rodrigo", 100,null));
     }
     public void add(int punt, String name, TextureRegion text){
-       if ((name==null)||(name.equals("")))
-           name="You";
+       //if ((name==null)||(name.equals("")))
+           //name="You";
        int i=0;
        while((ranking.get(i).getScore()>punt)&&i<ranking.size()-1){
            i++;

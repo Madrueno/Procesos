@@ -72,6 +72,7 @@ public class GameRendererAnd {
 
     private boolean pressed=false;
     private boolean rankingPulsado=false;
+    Ranking ranking;
 
     private ArrayList<ArrayList<Obstacle>> obstacles;
 
@@ -313,12 +314,12 @@ public class GameRendererAnd {
 
     }
 
-    public void gameOver(float runTime, PlayerShip playerShip, Ranking ranking){
+    public void gameOver(float runTime, PlayerShip playerShip){
         //soundGameOver.loop();
-        if(gameoverIterator==0) {
+        /*if(gameoverIterator==0) {
             int punt = playerShip.getScore();
             ranking.add(punt, SpaceInvadersAnd.getName(),null);
-        }
+        }*/
         batcher.begin();
         batcher.disableBlending();
         batcher.draw(AssetLoader.textureBg,0, 0, 200, 500);
@@ -411,11 +412,11 @@ public class GameRendererAnd {
    // }
 
 
-    public void winner(float runTime, PlayerShip playerShip, Ranking ranking){
-        if(gameoverIterator==0) {
+    public void winner(float runTime, PlayerShip playerShip){
+        /*if(gameoverIterator==0) {
             int punt = playerShip.getScore();
             ranking.add(punt,SpaceInvadersAnd.getName(),null);
-        }
+        }*/
         batcher.begin();
         batcher.disableBlending();
         batcher.draw(AssetLoader.textureBg,0, 0, 200, 500);
@@ -487,8 +488,8 @@ public class GameRendererAnd {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 Gdx.app.log("buttonTrofeo", "Boton Trofeo pulsado");
-                if (!rankingPulsado) {
-                    rankingPulsado = true;
+                if (rankingPulsado) {
+                    rankingPulsado = false;
                     //SpaceInvadersAnd.hacerFoto(myWorld.getPlayerShip());
                    // Texture foto;
                     //TextureRegion textureFoto;
@@ -496,18 +497,19 @@ public class GameRendererAnd {
                     //foto = new Texture (Gdx.files.internal(playerShip.getPath()));
                     //textureFoto=new TextureRegion(foto);
                     //batcher.draw(textureFoto, 0, 0, 200, 500);
-                    System.out.println(playerShip.getPath());
+                    ranking.add(playerShip.getScore(),playerShip.getNamePlayer(),playerShip.getFoto());
+                    System.out.println(playerShip.getPath()+playerShip.getNamePlayer());
 
                 }
                 else
-                    rankingPulsado = false;
+                    rankingPulsado = true;
                 return true;
             }});
 
     }
 
 
-    public void ranking(Ranking ranking){
+    public void ranking(){
 
         batcher.begin();
         batcher.disableBlending();
@@ -520,7 +522,7 @@ public class GameRendererAnd {
 
         BitmapFont font = new BitmapFont(true);
         font.getData().setScale(0.70f, 0.70f);
-        for (int i=0; i<5; i++){
+        for (int i=0; i<ranking.getRanking().size(); i++){
             font.draw(batcher, i+1 + " . " + ranking.getRanking().get(i).getName()+" : "+ranking.getRanking().get(i).getScore(), 20, 120+(i*15));
         }
 
@@ -538,7 +540,7 @@ public class GameRendererAnd {
 
 
     public void render(float runTime) {
-        Ranking ranking = myWorld.getRanking();
+        ranking = myWorld.getRanking();
         myOld = (myWorld.getOlder());
 
         cambioMusica(runTime);
@@ -559,12 +561,12 @@ public class GameRendererAnd {
 
             if (gameover){
 
-                gameOver(runTime, playerShip, ranking);
+                gameOver(runTime, playerShip);
 
 
                 gameoverIterator++;
                 if (rankingPulsado){
-                    ranking(ranking);
+                    ranking();
                 }
 
             }else {
@@ -618,10 +620,10 @@ public class GameRendererAnd {
 
                 //Mira si hemos exterminado por completo el ejercito
                 if (myWorld.getInvadersDeath()==invadersAlive.getArmy().size()){
-                    winner(runTime, playerShip, ranking);
+                    winner(runTime, playerShip);
                     gameoverIterator++;
                     if (rankingPulsado){
-                        ranking(ranking);
+                        ranking();
                     }
                 }
             }

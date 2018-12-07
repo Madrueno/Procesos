@@ -71,6 +71,8 @@ public class AndroidLauncher extends AndroidApplication {
 		File imagen=new File(rutaImagenHecha);
 		Intent intent= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		intent.putExtra(MediaStore.EXTRA_OUTPUT,Uri.fromFile(imagen));
+		String n=SpaceInvaders.getName();
+		playerShip.setNamePlayer(n);
 		playerShip.setPath(rutaImagenHecha);
 
 		startActivityForResult(intent,0);
