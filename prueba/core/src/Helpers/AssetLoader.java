@@ -13,6 +13,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
+import java.util.ArrayList;
+
 public class AssetLoader {
     public static Texture bg, title;
     public static TextureRegion textureBg, textureTitle;
@@ -29,6 +31,9 @@ public class AssetLoader {
     public static TextureAtlas text;
     public static Texture text1;
     public static TextureRegion text2;
+
+    /*public static ArrayList<Texture> list;
+    public static ArrayList <TextureRegion> listRegion;*/
 
     public static void loadBg() {
          bg = new Texture (Gdx.files.internal("data/bbb.png"));
@@ -66,6 +71,7 @@ public class AssetLoader {
          text.addRegion("text",text2);
          text.addRegion("text",text1,0,0,20,30);
          loadColorInvaders();
+
 
     }
 
@@ -255,5 +261,6 @@ public class AssetLoader {
     public static void dispose() {
 
     }
+
 
 }

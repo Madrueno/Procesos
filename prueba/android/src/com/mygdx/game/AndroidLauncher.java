@@ -13,14 +13,21 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.ImageView;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+
+import org.w3c.dom.Text;
 
 import java.io.File;
 
 import GameObjects.PlayerShip;
+import Helpers.AssetLoader;
 
 import static android.Manifest.permission.CAMERA;
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class AndroidLauncher extends AndroidApplication {
@@ -46,7 +53,7 @@ public class AndroidLauncher extends AndroidApplication {
 
 	public void hacerFoto(PlayerShip playerShip) {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-			requestPermissions(new String[]{WRITE_EXTERNAL_STORAGE,CAMERA},100);
+			requestPermissions(new String[]{WRITE_EXTERNAL_STORAGE,CAMERA,READ_EXTERNAL_STORAGE},100);
 		}
 		StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
 		StrictMode.setVmPolicy(builder.build());
@@ -65,6 +72,7 @@ public class AndroidLauncher extends AndroidApplication {
 		Intent intent= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		intent.putExtra(MediaStore.EXTRA_OUTPUT,Uri.fromFile(imagen));
 		playerShip.setPath(rutaImagenHecha);
+
 		startActivityForResult(intent,0);
 
 
@@ -77,6 +85,7 @@ public class AndroidLauncher extends AndroidApplication {
 					@Override
 					public void onScanCompleted(String path, Uri uri) {
 						Log.i("Ruta de almacenamiento","Ruta: "+rutaImagenHecha);
+
 					}
 				});
 

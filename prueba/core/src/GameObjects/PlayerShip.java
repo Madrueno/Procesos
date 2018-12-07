@@ -2,6 +2,7 @@ package GameObjects;
 
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
@@ -32,6 +33,7 @@ public class PlayerShip {
 
     private String namePlayer; //nombreJugador
     private String path;//rutaFoto
+    private TextureRegion foto;
 
     public PlayerShip(float x, float y, int width, int height,String n) {
 
@@ -50,6 +52,8 @@ public class PlayerShip {
         this.shots=new ArrayList();
         namePlayer=n;
     }
+
+
 
     public void setNamePlayer(String name){
         namePlayer=name;
@@ -189,6 +193,10 @@ public class PlayerShip {
         this.lives=this.lives-1;
     }
 
+    public float getScreenWidth() {
+        return screenWidth;
+    }
+
     public float getScreenHeight() {
         return screenHeight;
     }
@@ -203,5 +211,12 @@ public class PlayerShip {
 
     public String getPath() {
         return path;
+    }
+    public void setFoto(TextureRegion foto) {
+        this.foto = foto;
+    }
+
+    public TextureRegion getFoto() {
+        return foto;
     }
 }
