@@ -489,11 +489,13 @@ public class GameRendererAnd {
                 if (!rankingPulsado) {
                     rankingPulsado = true;
                     if(!jugadorGuardado) {
-                        Texture t = new Texture(Gdx.files.absolute(playerShip.getPath()));
-                        TextureRegion text = new TextureRegion(t);
-                        ranking.add(playerShip.getScore(), playerShip.getNamePlayer(), text);
-                        System.out.println(playerShip.getPath() + playerShip.getNamePlayer());
-                        jugadorGuardado=true;
+                        if (playerShip.getPath()!=null) {
+                            Texture t = new Texture(Gdx.files.absolute(playerShip.getPath()));
+                            TextureRegion text = new TextureRegion(t);
+                            ranking.add(playerShip.getScore(), playerShip.getNamePlayer(), text);
+                            System.out.println(playerShip.getPath() + playerShip.getNamePlayer());
+                            jugadorGuardado = true;
+                        }
                     }
                 }
                 else
