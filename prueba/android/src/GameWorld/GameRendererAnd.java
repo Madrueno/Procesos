@@ -95,6 +95,7 @@ public class GameRendererAnd {
         this.soundGameOver= Gdx.audio.newSound(Gdx.files.getFileHandle("data/go.mp3",FileType.Internal));
         this.musicEsp=Gdx.audio.newMusic(Gdx.files.getFileHandle("data/CARIBEMIXDOHMILDIECIHOCHO.mp3",FileType.Internal));
         this.musicEsp.play();
+        this.musicEsp.setLooping(true);
         cam = new OrthographicCamera();
         cam.setToOrtho(true, 136, gameHeight);
 
