@@ -133,10 +133,42 @@ public class GameRendererAnd {
         Stage stage = new Stage();
         Gdx.input.setInputProcessor(stage);
 
+
+
+
+
         ImageButton buttonLeft = AssetLoader.buttonLeft(Gdx.graphics.getWidth()/20, Gdx.graphics.getHeight()/20 );
+        buttonLeft.addListener(new InputListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                Gdx.app.log("buttonRight", "Boton izquierdo pulsado");
+                /* Si alguien intenta touchUp hay que des-comentar esto
+                playerShip.setVelocity(-5,0); */
+                playerShip.setLeft();
+                return true;
+            }
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                playerShip.setVelocity(0,0);
+                super.touchUp(event,  x, y,  pointer,  button);
+            }
+        });
         stage.addActor(buttonLeft);
 
         ImageButton buttonRight = AssetLoader.buttonRight(7*Gdx.graphics.getWidth()/20 , Gdx.graphics.getHeight()/20 );
+        buttonRight.addListener(new InputListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                Gdx.app.log("buttonRight", "Boton derecho pulsado");
+                /* Si alguien intenta touchUp hay que des-comentar esto
+                playerShip.setVelocity(5,0); */
+                playerShip.setRight();
+                return true;
+            }
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                playerShip.setVelocity(0,0);
+            }
+        });
         stage.addActor(buttonRight);
 
         ImageButton buttonUp = AssetLoader.buttonUp(4*Gdx.graphics.getWidth()/20 , Gdx.graphics.getWidth()/5);
@@ -148,21 +180,9 @@ public class GameRendererAnd {
         ImageButton buttonShoot = AssetLoader.buttonShoot(15*stage.getWidth()/20, stage.getHeight()/20 -15);
         stage.addActor(buttonShoot);
 
-        buttonLeft.addListener(new InputListener() {
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                Gdx.app.log("buttonRight", "Boton izquierdo pulsado");
-                playerShip.setLeft();
-                return true;
-            }});
 
-        buttonRight.addListener(new InputListener() {
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                Gdx.app.log("buttonRight", "Boton derecho pulsado");
-                playerShip.setRight();
-                return true;
-            }});
+
+
 
         buttonUp.addListener(new InputListener() {
             @Override
@@ -326,12 +346,11 @@ public class GameRendererAnd {
         batcher.disableBlending();
         batcher.draw(AssetLoader.textureBg,0, 0, 200, 500);
         batcher.enableBlending();
-
-        batcher.draw(AssetLoader.textureGameOver, 3, 20, 128, 128);
+        batcher.draw(AssetLoader.textureGameOver, 3, 10, 128, 128);
 
         BitmapFont font = new BitmapFont(true);
         font.getData().setScale(0.95f, 0.95f);
-        font.draw(batcher, "Your final score: " + String.valueOf(playerShip.getScore()), 8, 150);
+        font.draw(batcher, "Your final score: " + String.valueOf(playerShip.getScore()), 5, 120);
 
         batcher.end();
         Stage stageGameOv = new Stage();
@@ -343,8 +362,10 @@ public class GameRendererAnd {
 
 
         if ((playerShip.getScore())>=500) {
-            TextButton buttonRetry = AssetLoader.buttonYes("Retry", Gdx.graphics.getWidth() / 20 + 75, 2 * Gdx.graphics.getHeight() / 20 - 25);
+            TextButton buttonRetry = AssetLoader.buttonYes("Retry", Gdx.graphics.getWidth()*1/10,  Gdx.graphics.getHeight()* 2/ 10, Gdx.graphics.getWidth()*8/10, Gdx.graphics.getHeight()*1/10+10);
             buttonRetry.getLabel().setFontScale(Gdx.graphics.getWidth() / 140);
+
+
 
             buttonRetry.addListener(new InputListener() {
                 @Override
@@ -601,7 +622,7 @@ public class GameRendererAnd {
 
                 if (playerShip.getLives() == 0) {
                     gameover = true;
-                    batcher.draw(AssetLoader.textureGameOver, 3, 20, 128, 128);
+                    batcher.draw(AssetLoader.textureGameOver, Gdx.graphics.getWidth()*1/5, Gdx.graphics.getHeight()*2/10, Gdx.graphics.getWidth()*3/5, Gdx.graphics.getHeight()*3/10);
                 }
                 float time = runTime;
                 invaders(batcher, time);

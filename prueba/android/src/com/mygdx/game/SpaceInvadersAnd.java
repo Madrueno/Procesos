@@ -47,7 +47,7 @@ public class SpaceInvadersAnd extends Game{
 
 			}
 		};
-		Gdx.input.getTextInput(textListener, "Introduce your Name: ", "", "");
+		Gdx.input.getTextInput(textListener, "Please, insert a name: ", "", "");
 
 
 		return name;

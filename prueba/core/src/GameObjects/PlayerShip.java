@@ -43,7 +43,7 @@ public class PlayerShip {
         this.screenWidth=x;
         this.screenHeight= y;
         position = new Vector2(x/2, screenHeight-(height+23));
-        velocity = new Vector2(1, 0);
+        velocity = new Vector2(0, 0);
         acceleration = new Vector2(0, 0);
         hitbox = new Rectangle(x/2, screenHeight-(height+23), 3, 3);
         //hitbox = new Rectangle(0, 0, 0, 0);
@@ -101,7 +101,9 @@ public class PlayerShip {
     public void update(float delta) {
 
         //velocity.add(acceleration.cpy().scl(delta));
-
+        /* Si alguien intenta touchUp hay que des-comentar esto
+        position.x=position.x+velocity.x;
+        */
         if (velocity.y > 200) {
             velocity.y = 200;
         }
@@ -129,9 +131,9 @@ public class PlayerShip {
         else if (move==1){
             position.x=position.x-velocity.x;
         }
-        else{
-            position.x=position.x+velocity.x;
-        }
+        /*else{
+
+        }*/
         Random generator = new Random();
         int randomNumber = generator.nextInt(1000);
         if (randomNumber == 1) {
@@ -208,7 +210,10 @@ public class PlayerShip {
     public void setPath(String path) {
         this.path = path;
     }
-
+    public void setVelocity(int x, int y){
+        this.velocity.x= x;
+        this.velocity.y= y;
+    }
     public String getPath() {
         return path;
     }

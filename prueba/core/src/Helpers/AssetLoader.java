@@ -103,8 +103,8 @@ public class AssetLoader {
     }
 
     public static ImageButton buttonCamara(float x, float y){
-        Pixmap pixmap2 = new Pixmap(Gdx.files.internal("data/camara.png"));
-        Pixmap pixmap1 = new Pixmap(Gdx.graphics.getWidth()/5 -10, Gdx.graphics.getWidth()/5 -10, pixmap2.getFormat());
+        Pixmap pixmap2 = new Pixmap(Gdx.files.internal("data/Camara2.png"));
+        Pixmap pixmap1 = new Pixmap(Gdx.graphics.getWidth()/5 +10, Gdx.graphics.getWidth()/5 -10, pixmap2.getFormat());
 
         ImageButton button = new ImageButton(createDefaultDrawable(pixmap1, pixmap2));
         button.setPosition(x, y);
@@ -165,6 +165,13 @@ public class AssetLoader {
     public static TextButton buttonYes(String text, int x, int y){
         TextButton button = new TextButton(text, mySkin());
         button.setPosition(x, y);
+        return button;
+    }
+    public static TextButton buttonYes(String text, int x, int y, float width, float height){
+        TextButton button = new TextButton(text, mySkin());
+        button.setPosition(x, y);
+        button.setWidth(width);
+        button.setHeight(height);
         return button;
     }
     public static TextButton buttonNo(String text, int x, int y){
