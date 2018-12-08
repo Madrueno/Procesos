@@ -93,7 +93,7 @@ public class GameRendererAnd {
         this.midPointY = midPointY;
         this.soundShot= Gdx.audio.newSound(Gdx.files.getFileHandle("data/las.mp3",FileType.Internal));
         this.soundGameOver= Gdx.audio.newSound(Gdx.files.getFileHandle("data/go.mp3",FileType.Internal));
-        this.musicEsp=Gdx.audio.newMusic(Gdx.files.getFileHandle("data/music2.mp3",FileType.Internal));
+        this.musicEsp=Gdx.audio.newMusic(Gdx.files.getFileHandle("data/CARIBEMIXDOHMILDIECIHOCHO.mp3",FileType.Internal));
         this.musicEsp.play();
         cam = new OrthographicCamera();
         cam.setToOrtho(true, 136, gameHeight);
@@ -575,7 +575,7 @@ public class GameRendererAnd {
         ranking = myWorld.getRanking();
         myOld = (myWorld.getOlder());
 
-        cambioMusica(runTime);
+        //cambioMusica(runTime);
         if (!myOld.getOld() && nono==false){
             if(nono ==true){
              // ranking(ranking);
