@@ -22,6 +22,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Random;
+
 import com.badlogic.gdx.files.FileHandle;
 import com.mygdx.game.SpaceInvaders;
 
@@ -78,7 +80,7 @@ public class GameRenderer {
         this.midPointY = midPointY;
         this.soundShot= Gdx.audio.newSound(Gdx.files.getFileHandle("data/las.mp3",FileType.Internal));
         this.soundGameOver= Gdx.audio.newSound(Gdx.files.getFileHandle("data/go.mp3",FileType.Internal));
-        this.musicEsp=Gdx.audio.newMusic(Gdx.files.getFileHandle("data/esp1.mp3",FileType.Internal));
+        this.musicEsp=Gdx.audio.newMusic(Gdx.files.getFileHandle("data/Music2.mp3",FileType.Internal));
         this.musicEsp.play();
         cam = new OrthographicCamera();
         cam.setToOrtho(true, 136, gameHeight);
@@ -436,25 +438,23 @@ public class GameRenderer {
         int seconds = (int) time;
 
         if ((seconds%20)==0 && seconds!=0) {
-            int aux = (int) seconds/20;
-            String auxString = Integer.toString(aux);
-            Character aux2 = auxString.charAt(auxString.length()-1);
-
+            Random generator = new Random();
+            int aux = generator.nextInt(100);
+            int aux2 = aux % 10;
+            //String auxString = Integer.toString(aux);
+            //Character aux2 = auxString.charAt(auxString.length()-1);
             this.musicEsp.stop();
-            System.out.println(seconds);
-            System.out.println(aux2);
 
-            //CAMBIAR CANCIONES
-            if (aux2.equals("2") || aux2.equals("5") || aux2.equals("8") || aux2.equals("0")){
+            if (aux2==2 || aux2==5 || aux2==8 || aux2==0){
                 this.musicEsp = Gdx.audio.newMusic(Gdx.files.getFileHandle("data/Countdown.mp3",FileType.Internal));
                 this.musicEsp.play();
             }
-            else if (aux2.equals("3") || aux2.equals("6") || aux2.equals("9")){
-                this.musicEsp = Gdx.audio.newMusic(Gdx.files.getFileHandle("data/Countdown.mp3",FileType.Internal));
+            else if (aux2==3 || aux2==6 || aux2==9){
+                this.musicEsp = Gdx.audio.newMusic(Gdx.files.getFileHandle("data/Never.mp3",FileType.Internal));
                 this.musicEsp.play();
             }
-            else if (aux2.equals('4') || aux2.equals('7') || aux2.equals('1')){
-                this.musicEsp = Gdx.audio.newMusic(Gdx.files.getFileHandle("data/Countdown.mp3",FileType.Internal));
+            else if (aux2==4 || aux2==7 || aux2==1){
+                this.musicEsp = Gdx.audio.newMusic(Gdx.files.getFileHandle("data/music3.mp3",FileType.Internal));
                 this.musicEsp.play();
             }
         }

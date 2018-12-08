@@ -33,6 +33,7 @@ import com.mygdx.game.SpaceInvadersAnd;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Random;
 
 import GameObjects.Invaders;
 import GameObjects.ListInvaders;
@@ -92,7 +93,7 @@ public class GameRendererAnd {
         this.midPointY = midPointY;
         this.soundShot= Gdx.audio.newSound(Gdx.files.getFileHandle("data/las.mp3",FileType.Internal));
         this.soundGameOver= Gdx.audio.newSound(Gdx.files.getFileHandle("data/go.mp3",FileType.Internal));
-        this.musicEsp=Gdx.audio.newMusic(Gdx.files.getFileHandle("data/esp1.mp3",FileType.Internal));
+        this.musicEsp=Gdx.audio.newMusic(Gdx.files.getFileHandle("data/music2.mp3",FileType.Internal));
         this.musicEsp.play();
         cam = new OrthographicCamera();
         cam.setToOrtho(true, 136, gameHeight);
@@ -108,21 +109,22 @@ public class GameRendererAnd {
         int seconds = (int) time;
 
         if ((seconds%20)==0 && seconds!=0) {
-            int aux = (int) seconds/20;
-            String auxString = Integer.toString(aux);
-            Character aux2 = auxString.charAt(auxString.length()-1);
-
+            Random generator = new Random();
+            int aux = generator.nextInt(100);
+            int aux2 = aux % 10;
+            //String auxString = Integer.toString(aux);
+            //Character aux2 = auxString.charAt(auxString.length()-1);
             this.musicEsp.stop();
 
-            if (aux2.equals("2") || aux2.equals("5") || aux2.equals("8") || aux2.equals("0")){
-                this.musicEsp = Gdx.audio.newMusic(Gdx.files.getFileHandle("data/music1.mp3",FileType.Internal));
+            if (aux2==2 || aux2==5 || aux2==8 || aux2==0){
+                this.musicEsp = Gdx.audio.newMusic(Gdx.files.getFileHandle("data/Countdown.mp3",FileType.Internal));
                 this.musicEsp.play();
             }
-            else if (aux2.equals("3") || aux2.equals("6") || aux2.equals("9")){
-                this.musicEsp = Gdx.audio.newMusic(Gdx.files.getFileHandle("data/music2.mp3",FileType.Internal));
+            else if (aux2==3 || aux2==6 || aux2==9){
+                this.musicEsp = Gdx.audio.newMusic(Gdx.files.getFileHandle("data/Never.mp3",FileType.Internal));
                 this.musicEsp.play();
             }
-            else if (aux2.equals('4') || aux2.equals('7') || aux2.equals('1')){
+            else if (aux2==4 || aux2==7 || aux2==1){
                 this.musicEsp = Gdx.audio.newMusic(Gdx.files.getFileHandle("data/music3.mp3",FileType.Internal));
                 this.musicEsp.play();
             }
@@ -205,7 +207,7 @@ public class GameRendererAnd {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 Gdx.app.log("buttonShoot", "Boton de disparo pulsado");
-                playerShip.getShots().add(new Shots(new Vector2(playerShip.getPosition().x+playerShip.getHitbox().width/2-5,playerShip.getPosition().y+20), 0, playerShip.getScreenHeight()));
+                playerShip.getShots().add(new Shots(new Vector2(PlayerShip.getPosition().x+playerShip.getHitbox().width/2-5, PlayerShip.getPosition().y+20), 0, playerShip.getScreenHeight()));
                 soundShot.play();
                 /*if(!shot.isActive()) {
                     shot.setPosition(new Vector2(playerShip.getPosition().x + playerShip.getWidth() / 2 - 5, playerShip.getPosition().y));
@@ -307,11 +309,11 @@ public class GameRendererAnd {
 
         TextButton buttonYes = AssetLoader.buttonYes("Si",0,0  );
         buttonYes.setBounds(Gdx.graphics.getWidth()/9, Gdx.graphics.getHeight()/10 +40, Gdx.graphics.getWidth()/3, Gdx.graphics.getHeight()/7);
-        buttonYes.getLabel().setFontScale((float) Math.min(buttonYes.getWidth()/35, buttonYes.getHeight()/35));
+        buttonYes.getLabel().setFontScale(Math.min(buttonYes.getWidth()/35, buttonYes.getHeight()/35));
 
         TextButton buttonNo = AssetLoader.buttonNo("No", 0, 0);
         buttonNo.setBounds(5*Gdx.graphics.getWidth()/9, Gdx.graphics.getHeight()/10 +40, Gdx.graphics.getWidth()/3, Gdx.graphics.getHeight()/7);
-        buttonNo.getLabel().setFontScale((float) Math.min(buttonNo.getWidth()/35, buttonNo.getHeight()/35));
+        buttonNo.getLabel().setFontScale(Math.min(buttonNo.getWidth()/35, buttonNo.getHeight()/35));
 
         buttonYes.addListener(new InputListener() {
             @Override
