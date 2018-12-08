@@ -40,12 +40,12 @@ public class SpaceInvadersAnd extends Game{
 			}
 
 			@Override
-			/*public void canceled()
+			public void canceled()
 			{
 				System.out.println("Aborted");
 
 
-			}*/
+			}
 		};
 		Gdx.input.getTextInput(textListener, "Introduce your Name: ", "", "");
 
