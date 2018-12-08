@@ -110,22 +110,22 @@ public class GameRenderer {
         ImageButton buttonShoot = AssetLoader.buttonShoot(15*stage.getWidth()/20, stage.getHeight()/20 -15);
         stage.addActor(buttonShoot);
 
-        /*buttonLeft.addListener(new InputListener() {
+        buttonLeft.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 Gdx.app.log("buttonRight", "Boton izquierdo pulsado");
                 playerShip.setLeft();
                 return true;
             }});
-*/
-     /*   buttonRight.addListener(new InputListener() {
+
+        buttonRight.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 Gdx.app.log("buttonRight", "Boton derecho pulsado");
                 playerShip.setRight();
                 return true;
             }});
-*/
+
         buttonUp.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
