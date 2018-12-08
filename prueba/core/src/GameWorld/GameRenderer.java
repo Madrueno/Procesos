@@ -233,7 +233,7 @@ public class GameRenderer {
 
         BitmapFont font = new BitmapFont(true);
         font.getData().setScale(0.6f, 0.6f);
-        font.draw(batcher, "¿Eres mayor de 13 años? " , 20, 2*Gdx.graphics.getHeight()/20 +80);
+        font.draw(batcher, "¿Eres mayor de 13 años? " , 10, 120);
      //   font.draw(batcher, "de 13 años? " , 25, 90);
 
         batcher.end();
@@ -263,7 +263,6 @@ public class GameRenderer {
         buttonNo.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                System.out.println("pulsado");
                 myOld.setOld(false);
                 nono=true;
                 return true;

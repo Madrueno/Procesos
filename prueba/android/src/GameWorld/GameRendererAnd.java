@@ -291,7 +291,8 @@ public class GameRendererAnd {
 
         BitmapFont font = new BitmapFont(true);
         font.getData().setScale(0.6f, 0.6f);
-        font.draw(batcher, "¿Eres mayor de 13 años? " , 20, 2*Gdx.graphics.getHeight()/20 +80);
+        font.draw(batcher, "¿Eres mayor de 13 años? " , 5, 120);
+        //System.out.println(Gdx.graphics.getHeight()*3/10+"Width: \n"+ Gdx.graphics.getWidth()/10);
      //   font.draw(batcher, "de 13 años? " , 25, 90);
 
         batcher.end();
@@ -364,6 +365,7 @@ public class GameRendererAnd {
         if ((playerShip.getScore())>=500) {
             TextButton buttonRetry = AssetLoader.buttonYes("Retry", Gdx.graphics.getWidth()*1/10,  Gdx.graphics.getHeight()* 2/ 10, Gdx.graphics.getWidth()*8/10, Gdx.graphics.getHeight()*1/10+10);
             buttonRetry.getLabel().setFontScale(Gdx.graphics.getWidth() / 140);
+            System.out.println(Gdx.graphics.getWidth()*1/10+"\nHeight:"+  Gdx.graphics.getHeight()* 2/ 10);
 
 
 
@@ -464,7 +466,7 @@ public class GameRendererAnd {
         buttonCamara(stageGameOv);
 
         if ((playerShip.getScore())>=500) {
-        TextButton buttonRetry = AssetLoader.buttonYes("Retry", Gdx.graphics.getWidth()/20 +75 , 2*Gdx.graphics.getHeight()/20 -25);
+        TextButton buttonRetry = AssetLoader.buttonYes("Retry", Gdx.graphics.getWidth()*1/10,  Gdx.graphics.getHeight()* 2/ 10, Gdx.graphics.getWidth()*8/10, Gdx.graphics.getHeight()*1/10+10);
         buttonRetry.getLabel().setFontScale(Gdx.graphics.getWidth()/140);
 
         buttonRetry.addListener(new InputListener() {
@@ -476,7 +478,9 @@ public class GameRendererAnd {
                 myWorld.restPlay();
                 return true;
             }});
+            stageGameOv.addActor(buttonRetry);
         }
+
         stageGameOv.act();
         stageGameOv.draw();
     }
