@@ -294,7 +294,7 @@ public class GameRendererAnd {
 
         BitmapFont font = new BitmapFont(true);
         font.getData().setScale(0.6f, 0.6f);
-        font.draw(batcher, "¿Eres mayor de 13 años? " , 10, 150);
+        font.draw(batcher, "¿Eres mayor de 13 años? " , 5, 120);
         //System.out.println(Gdx.graphics.getHeight()*3/10+"Width: \n"+ Gdx.graphics.getWidth()/10);
      //   font.draw(batcher, "de 13 años? " , 25, 90);
 
